@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_payslip" model="ir.actions.report">
+        <field name="name">Bulletin de Paie</field>
+        <field name="model">hr.payslip</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_hr_ma_payroll.report_payslip</field>
+        <field name="report_file">l10n_hr_ma_payroll.report_payslip</field>
+        <field name="print_report_name">
+'Bulletin de paie - %s' % (object.employee_id.name)
+        </field>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

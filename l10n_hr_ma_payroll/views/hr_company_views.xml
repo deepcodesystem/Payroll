@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_company_inherited_ma_payroll" model="ir.ui.view">
+            <field name="name">Moroccan Payroll</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='general_info']" position="after">
+                    <page string="Informations Légales" name="legal_info">
+                    <group>
+                        <group>
+                            <field name="capital"/>
+                            <field name="rc"/>
+                            <field name="tribunal"/>
+                            <field name="date_immat"/>
+                        </group>
+                        <group>
+                            <field name="form_juridique"/>
+                            <field name="ident_fiscal"/>
+                            <field name="ice"/>
+                            <field name="patente_id"/>
+                        </group>
+                    </group>
+                        <group string="Informations Ressources Humaines" name="hr_info">
+                                <group>
+                                    <field name="company_cnss_id"/>
+                                    <field name="cnss_limit"/>
+                                    <field name="company_cimr_id"/>
+                                </group>
+                        <group>
+                            <field name="employee_nbre"/>
+                        </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

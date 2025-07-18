@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Contribution Register -->
+    <record id="contrib_register_employees" model="hr.contribution.register">
+        <field name="name">Employees</field>
+        <field name="partner_id" eval="False" />
+    </record>
+
+    <record id="hr_CNSS_register" model="hr.contribution.register">
+        <field name="name">La Caisse Nationale de Sécurité Sociale</field>
+        <field name="partner_id" eval="False" />
+    </record>
+
+    <record id="hr_retraite_register" model="hr.contribution.register">
+        <field name="name">Organisme de retraite complementaire CIMR</field>
+        <field name="partner_id" eval="False" />
+    </record>
+
+    <record id="hr_cci_register" model="hr.contribution.register">
+        <field name="name">Chambre du commerce et de l'industrie</field>
+        <field name="partner_id" eval="False" />
+    </record>
+
+    <record id="hr_prevoyance_register" model="hr.contribution.register">
+        <field name="name">Organisme de Mutuelle et prévoyance</field>
+        <field name="partner_id" eval="False" />
+    </record>
+
+    <!-- HR SALARY RULE CATEGORIES-->
+    <record id="BASIC" model="hr.salary.rule.category">
+        <field name="name">Basic</field>
+        <field name="code">BASIC</field>
+    </record>
+
+    <record id="ALW" model="hr.salary.rule.category">
+        <field name="name">Allowance</field>
+        <field name="code">ALW</field>
+    </record>
+
+    <record id="GROSS" model="hr.salary.rule.category">
+        <field name="name">Gross</field>
+        <field name="code">GROSS</field>
+    </record>
+
+    <record id="DED" model="hr.salary.rule.category">
+        <field name="name">Deduction</field>
+        <field name="code">DED</field>
+    </record>
+
+    <record id="NET" model="hr.salary.rule.category">
+        <field name="name">Net</field>
+        <field name="code">NET</field>
+    </record>
+
+    <record id="COMP" model="hr.salary.rule.category">
+        <field name="name">Company Contribution</field>
+        <field name="code">COMP</field>
+    </record>
+
+    <record id="NOCAT" model="hr.salary.rule.category">
+        <field name="name">NO CATEGORY</field>
+        <field name="code">NOCAT</field>
+        <field name="parent_id" eval="False"/>
+    </record>
+
+    <record id="PRINT" model="hr.salary.rule.category">
+        <field name="name">Primes et indémnités Taxables</field>
+        <field name="code">PRINT</field>
+        <field name="parent_id" ref="ALW"/>
+    </record>
+
+    <record id="PRINNT" model="hr.salary.rule.category">
+        <field name="name">Primes et Indémnités Non Taxables</field>
+        <field name="code">PRINNT</field>
+        <field name="parent_id" ref="ALW"/>
+    </record>
+
+    <record id="IR" model="hr.salary.rule.category">
+        <field name="name">Impôt sur le Revenu</field>
+        <field name="code">IR</field>
+        <field name="parent_id" eval="False"/>
+    </record>
+
+    <!-- HR SALARY RULES-->
+    <record id="hr_payslip_rule_jrtv" model="hr.salary.rule">
+        <field name="name">NB Jours Travaillés</field>
+        <field name="code">JRTV</field>
+        <field name="sequence">5</field>
+        <field name="category_id" ref="NOCAT"/>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">ABS = worked_days.ABS and worked_days.ABS.number_of_days
+result = (26 - ABS) if worked_days.ABS and worked_days.ABS.number_of_days > 0 else 26
+        </field>
+        <field name="appears_on_payslip" eval="True"/>
+    </record>
+
+    <record id="hr_rule_basic" model="hr.salary.rule">
+        <field name="name">Salaire de base</field>
+        <field name="code">BASE</field>
+        <field name="category_id" ref="BASIC"/>
+        <field name="register_id" ref="contrib_register_employees"/>
+        <field name="sequence">100</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = (contract.wage/26)*JRTV</field>
+    </record>
+
+    <record id="hr_payslip_rule_rap" model="hr.salary.rule">
+        <field name="name">Rappel sur Salaire de Base</field>
+        <field name="code">RAP</field>
+        <field name="sequence">110</field>
+        <field name="category_id" ref="BASIC"/>
+        <field name="register_id" ref="contrib_register_employees"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.RAP and inputs.RAP.amount > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = inputs.RAP and inputs.RAP.amount</field>
+        <field name="appears_on_payslip" eval="True"/>
+    </record>
+
+    <record id="hr_payslip_rule_cp" model="hr.salary.rule">
+        <field name="name">Congé Payé</field>
+        <field name="code">CP</field>
+        <field name="sequence">120</field>
+        <field name="category_id" ref="PRINT"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.CP and inputs.CP.amount > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = inputs.CP and inputs.CP.amount</field>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="register_id" ref="contrib_register_employees"/>
+    </record>
+
+    <record id="hr_payslip_rule_primanc" model="hr.salary.rule">
+        <field name="name">Prime d'ancienneté</field>
+        <field name="code">PRIMANC</field>
+        <field name="sequence">200</field>
+        <field name="category_id" ref="PRINT"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">coef = ((payslip.date_from.year - contract.date_start.year)*12) - contract.date_start.month + (payslip.date_from.month +1)
+result = coef > 24
+        </field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">coef = ((payslip.date_from.year - contract.date_start.year)*12) - contract.date_start.month + (payslip.date_from.month + 1)
+BC = categories.BASIC
+if (coef &gt;= 25) and (coef &lt;= 60):
+    rate = 5
+elif (coef &gt;= 61) and (coef &lt;= 144):
+    rate = 10
+elif (coef &gt;= 145) and (coef &lt;= 240):
+    rate = 15
+elif (coef &gt;= 241) and (coef &lt;= 300):
+    rate = 20
+else:
+    rate = 25
+result_rate = rate
+result = BC
+        </field>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="register_id" ref="contrib_register_employees"/>
+    </record>
+
+    <record id="hr_payslip_rule_primexcep" model="hr.salary.rule">
+        <field name="name">Prime Exceptionnelle</field>
+        <field name="code">PRIMEXCEP</field>
+        <field name="sequence">130</field>
+        <field name="category_id" ref="PRINT"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.PRIMEXCEP and inputs.PRIMEXCEP.amount > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = inputs.PRIMEXCEP and inputs.PRIMEXCEP.amount</field>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="register_id" ref="contrib_register_employees"/>
+    </record>
+
+    <record id="hr_payslip_rule_primastr" model="hr.salary.rule">
+        <field name="name">Prime Astreinte</field>
+        <field name="code">PRIMASTR</field>
+        <field name="sequence">140</field>
+        <field name="category_id" ref="PRINT"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.PRIMASTR and inputs.PRIMASTR.amount > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = inputs.PRIMASTR and inputs.PRIMASTR.amount</field>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="register_id" ref="contrib_register_employees"/>
+    </record>
+
+    <record id="hr_payslip_rule_bonus" model="hr.salary.rule">
+        <field name="name">Bonus Annuel</field>
+        <field name="code">BONUS</field>
+        <field name="sequence">150</field>
+        <field name="category_id" ref="PRINT"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.BONUS and inputs.BONUS.amount > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = inputs.BONUS and inputs.BONUS.amount</field>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="register_id" ref="contrib_register_employees"/>
+    </record>
+
+    <record id="hr_rule_gross" model="hr.salary.rule">
+        <field name="name">*** Salaire Brut Global ***</field>
+        <field name="code">GROSS</field>
+        <field name="sequence">1000</field>
+        <field name="category_id" ref="GROSS"/>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = categories.BASIC + categories.ALW</field>
+    </record>
+
+    <record id="hr_payslip_rule_sbi" model="hr.salary.rule">
+        <field name="name">Salaire Brut Imposable</field>
+        <field name="code">SBI</field>
+        <field name="sequence">1100</field>
+        <field name="category_id" ref="NOCAT"/>
+        <field name="parent_rule_id" ref="hr_rule_gross"/>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = (categories.BASIC + categories.ALW) - categories.PRINNT</field>
+        <field name="appears_on_payslip" eval="False"/>
+    </record>
+
+    <record id="hr_payslip_rule_cnsse" model="hr.salary.rule">
+        <field name="name">Cotisation C.N.S.S</field>
+        <field name="code">CNSSE</field>
+        <field name="sequence">1210</field>
+        <field name="category_id" ref="DED"/>
+        <field name="amount_select">percentage</field>
+        <field name="amount_percentage_base">min(SBI, 6000)</field>
+        <field name="quantity">1</field>
+        <field name="amount_percentage">4.48</field>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="register_id" ref="hr_CNSS_register"/>
+    </record>
+
+    <record id="hr_payslip_rule_amo" model="hr.salary.rule">
+        <field name="name">Cotisation A.M.O</field>
+        <field name="code">AMO</field>
+        <field name="sequence">1220</field>
+        <field name="category_id" ref="DED"/>
+        <field name="amount_select">percentage</field>
+        <field name="amount_percentage_base">SBI</field>
+        <field name="quantity">1</field>
+        <field name="amount_percentage">2.26</field>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="register_id" ref="hr_CNSS_register"/>
+    </record>
+
+    <record id="hr_payslip_rule_ir" model="hr.salary.rule">
+        <field name="name">Impôt sur le Revenu</field>
+        <field name="code">IR</field>
+        <field name="sequence">2000</field>
+        <field name="category_id" ref="IR"/>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute"># 1. Calculer le SNI total connu jusqu'à présent (mois actuels + précédents)
+sni_mensuel = SNI
+sni_connu = SNI
+mois_actuel = payslip.date_from.month
+sni_par_mois = {mois_actuel: SNI}  # Pour le débogage
+
+for slip in employee.slip_ids:
+    if slip.date_from.year == 2025 and slip.state == "done":
+        slip_month = slip.date_from.month
+        for line in slip.line_ids:
+            if line.code == "SNI":
+                sni_connu += line.total
+        sni_du_mois = sni_connu
+        sni_par_mois[slip_month] = sni_du_mois
+
+# 2. Estimation du SNI annuel
+if mois_actuel == 12:
+    # En décembre, on a le SNI annuel exact
+    sni_annuel = sni_connu
+else:
+    # Pour les autres mois, on estime basé sur les données connues
+    nombre_mois_connus = len(sni_par_mois)
+    if nombre_mois_connus &gt; 1:
+        # Si nous avons des données pour plusieurs mois, faire une moyenne précise
+        sni_moyen = sni_connu / nombre_mois_connus
+        sni_annuel = sni_connu + (sni_moyen * (12 - nombre_mois_connus))
+    else:
+        # Si nous n'avons que le mois actuel, projeter pour l'année
+        sni_annuel = sni_mensuel * 12
+
+# 3. Calculer l'IR annuel selon le barème progressif
+# Application du barème de l'IR annuel
+ir_annuel = 0
+
+# Tranche 1: 0 à 40 000 DH -&gt; 0%
+if sni_annuel &lt;= 40000:
+    ir_annuel = 0
+# Tranche 2: 40 001 à 60 000 DH -&gt; 10% avec déduction de 4 000 DH
+elif sni_annuel &lt;= 60000:
+    ir_annuel = (sni_annuel * 0.10) - 4000
+# Tranche 3: 60 001 à 80 000 DH -&gt; 20% avec déduction de 10 000 DH
+elif sni_annuel &lt;= 80000:
+    ir_annuel = (sni_annuel * 0.20) - 10000
+# Tranche 4: 80 001 à 100 000 DH -&gt; 30% avec déduction de 18 000 DH
+elif sni_annuel &lt;= 100000:
+    ir_annuel = (sni_annuel * 0.30) - 18000
+# Tranche 5: 100 001 à 180 000 DH -&gt; 34% avec déduction de 22 000 DH
+elif sni_annuel &lt;= 180000:
+    ir_annuel = (sni_annuel * 0.34) - 22000
+# Tranche 6: Plus de 180 000 DH -&gt; 37% avec déduction de 27 400 DH
+else:
+    ir_annuel = (sni_annuel * 0.37) - 27400
+
+# 6. Déduction des charges familiales
+# Récupérer le nombre de personnes à charge
+personnes_a_charge = employee.children or 0  # À adapter selon votre configuration
+
+# Plafonner à 6 personnes à charge maximum
+personnes_a_charge = min(personnes_a_charge, 6)
+deduction_charges_familiales_annuel = personnes_a_charge * 500
+
+# Appliquer la déduction des charges familiales
+ir_annuel = max(ir_annuel - deduction_charges_familiales_annuel, 0)
+
+# 7. Calculer l'IR pour ce mois particulier
+# IR déjà payé dans les mois précédents
+ir_deja_paye = 0
+for slip in employee.slip_ids:
+    if slip.date_from.year == 2025 and slip.state == "done":
+        for line in slip.line_ids:
+            if line.code == "IR":
+                ir_deja_paye += line.total
+                break
+
+# Calcul de l'IR mensuel au prorata du SNI mensuel
+if sni_annuel &gt; 0:  # Éviter division par zéro
+    ratio_mensuel = sni_mensuel / sni_annuel
+    ir_mensuel_theorique = ir_annuel * ratio_mensuel
+else:
+    ir_mensuel_theorique = 0
+
+# Calcul de l'IR restant à payer pour l'année
+ir_restant = ir_annuel - ir_deja_paye
+
+# Éviter de dépasser l'IR annuel si les variations mensuelles sont importantes
+ir_mensuel = min(ir_mensuel_theorique, ir_restant)
+
+# 8. Résultat final (ne peut pas être négatif)
+result = max(ir_mensuel, 0)
+
+# Information de débogage
+#debug_info = """
+#SNI mensuel: {:.2f} DH
+#SNI connu à ce jour: {:.2f} DH
+#SNI annuel estimé: {:.2f} DH
+#IR annuel calculé (avant charges fam.): {:.2f} DH
+#Personnes à charge: {}
+#Déduction charges familiales: {:.2f} DH
+#IR annuel final: {:.2f} DH
+#IR déjà payé: {:.2f} DH
+#Ratio mensuel: {:.2f}%
+#IR du mois: {:.2f} DH
+#""".format(
+#    sni_mensuel,
+#    sni_connu,
+#    sni_annuel,
+#    ir_annuel + deduction_charges_familiales_annuel,
+#    personnes_a_charge,
+#    deduction_charges_familiales_annuel,
+#    ir_annuel,
+#   ir_deja_paye,
+#    ratio_mensuel * 100 if sni_annuel > 0 else 0,
+#    ir_mensuel
+#)
+
+#payslip.write({'note': debug_info})
+        </field>
+        <field name="appears_on_payslip" eval="True"/>
+    </record>
+
+    <record id="hr_payslip_rule_frpro" model="hr.salary.rule">
+        <field name="name">Frais Professionnels</field>
+        <field name="code">FRPRO</field>
+        <field name="sequence">1500</field>
+        <field name="category_id" ref="NOCAT"/>
+        <field name="parent_rule_id" ref="hr_payslip_rule_ir"/>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute"># Récupérer le SBI du mois courant
+sbi_mensuel = SBI or 0.0
+
+# 1. Calculer le SBI total connu jusqu'à présent (mois actuels + précédents)
+sbi_connu = sbi_mensuel
+mois_actuel = payslip.date_from.month
+sbi_par_mois = {mois_actuel: sbi_mensuel}  # Stockage par mois pour débogage
+
+for slip in employee.slip_ids:
+    slip_month = slip.date_from.month
+    if slip.date_from.year == 2025 and slip.state == "done":
+        for line in slip.line_ids:
+            if line.code == 'SBI':
+                sbi_valeur = line.total
+                sbi_connu += sbi_valeur
+                sbi_par_mois[slip_month] = sbi_valeur
+                break
+
+# 2. Calcul du taux basé sur le SBI annuel connu ou projeté
+# Si nous sommes en décembre, nous connaissons le SBI exact, sinon projection
+if mois_actuel == 12:
+    # En décembre, on a le SBI annuel exact
+    sbi_annuel = sbi_connu
+else:
+    # Pour les autres mois, on estime basé sur les données connues
+    nombre_mois_connus = len(sbi_par_mois)
+    if nombre_mois_connus &gt; 1:
+        # Si nous avons des données pour plusieurs mois, faire une moyenne plus précise
+        somme_sbi_connu = sbi_connu
+        sbi_moyen = somme_sbi_connu / nombre_mois_connus
+        sbi_annuel = somme_sbi_connu + (sbi_moyen * (12 - nombre_mois_connus))
+    else:
+        # Si nous n'avons que le mois actuel, projeter pour l'année
+        sbi_annuel = sbi_mensuel * 12
+
+# 3. Déterminer le taux basé sur le SBI annuel estimé
+if sbi_annuel &lt;= 78000:
+    taux = 0.35  # 35%
+else:
+    taux = 0.25  # 25%
+
+# 4. Calcul des frais professionnels pour l'année entière
+frais_pro_annuel = min(sbi_annuel * taux, 35000)  # Plafonnement à 35000 DH
+
+# 5. Retrouver les frais professionnels déjà attribués cette année
+frais_pro_deja_attribues = 0
+for slip in employee.slip_ids:
+    if slip.date_from.year == 2025 and slip.state == "done":
+        for line in slip.line_ids:
+            if line.code == "TFRPRO":
+                frais_pro_deja_attribues += line.total
+                break
+
+# 6. Calculer les frais pro pour ce mois (au prorata du SBI mensuel par rapport au SBI annuel)
+if sbi_annuel &gt; 0:  # Éviter division par zéro
+    ratio_mensuel = sbi_mensuel / sbi_annuel
+    frais_pro_theorique_mensuel = frais_pro_annuel * ratio_mensuel
+else:
+    frais_pro_theorique_mensuel = 0
+
+# 7. Vérifier si avec ce montant on ne dépasse pas le total annuel
+frais_pro_restant = frais_pro_annuel - frais_pro_deja_attribues
+frais_pro_mensuel = min(frais_pro_theorique_mensuel, frais_pro_restant)
+
+# Résultat final
+result = max(frais_pro_mensuel, 0)
+
+# Information de débogage
+#debug_info = """
+#SBI mensuel: {:.2f} DH
+#SBI connu à ce jour: {:.2f} DH
+#SBI annuel estimé: {:.2f} DH
+#Taux applicable: {}%
+#Frais pro. annuels calculés: {:.2f} DH
+#Frais pro. déjà attribués: {:.2f} DH
+#Ratio mensuel: {:.2f}%
+#Frais pro. du mois: {:.2f} DH
+#""".format(
+#    sbi_mensuel,
+#    sbi_connu,
+#    sbi_annuel,
+#    int(taux * 100),
+#    frais_pro_annuel,
+#    frais_pro_deja_attribues,
+#    ratio_mensuel * 100 if sbi_annuel > 0 else 0,
+#    frais_pro_mensuel
+#)
+
+#payslip.write({'note': debug_info})
+         </field>
+         <field name="appears_on_payslip" eval="False"/>
+    </record>
+
+    <record id="hr_payslip_rule_sni" model="hr.salary.rule">
+         <field name="name">Salaire Net Imposable</field>
+         <field name="code">SNI</field>
+         <field name="sequence">1600</field>
+         <field name="category_id" ref="NOCAT"/>
+         <field name="parent_rule_id" ref="hr_payslip_rule_ir"/>
+         <field name="amount_select">code</field>
+         <field name="amount_python_compute">result = SBI - categories.DED - FRPRO</field>
+         <field name="appears_on_payslip" eval="False"/>
+    </record>
+
+    <record id="hr_payslip_rule_net" model="hr.salary.rule">
+        <field name="name">*** Salaire Net à Payer ***</field>
+        <field name="code">NET</field>
+        <field name="sequence">3000</field>
+        <field name="category_id" ref="NET"/>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = categories.GROSS - categories.DED - categories.IR</field>
+        <field name="appears_on_payslip" eval="True"/>
+    </record>
+
+    <!--HR structure -->
+    <record id="hr_payroll_salary_structure_base" model="hr.payroll.structure">
+        <field name="code">Structure de Base</field>
+        <field name="name">Structure de base paie Marocaine</field>
+        <field eval="[(6, 0, [ref('hr_payslip_rule_jrtv'),ref('hr_rule_basic'),ref('hr_payslip_rule_rap'),ref('hr_payslip_rule_cp'),ref('hr_payslip_rule_primanc'),ref('hr_payslip_rule_primexcep'),ref('hr_payslip_rule_primastr'),ref('hr_payslip_rule_bonus'),ref('hr_rule_gross'),ref('hr_payslip_rule_sbi'),ref('hr_payslip_rule_cnsse'),ref('hr_payslip_rule_amo'),ref('hr_payslip_rule_frpro'),ref('hr_payslip_rule_sni'),ref('hr_payslip_rule_ir'),ref('hr_payslip_rule_net')])]"
+               name="rule_ids"/>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="note">Cette rubrique représente la structure des salariés marocains.</field>
+    </record>
+
+    <!-- Rule Inputs -->
+    <record id="hr_rule_input_rap" model="hr.rule.input">
+        <field name="code">RAP</field>
+        <field name="name">Rappel sur Salaire de Base</field>
+        <field name="input_id" ref="hr_payslip_rule_rap"/>
+    </record>
+
+    <record id="hr_rule_input_cp" model="hr.rule.input">
+        <field name="code">CP</field>
+        <field name="name">Congé Payé</field>
+        <field name="input_id" ref="hr_payslip_rule_cp"/>
+    </record>
+
+    <record id="hr_rule_input_primexcep" model="hr.rule.input">
+        <field name="code">PRIMEXCEP</field>
+        <field name="name">Prime Exceptionnelle</field>
+        <field name="input_id" ref="hr_payslip_rule_primexcep"/>
+    </record>
+
+    <record id="hr_rule_input_primastr" model="hr.rule.input">
+        <field name="code">PRIMASTR</field>
+        <field name="name">Prime Astreinte</field>
+        <field name="input_id" ref="hr_payslip_rule_primastr"/>
+    </record>
+
+    <record id="hr_rule_input_bonus" model="hr.rule.input">
+        <field name="code">BONUS</field>
+        <field name="name">Bonus</field>
+        <field name="input_id" ref="hr_payslip_rule_bonus"/>
+    </record>
+    
+</odoo>

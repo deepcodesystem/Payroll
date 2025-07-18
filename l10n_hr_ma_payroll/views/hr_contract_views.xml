@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="hr_contract_inherited_ma_payroll" model="ir.ui.view">
+            <field name="name">Moroccan Payroll contract</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='date_end']" position="after">
+                        <field name="worked_age"/>
+                    </xpath>
+                    <xpath expr="//page[@name='other']" position="after">
+                        <page string="Primes et indémnités Non Taxables" name="primesntax">
+                            <group>
+                                <group class="col-4">
+                                    <label for="indem_deplace"/>
+                                    <div class="o_row">
+                                        <field name="indem_deplace" nolabel="1"/>
+                                        <span>/ mois</span>
+                                    </div>
+                                    <label for="indem_km"/>
+                                    <div class="o_row">
+                                        <field name="indem_km" nolabel="1"/>
+                                        <span>/ mois</span>
+                                    </div>
+                                    <label for="indem_transp"/>
+                                    <div class="o_row">
+                                        <field name="indem_transp" nolabel="1"/>
+                                        <span>/ mois</span>
+                                    </div>
+                                    <label for="prim_tournee"/>
+                                    <div class="o_row">
+                                        <field name="prim_tournee" nolabel="1"/>
+                                        <span>/ mois</span>
+                                    </div>
+                                </group>
+                                <group class="col-4">
+                                    <label for="prim_panier"/>
+                                    <div class="o_row">
+                                        <field name="prim_panier" nolabel="1"/>
+                                        <span>/ mois</span>
+                                    </div>
+                                    <label for="grat_social"/>
+                                    <div class="o_row">
+                                        <field name="grat_social" nolabel="1"/>
+                                        <span>/ mois</span>
+                                    </div>
+                                    <label for="indem_caisse"/>
+                                    <div class="o_row">
+                                        <field name="indem_caisse" nolabel="1"/>
+                                        <span>/ mois</span>
+                                    </div>
+                                    <label for="indem_rep"/>
+                                    <div class="o_row">
+                                        <field name="indem_rep" nolabel="1"/>
+                                        <span>/ mois</span>
+                                    </div>
+                                </group>
+                                <group class="col-4">
+                                    <label for="prim_outil"/>
+                                    <div class="o_row">
+                                        <field name="prim_outil" nolabel="1"/>
+                                        <span>/ mois</span>
+                                    </div>
+                                    <label for="prim_salis"/>
+                                    <div class="o_row">
+                                        <field name="prim_salis" nolabel="1"/>
+                                        <span>/ mois</span>
+                                    </div>
+                                    <label for="indem_lice"/>
+                                    <div class="o_row">
+                                        <field name="indem_lice" nolabel="1"/>
+                                        <span>/ mois</span>
+                                    </div>
+                                </group>
+                            </group>
+                        </page>
+
+                    </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</odoo>
