@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<odoo>
+    <!--  Defines security for hr_payslip_run  -->
+    <record id="hr_payroll_payslip_run_company" model="ir.rule">
+        <field name="name">Payslips run of my Company</field>
+        <field name="model_id" ref="payroll.model_hr_payslip_run"/>
+        <field eval="False" name="global"/>
+        <field name="domain_force">
+['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]
+        </field>
+    </record>
+    <!--  Defines security for hr_bank_advice  -->
+    <record id="hr_bank_advice_company" model="ir.rule">
+        <field name="name">Bank Advice of my Company</field>
+        <field name="model_id" ref="l10n_hr_ma_payroll.model_hr_bank_advice"/>
+        <field eval="False" name="global"/>
+        <field name="domain_force">
+['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]
+        </field>
+    </record>
+</odoo>

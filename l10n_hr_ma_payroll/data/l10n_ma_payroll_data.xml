@@ -388,6 +388,21 @@ result = BC
         <field name="register_id" ref="hr_CNSS_register"/>
     </record>
 
+    <record id="hr_payslip_rule_cimre" model="hr.salary.rule">
+            <field name="name">Cotisation C.I.M.R</field>
+            <field name="code">CIMRE</field>
+            <field name="sequence">1300</field>
+            <field name="category_id" ref="l10n_hr_ma_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = employee.mat_cimr</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">SBI - categories.BONUS</field>
+            <field name="quantity">1</field>
+            <field name="amount_percentage">7</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="hr_retraite_register"/>
+        </record>
+
     <record id="hr_payslip_rule_ir" model="hr.salary.rule">
         <field name="name">Impôt sur le Revenu</field>
         <field name="code">IR</field>
@@ -635,11 +650,86 @@ result = max(frais_pro_mensuel, 0)
         <field name="appears_on_payslip" eval="True"/>
     </record>
 
+     <record id="hr_payslip_rule_cnssp" model="hr.salary.rule">
+            <field name="name">Cotisation C.N.S.S P.P</field>
+            <field name="code">CNSSP</field>
+            <field name="sequence">4000</field>
+            <field name="category_id" ref="l10n_hr_ma_payroll.COMP"/>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">min(SBI, 6000)</field>
+            <field name="quantity">1</field>
+            <field name="amount_percentage">8.98</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="hr_CNSS_register"/>
+        </record>
+
+        <record id="hr_payslip_rule_allfp" model="hr.salary.rule">
+            <field name="name">Allocation Familiale P.P</field>
+            <field name="code">ALLFP</field>
+            <field name="sequence">4010</field>
+            <field name="category_id" ref="l10n_hr_ma_payroll.COMP"/>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">SBI</field>
+            <field name="quantity">1</field>
+            <field name="amount_percentage">6.40</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="hr_CNSS_register"/>
+        </record>
+
+        <record id="hr_payslip_rule_formp" model="hr.salary.rule">
+            <field name="name">Formation Professionnelle P.P</field>
+            <field name="code">FORMP</field>
+            <field name="sequence">4020</field>
+            <field name="category_id" ref="l10n_hr_ma_payroll.COMP"/>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">SBI</field>
+            <field name="quantity">1</field>
+            <field name="amount_percentage">1.60</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="hr_CNSS_register"/>
+        </record>
+
+        <record id="hr_payslip_rule_amop" model="hr.salary.rule">
+            <field name="name">Assurance Maladie Obligatoire AMO PP</field>
+            <field name="code">AMOP</field>
+            <field name="sequence">4030</field>
+            <field name="category_id" ref="l10n_hr_ma_payroll.COMP"/>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">SBI</field>
+            <field name="quantity">1</field>
+            <field name="amount_percentage">1.85</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="hr_CNSS_register"/>
+        </record>
+
+        <record id="hr_payslip_rule_cimrp" model="hr.salary.rule">
+            <field name="name">Cotisation C.I.M.R PP</field>
+            <field name="code">CIMRP</field>
+            <field name="sequence">4100</field>
+            <field name="category_id" ref="l10n_hr_ma_payroll.COMP"/>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">SBI</field>
+            <field name="quantity">1</field>
+            <field name="amount_percentage">9.10</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="hr_retraite_register"/>
+        </record>
+
+        <record id="hr_payslip_rule_total" model="hr.salary.rule">
+            <field name="name">Total Versé par l'Employeur</field>
+            <field name="code">TOTAL</field>
+            <field name="sequence">5000</field>
+            <field name="category_id" ref="NOCAT"/>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = GROSS + categories.COMP</field>
+            <field name="appears_on_payslip" eval="False"/>
+        </record>
+
     <!--HR structure -->
     <record id="hr_payroll_salary_structure_base" model="hr.payroll.structure">
         <field name="code">Structure de Base</field>
         <field name="name">Structure de base paie Marocaine</field>
-        <field eval="[(6, 0, [ref('hr_payslip_rule_jrtv'),ref('hr_rule_basic'),ref('hr_payslip_rule_rap'),ref('hr_payslip_rule_cp'),ref('hr_payslip_rule_primanc'),ref('hr_payslip_rule_primexcep'),ref('hr_payslip_rule_primastr'),ref('hr_payslip_rule_bonus'),ref('hr_payslip_rule_indemdepl'), ref('hr_payslip_rule_indemkm'),ref('hr_payslip_rule_indemtransp'),ref('hr_payslip_rule_primtournee'),ref('hr_payslip_rule_gratsocial'),ref('hr_payslip_rule_indemcaisse'),ref('hr_payslip_rule_indemrep'),ref('hr_payslip_rule_primoutil'),ref('hr_payslip_rule_primsalis'),ref('hr_payslip_rule_indemlice'), ref('hr_payslip_rule_primpan'),ref('hr_rule_gross'),ref('hr_payslip_rule_sbi'),ref('hr_payslip_rule_cnsse'),ref('hr_payslip_rule_amo'),ref('hr_payslip_rule_frpro'),ref('hr_payslip_rule_sni'),ref('hr_payslip_rule_ir'),ref('hr_payslip_rule_net')])]"
+        <field eval="[(6, 0, [ref('hr_payslip_rule_jrtv'),ref('hr_rule_basic'),ref('hr_payslip_rule_rap'),ref('hr_payslip_rule_cp'),ref('hr_payslip_rule_primanc'),ref('hr_payslip_rule_primexcep'),ref('hr_payslip_rule_primastr'),ref('hr_payslip_rule_bonus'),ref('hr_payslip_rule_indemdepl'), ref('hr_payslip_rule_indemkm'),ref('hr_payslip_rule_indemtransp'),ref('hr_payslip_rule_primtournee'),ref('hr_payslip_rule_gratsocial'),ref('hr_payslip_rule_indemcaisse'),ref('hr_payslip_rule_indemrep'),ref('hr_payslip_rule_primoutil'),ref('hr_payslip_rule_primsalis'),ref('hr_payslip_rule_indemlice'), ref('hr_payslip_rule_primpan'),ref('hr_rule_gross'),ref('hr_payslip_rule_sbi'),ref('hr_payslip_rule_cnsse'),ref('hr_payslip_rule_cimre'),ref('hr_payslip_rule_amo'),ref('hr_payslip_rule_frpro'),ref('hr_payslip_rule_sni'),ref('hr_payslip_rule_ir'),ref('hr_payslip_rule_net'),ref('hr_payslip_rule_cnssp'),ref('hr_payslip_rule_allfp'),ref('hr_payslip_rule_formp'),ref('hr_payslip_rule_amop'),ref('hr_payslip_rule_cimrp'),ref('hr_payslip_rule_total')])]"
                name="rule_ids"/>
         <field name="company_id" ref="base.main_company"/>
         <field name="note">Cette rubrique représente la structure des salariés marocains.</field>
