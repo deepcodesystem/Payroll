@@ -163,7 +163,7 @@ result = BC
     <record id="hr_payslip_rule_primexcep" model="hr.salary.rule">
         <field name="name">Prime Exceptionnelle</field>
         <field name="code">PRIMEXCEP</field>
-        <field name="sequence">130</field>
+        <field name="sequence">300</field>
         <field name="category_id" ref="PRINT"/>
         <field name="condition_select">python</field>
         <field name="condition_python">result = inputs.PRIMEXCEP and inputs.PRIMEXCEP.amount > 0</field>
@@ -176,7 +176,7 @@ result = BC
     <record id="hr_payslip_rule_primastr" model="hr.salary.rule">
         <field name="name">Prime Astreinte</field>
         <field name="code">PRIMASTR</field>
-        <field name="sequence">140</field>
+        <field name="sequence">310</field>
         <field name="category_id" ref="PRINT"/>
         <field name="condition_select">python</field>
         <field name="condition_python">result = inputs.PRIMASTR and inputs.PRIMASTR.amount > 0</field>
@@ -189,7 +189,7 @@ result = BC
     <record id="hr_payslip_rule_bonus" model="hr.salary.rule">
         <field name="name">Bonus Annuel</field>
         <field name="code">BONUS</field>
-        <field name="sequence">150</field>
+        <field name="sequence">320</field>
         <field name="category_id" ref="PRINT"/>
         <field name="condition_select">python</field>
         <field name="condition_python">result = inputs.BONUS and inputs.BONUS.amount > 0</field>
@@ -198,6 +198,149 @@ result = BC
         <field name="appears_on_payslip" eval="True"/>
         <field name="register_id" ref="contrib_register_employees"/>
     </record>
+
+     <record id="hr_payslip_rule_indemdepl" model="hr.salary.rule">
+            <field name="name">Indemnité de déplacement</field>
+            <field name="code">INDEMDEPL</field>
+            <field name="sequence">600</field>
+            <field name="category_id" ref="PRINNT"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.indem_deplace > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.indem_deplace</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="contrib_register_employees"/>
+        </record>
+
+        <record id="hr_payslip_rule_indemkm" model="hr.salary.rule">
+            <field name="name">Indemnité kilométrique</field>
+            <field name="code">INDEMKM</field>
+            <field name="sequence">610</field>
+            <field name="category_id" ref="PRINNT"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.indem_km> 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.indem_km</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="contrib_register_employees"/>
+        </record>
+
+        <record id="hr_payslip_rule_indemtransp" model="hr.salary.rule">
+            <field name="name">Indemnité de transport</field>
+            <field name="code">INDEMTRANSP</field>
+            <field name="sequence">620</field>
+            <field name="category_id" ref="PRINNT"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.indem_transp> 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.indem_transp</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="contrib_register_employees"/>
+        </record>
+
+        <record id="hr_payslip_rule_primtournee" model="hr.salary.rule">
+            <field name="name">Prime de tournée</field>
+            <field name="code">PRIMTOUR</field>
+            <field name="sequence">630</field>
+            <field name="category_id" ref="PRINNT"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.prim_tournee> 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.prim_tournee</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="contrib_register_employees"/>
+        </record>
+
+        <record id="hr_payslip_rule_gratsocial" model="hr.salary.rule">
+            <field name="name">Gratifications sociales</field>
+            <field name="code">GRATSOCIAL</field>
+            <field name="sequence">640</field>
+            <field name="category_id" ref="PRINNT"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.grat_social > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.grat_social</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="contrib_register_employees"/>
+        </record>
+
+        <record id="hr_payslip_rule_indemcaisse" model="hr.salary.rule">
+            <field name="name">Indemnité de caisse</field>
+            <field name="code">INDEMCAISSE</field>
+            <field name="sequence">650</field>
+            <field name="category_id" ref="PRINNT"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.indem_caisse > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.indem_caisse</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="contrib_register_employees"/>
+        </record>
+
+        <record id="hr_payslip_rule_indemrep" model="hr.salary.rule">
+            <field name="name">Indemnité de représentation</field>
+            <field name="code">INDEMREP</field>
+            <field name="sequence">660</field>
+            <field name="category_id" ref="PRINNT"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.indem_rep > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.indem_rep</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="contrib_register_employees"/>
+        </record>
+
+        <record id="hr_payslip_rule_primoutil" model="hr.salary.rule">
+            <field name="name">Prime d’outillage</field>
+            <field name="code">PRIMOUTIL</field>
+            <field name="sequence">670</field>
+            <field name="category_id" ref="PRINNT"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.prim_outil > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.prim_outil</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="contrib_register_employees"/>
+        </record>
+
+        <record id="hr_payslip_rule_primsalis" model="hr.salary.rule">
+            <field name="name">Prime de Salissure</field>
+            <field name="code">PRIMSALIS</field>
+            <field name="sequence">680</field>
+            <field name="category_id" ref="PRINNT"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.prim_salis > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.prim_salis</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="contrib_register_employees"/>
+        </record>
+
+        <record id="hr_payslip_rule_indemlice" model="hr.salary.rule">
+            <field name="name">Indemnité de Licenciement</field>
+            <field name="code">INDEMLICE</field>
+            <field name="sequence">690</field>
+            <field name="category_id" ref="PRINNT"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.indem_lice > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.indem_lice</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="contrib_register_employees"/>
+        </record>
+
+        <record id="hr_payslip_rule_primpan" model="hr.salary.rule">
+            <field name="name">Prime de Panier</field>
+            <field name="code">PRIMPAN</field>
+            <field name="sequence">700</field>
+            <field name="category_id" ref="PRINNT"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.prim_panier > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.prim_panier</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="contrib_register_employees"/>
+        </record>
 
     <record id="hr_rule_gross" model="hr.salary.rule">
         <field name="name">*** Salaire Brut Global ***</field>
@@ -496,7 +639,7 @@ result = max(frais_pro_mensuel, 0)
     <record id="hr_payroll_salary_structure_base" model="hr.payroll.structure">
         <field name="code">Structure de Base</field>
         <field name="name">Structure de base paie Marocaine</field>
-        <field eval="[(6, 0, [ref('hr_payslip_rule_jrtv'),ref('hr_rule_basic'),ref('hr_payslip_rule_rap'),ref('hr_payslip_rule_cp'),ref('hr_payslip_rule_primanc'),ref('hr_payslip_rule_primexcep'),ref('hr_payslip_rule_primastr'),ref('hr_payslip_rule_bonus'),ref('hr_rule_gross'),ref('hr_payslip_rule_sbi'),ref('hr_payslip_rule_cnsse'),ref('hr_payslip_rule_amo'),ref('hr_payslip_rule_frpro'),ref('hr_payslip_rule_sni'),ref('hr_payslip_rule_ir'),ref('hr_payslip_rule_net')])]"
+        <field eval="[(6, 0, [ref('hr_payslip_rule_jrtv'),ref('hr_rule_basic'),ref('hr_payslip_rule_rap'),ref('hr_payslip_rule_cp'),ref('hr_payslip_rule_primanc'),ref('hr_payslip_rule_primexcep'),ref('hr_payslip_rule_primastr'),ref('hr_payslip_rule_bonus'),ref('hr_payslip_rule_indemdepl'), ref('hr_payslip_rule_indemkm'),ref('hr_payslip_rule_indemtransp'),ref('hr_payslip_rule_primtournee'),ref('hr_payslip_rule_gratsocial'),ref('hr_payslip_rule_indemcaisse'),ref('hr_payslip_rule_indemrep'),ref('hr_payslip_rule_primoutil'),ref('hr_payslip_rule_primsalis'),ref('hr_payslip_rule_indemlice'), ref('hr_payslip_rule_primpan'),ref('hr_rule_gross'),ref('hr_payslip_rule_sbi'),ref('hr_payslip_rule_cnsse'),ref('hr_payslip_rule_amo'),ref('hr_payslip_rule_frpro'),ref('hr_payslip_rule_sni'),ref('hr_payslip_rule_ir'),ref('hr_payslip_rule_net')])]"
                name="rule_ids"/>
         <field name="company_id" ref="base.main_company"/>
         <field name="note">Cette rubrique représente la structure des salariés marocains.</field>

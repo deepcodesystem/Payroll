@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_bank_advice">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <strong>Société</strong>
+                                    :
+                                    <span t-esc="o.company_id.name"/>
+                                </td>
+                                <td>
+                                    <strong>Date</strong>
+                                    :
+                                    <span t-esc="o.date.strftime('%d/%m/%Y')"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="table table-bordred">
+                            <tr>
+                                <td>
+                                    Periode du
+                                    <strong>
+                                        <span t-esc="get_month(o.date)['from_name']"/>
+                                    </strong>
+                                    Au
+                                    <strong>
+                                        <span t-esc="get_month(o.date)['to_name']"/>
+                                    </strong>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="table table-bordred">
+                            <tr>
+                                <td>
+                                    À la Banque
+                                    <strong>
+                                        <span t-esc="o.bank_id.name"/>
+                                    </strong>
+                                </td>
+                                <td>
+                                    N° Compte de la société :
+                                    <span t-esc="o.company_id.partner_id.bank_ids and o.company_id.partner_id.bank_ids[0].acc_number"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="row">
+                            <p>
+                                Messieurs,
+                                <br/>
+                                Par le débit de compte bancaire N°
+                                <span t-esc="o.company_id.partner_id.bank_ids and o.company_id.partner_id.bank_ids[0].acc_number"/>
+                                nous vous prions de bien vouloir créditer les comptes des collaborateurs, dont les noms
+                                suivent des sommes indiquées ci-après:
+                            </p>
+                        </div>
+                        <table class="table table-bordred">
+                            <thead>
+                                <th>Nom</th>
+                                <th>N° compte Salarié</th>
+
+                                <th>Net à Payé</th>
+                            </thead>
+                            <tbody>
+                                <t t-set="total_bysal" t-value="0"/>
+                                <tr t-foreach="get_detail(o.line_ids)" t-as="l">
+                                    <td>
+                                        <span t-esc="l['name']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="l['acc_no']"/>
+                                    </td>
+                                    <td style="text-align:center;">
+                                        <span t-esc="l['bysal']"
+                                              t-options="{'widget': 'monetary', 'display_currency': o.company_id.currency_id}"/>
+                                        <t t-set="total_bysal" t-value="total_bysal + l['bysal']"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="text-align:right;">
+                                        <span>Total</span>
+                                    </td>
+                                    <td style="text-align:center; font-weight:bold;">
+
+                                        <span t-esc="total_bysal"
+                                              t-options="{'widget': 'monetary', 'display_currency': o.company_id.currency_id}"/>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <p>
+                                L'avis de débit que vous nous adresserez ne devera mentionner que le montant total
+                                ci-dessus.
+                                <br/>
+                                Avec nos remerciements, veuillez agréer, Messieurs, nos salutations distinguées.
+                            </p>
+                        </div>
+                        <div class="text-right">
+                            <span t-esc="o.company_id.name"/>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

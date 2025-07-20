@@ -6,7 +6,7 @@ from odoo import fields, models, api
 
 
 class PayslipParser(models.AbstractModel):
-    _name = 'report.l10n_ma_hr_payroll.report_payslip'
+    _name = 'report.l10n_hr_ma_payroll.report_payslip'
     _description = "Morocco PaySlip"
 
 

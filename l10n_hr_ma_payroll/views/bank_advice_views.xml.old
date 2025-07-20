@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_bank_advice_tree" model="ir.ui.view">
+            <field name="name">hr.bank.advice.tree</field>
+            <field name="model">hr.bank.advice</field>
+            <field name="arch" type="xml">
+                <tree string="Bank Advice">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="bank_id"/>
+                    <field name="batch_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+         <record model="ir.ui.view" id="view_hr_bank_advice_form">
+            <field name="name">hr.bank.advice.form</field>
+            <field name="model">hr.bank.advice</field>
+            <field name="arch" type="xml">
+                <form string="Bank Advice">
+                    <header>
+                        <button name="compute_advice" string="Compute Advice" type="object"
+                                class="oe_highlight"/>
+                        <!--<button name="confirm_sheet" string="Confirm Sheet" states="draft" type="object"
+                                class="oe_highlight"/>-->
+                       <!--<button name="action_send_advice" string="Send Sheet" states="confirm" type="object"
+                                class="oe_highlight"/>-->
+                        <!--<button name="cancel_sheet" string="Cancel Advice" states="draft" type="object"/>-->
+                        <!--<button name="set_to_draft" string="Set to Draft" states="cancel,confirm" type="object"/>-->
+                        <field name="state" widget="statusbar" nolabel="1" statusbar_visible="draft,confirm,cancel"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="date"/>
+                                <field name="batch_id"/>
+                            </group>
+                            <group>
+                                <field name="bank_id"/>
+                                <field name="bank_account_id"/>
+                                <field name="check_number"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <notebook>
+                            <page string="Employees Bank Account">
+                                <field name="line_ids" colspan="4" readonly="state != 'draft'">
+                                    <tree editable="bottom">
+                                        <field name="employee_id"/>
+                                        <field name="account_number"/>
+                                        <field name="bysal"/>
+                                        <field name="debit_credit"/>
+                                        <field name="company_id" groups="base.group_multi_company"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+         </record>
+
+        <record id="view_hr_bank_advice_filter" model="ir.ui.view">
+            <field name="name">hr.bank.advice.select</field>
+            <field name="model">hr.bank.advice</field>
+            <field name="arch" type="xml">
+                <search string="Search Payment advice">
+                    <group>
+                    </group>
+                    <newline/>
+                    <group expand="0" string="Group By">
+                        <filter string="Bank" name="bank_id" context="{'group_by':'bank_id'}"/>
+                        <separator orientation="vertical"/>
+                        <filter string="Status" name="state" context="{'group_by':'state'}"/>
+                        <separator orientation="vertical"/>
+                        <filter string="Company" name="company_id" groups="base.group_multi_company"
+                                context="{'group_by':'company_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_view_hr_bank_advice_tree" model="ir.actions.act_window">
+            <field name="name">Payment Advices</field>
+            <field name="res_model">hr.bank.advice</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_hr_bank_advice_filter"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    You haven't created any payment advices yet.
+                </p>
+            </field>
+        </record>
+        <menuitem
+                id="hr_menu_bank_advice"
+                name="Payment Advices"
+                parent="payroll.payroll_menu_root"
+                action="action_view_hr_bank_advice_tree"/>
+    </data>
+</odoo>

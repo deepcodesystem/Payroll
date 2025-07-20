@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="hr_contract_logement_form" model="ir.ui.view">
+            <field name="name">hr.contract.Logement_form</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='other']" position="after">
+                    <page name="logement" string="Intérêt Logement Principal" class="o_hr_contract_salary_information">
+                         <group name="Logement" string="Interêt Logement Principal">
+                             <field name="logement"/>
+                         </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="employee_logement__details_form" model="ir.ui.view">
+            <field name="name">Employee Logement</field>
+            <field name="model">hr.logement</field>
+            <field name="arch" type="xml">
+                <form string="Employee Logement">
+                    <sheet>
+                        <group>
+                            <group>
+                                <label for="date_from" string="Mois de déduction"/>
+                                <div>
+                                    <field name="date_from" />
+                                    -
+                                    <field name="date_to" />
+                                </div>
+                            </group>
+                            <group>
+                                <field name="amount"/>
+                                <field name="company_id" groups="base.group_multi_company" invisible="1"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="employee_logement_details_tree" model="ir.ui.view">
+            <field name="name">Employee Logement</field>
+            <field name="model">hr.logement</field>
+            <field name="arch" type="xml">
+                <tree string="Employee Logement">
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="amount"/>
+                    <field name="company_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>
