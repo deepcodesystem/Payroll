@@ -5,108 +5,248 @@
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
                     <div class="page">
-                        <table class="table">
-                            <tr>
-                                <td>
-                                    <strong>Société</strong>
-                                    :
-                                    <span t-esc="o.company_id.name"/>
-                                </td>
-                                <td>
-                                    <strong>Date</strong>
-                                    :
-                                    <span t-esc="o.date.strftime('%d/%m/%Y')"/>
-                                </td>
-                            </tr>
-                        </table>
-                        <table class="table table-bordred">
-                            <tr>
-                                <td>
-                                    Periode du
-                                    <strong>
-                                        <span t-esc="get_month(o.date)['from_name']"/>
-                                    </strong>
-                                    Au
-                                    <strong>
-                                        <span t-esc="get_month(o.date)['to_name']"/>
-                                    </strong>
-                                </td>
-                            </tr>
-                        </table>
-                        <table class="table table-bordred">
-                            <tr>
-                                <td>
-                                    À la Banque
-                                    <strong>
-                                        <span t-esc="o.bank_id.name"/>
-                                    </strong>
-                                </td>
-                                <td>
-                                    N° Compte de la société :
-                                    <span t-esc="o.company_id.partner_id.bank_ids and o.company_id.partner_id.bank_ids[0].acc_number"/>
-                                </td>
-                            </tr>
-                        </table>
-                        <div class="row">
+                        <!-- En-tête avec logo et informations principales -->
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <h3 class="text-primary mb-3">
+                                    <i class="fa fa-university"></i> Avis de Crédit Bancaire
+                                </h3>
+                                <div class="alert alert-info">
+                                    <strong>Référence :</strong> <span t-esc="o.name or 'N/A'"/>
+                                </div>
+                            </div>
+                            <div class="col-6 text-right">
+                                <div class="card border-primary">
+                                    <div class="card-body">
+                                        <h6 class="card-title text-primary">Informations Générales</h6>
+                                        <p class="mb-1"><strong>Société :</strong> <span t-esc="o.company_id.name"/></p>
+                                        <p class="mb-1"><strong>Date :</strong> <span t-esc="o.date.strftime('%d/%m/%Y')"/></p>
+                                        <p class="mb-0"><strong>Statut :</strong>
+                                            <span class="badge badge-success" t-if="o.state == 'done'">Validé</span>
+                                            <span class="badge badge-warning" t-elif="o.state == 'draft'">Brouillon</span>
+                                            <span class="badge badge-secondary" t-else="">En attente</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Période -->
+                        <div class="alert alert-secondary mb-4">
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <h5 class="mb-2">
+                                        <i class="fa fa-calendar"></i> Période de Paie
+                                    </h5>
+                                    <span class="h6">
+                                        Du <strong class="text-primary"><span t-esc="get_month(o.date)['from_name']"/></strong>
+                                        au <strong class="text-primary"><span t-esc="get_month(o.date)['to_name']"/></strong>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Informations bancaires -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h6 class="mb-0"><i class="fa fa-bank"></i> Informations Bancaires</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p class="mb-2">
+                                            <strong>Banque destinataire :</strong><br/>
+                                            <span t-esc="o.bank_id.name"/>
+                                        </p>
+                                        <p class="mb-0" t-if="o.bank_id.bic">
+                                            <strong>Code BIC :</strong> <span t-esc="o.bank_id.bic"/>
+                                        </p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="mb-2">
+                                            <strong>Compte de l'entreprise :</strong><br/>
+                                            <code t-esc="o.company_id.partner_id.bank_ids and o.company_id.partner_id.bank_ids[0].acc_number or 'Non défini'"/>
+                                        </p>
+                                        <p class="mb-0" t-if="o.company_id.partner_id.bank_ids and o.company_id.partner_id.bank_ids[0].bank_bic">
+                                            <strong>BIC Entreprise :</strong> <span t-esc="o.company_id.partner_id.bank_ids[0].bank_bic"/>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Message d'introduction -->
+                        <div class="mb-4">
+                            <p class="lead">
+                                <strong>Messieurs,</strong>
+                            </p>
                             <p>
-                                Messieurs,
-                                <br/>
-                                Par le débit de compte bancaire N°
-                                <span t-esc="o.company_id.partner_id.bank_ids and o.company_id.partner_id.bank_ids[0].acc_number"/>
-                                nous vous prions de bien vouloir créditer les comptes des collaborateurs, dont les noms
-                                suivent des sommes indiquées ci-après:
+                                Par le débit de notre compte bancaire N°
+                                <strong><span t-esc="o.company_id.partner_id.bank_ids and o.company_id.partner_id.bank_ids[0].acc_number or 'Non défini'"/></strong>,
+                                nous vous prions de bien vouloir créditer les comptes de nos collaborateurs selon les détails ci-après :
                             </p>
                         </div>
-                        <table class="table table-bordred">
-                            <thead>
-                                <th>Nom</th>
-                                <th>N° compte Salarié</th>
 
-                                <th>Net à Payé</th>
-                            </thead>
-                            <tbody>
-                                <t t-set="total_bysal" t-value="0"/>
-                                <tr t-foreach="get_detail(o.line_ids)" t-as="l">
-                                    <td>
-                                        <span t-esc="l['name']"/>
-                                    </td>
-                                    <td>
-                                        <span t-esc="l['acc_no']"/>
-                                    </td>
-                                    <td style="text-align:center;">
-                                        <span t-esc="l['bysal']"
-                                              t-options="{'widget': 'monetary', 'display_currency': o.company_id.currency_id}"/>
-                                        <t t-set="total_bysal" t-value="total_bysal + l['bysal']"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" style="text-align:right;">
-                                        <span>Total</span>
-                                    </td>
-                                    <td style="text-align:center; font-weight:bold;">
+                        <!-- Tableau des salariés -->
+                        <div class="table-responsive mb-4">
+                            <table class="table table-striped table-hover">
+                                <thead class="bg-dark text-white">
+                                    <tr>
+                                        <th width="5%">#</th>
+                                        <th width="35%"><i class="fa fa-user"></i> Nom du Salarié</th>
+                                        <th width="35%"><i class="fa fa-credit-card"></i> N° Compte Bancaire</th>
+                                        <th width="25%" class="text-right"><i class="fa fa-euro"></i> Montant Net</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="total_bysal" t-value="0"/>
+                                    <t t-set="line_number" t-value="0"/>
+                                    <tr t-foreach="get_detail(o.line_ids)" t-as="l">
+                                        <t t-set="line_number" t-value="line_number + 1"/>
+                                        <td class="text-muted">
+                                            <span t-esc="line_number"/>
+                                        </td>
+                                        <td>
+                                            <strong t-esc="l['name']"/>
+                                        </td>
+                                        <td>
+                                            <code t-esc="l['acc_no'] or 'Non défini'"/>
+                                            <t t-if="not l['acc_no']">
+                                                <span class="badge badge-warning ml-2">⚠ Manquant</span>
+                                            </t>
+                                        </td>
+                                        <td class="text-right">
+                                            <span class="font-weight-bold text-success"
+                                                  t-esc="l['bysal']"
+                                                  t-options="{'widget': 'monetary', 'display_currency': o.company_id.currency_id}"/>
+                                            <t t-set="total_bysal" t-value="total_bysal + l['bysal']"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr class="bg-light">
+                                        <td colspan="3" class="text-right">
+                                            <h5 class="mb-0"><strong>TOTAL GÉNÉRAL</strong></h5>
+                                        </td>
+                                        <td class="text-right">
+                                            <h4 class="mb-0 text-primary">
+                                                <strong t-esc="total_bysal"
+                                                        t-options="{'widget': 'monetary', 'display_currency': o.company_id.currency_id}"/>
+                                            </h4>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
 
-                                        <span t-esc="total_bysal"
-                                              t-options="{'widget': 'monetary', 'display_currency': o.company_id.currency_id}"/>
+                        <!-- Résumé statistique -->
+                        <div class="row mb-4">
+                            <div class="col-4">
+                                <div class="card bg-info text-white text-center">
+                                    <div class="card-body">
+                                        <h4 t-esc="len(get_detail(o.line_ids))"/>
+                                        <small>Nombre de salariés</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="card bg-success text-white text-center">
+                                    <div class="card-body">
+                                        <h4 t-esc="total_bysal" t-options="{'widget': 'monetary', 'display_currency': o.company_id.currency_id}"/>
+                                        <small>Montant total</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="card bg-warning text-white text-center">
+                                    <div class="card-body">
+                                        <h4 t-esc="round(total_bysal / len(get_detail(o.line_ids)) if len(get_detail(o.line_ids)) > 0 else 0, 2)"/>
+                                        <small>Montant moyen</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="row">
-                            <p>
-                                L'avis de débit que vous nous adresserez ne devera mentionner que le montant total
-                                ci-dessus.
-                                <br/>
-                                Avec nos remerciements, veuillez agréer, Messieurs, nos salutations distinguées.
+                        <!-- Instructions finales -->
+                        <div class="alert alert-light border-left border-primary mb-4">
+                            <h6 class="alert-heading">
+                                <i class="fa fa-info-circle"></i> Instructions importantes
+                            </h6>
+                            <p class="mb-2">
+                                • L'avis de débit que vous nous adresserez ne devra mentionner que le montant total ci-dessus.
+                            </p>
+                            <p class="mb-2">
+                                • Merci de confirmer l'exécution de ces virements par email ou courrier.
+                            </p>
+                            <p class="mb-0">
+                                • En cas de problème sur un compte, merci de nous contacter avant exécution.
                             </p>
                         </div>
-                        <div class="text-right">
-                            <span t-esc="o.company_id.name"/>
+
+                        <!-- Signature -->
+                        <div class="row">
+                            <div class="col-6">
+                                <p>
+                                    Avec nos remerciements,<br/>
+                                    Veuillez agréer, Messieurs, nos salutations distinguées.
+                                </p>
+                            </div>
+                            <div class="col-6 text-right">
+                                <div class="border-top pt-3 mt-4">
+                                    <strong t-esc="o.company_id.name"/>
+                                    <br/>
+                                    <!--<small class="text-muted">
+                                        Le <span t-esc="context_today().strftime('%d/%m/%Y')"/>
+                                    </small>-->
+                                    <div class="mt-4">
+                                        <div style="height: 60px; border-bottom: 1px solid #ccc; width: 200px; margin-left: auto;">
+                                            <small class="text-muted">Signature et cachet</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
+                        <!-- Pied de page avec informations légales -->
+                        <!--<div class="text-center mt-5 pt-3 border-top">
+                            <small class="text-muted">
+                                <span t-esc="o.company_id.name"/> -
+                                <span t-esc="o.company_id.street"/>
+                                <span t-esc="o.company_id.zip"/> <span t-esc="o.company_id.city"/>
+                                <t t-if="o.company_id.phone"> - Tél: <span t-esc="o.company_id.phone"/></t>
+                                <t t-if="o.company_id.email"> - Email: <span t-esc="o.company_id.email"/></t>
+                            </small>
+                        </div>-->
                     </div>
                 </t>
             </t>
         </t>
+    </template>
+
+    <!-- Styles CSS personnalisés -->
+    <template id="report_bank_advice_styles">
+        <style>
+            .border-left {
+                border-left: 4px solid #007bff !important;
+            }
+            .table-hover tbody tr:hover {
+                background-color: rgba(0,123,255,.075);
+            }
+            .card {
+                box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.075);
+            }
+            .alert {
+                border-radius: 0.5rem;
+            }
+            code {
+                font-size: 0.9em;
+                background-color: #f8f9fa;
+                padding: 2px 4px;
+                border-radius: 3px;
+            }
+            .badge {
+                font-size: 0.8em;
+            }
+        </style>
     </template>
 </odoo>

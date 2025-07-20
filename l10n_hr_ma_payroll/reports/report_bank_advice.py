@@ -31,7 +31,7 @@ class payroll_advice_report(models.AbstractModel):
             res = {}
             res.update({
                     'name': l.employee_id.name,
-                    'acc_no': l.name,
+                    'acc_no': l.account_number.acc_number,
                     'bysal': l.bysal,
                     'debit_credit': l.debit_credit,
                     })
