@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_bank_advice_payroll_user,hr.bank.advice.payroll.user,model_hr_bank_advice,payroll.group_payroll_user,1,1,1,0
+access_hr_bank_advice_payroll_manager,hr.bank.advice.payroll.manager,model_hr_bank_advice,payroll.group_payroll_manager,1,1,1,1
+access_hr_bank_advice_line_payroll_user,hr.bank.advice.line.payroll.user,model_hr_bank_advice_line,payroll.group_payroll_user,1,1,1,0
+access_hr_bank_advice_line_payroll_manager,hr.bank.advice.line.payroll.manager,model_hr_bank_advice_line,payroll.group_payroll_manager,1,1,1,1

@@ -1,0 +1,20 @@
+{
+    'name': 'Paie Maroc 2025',
+    'description': 'Configuration de la paie Marocaine pour 2025',
+    'category': 'Humain Ressources',
+    'version': '17.0.1.0.0',
+    'depends': ['hr','payroll'],
+    'data': [
+        'data/l10n_ma_payroll_data.xml',
+        'data/bank_advice_sequence.xml',
+        'security/ir.model.access.csv',
+        'views/bank_advice_views.xml',
+        'views/hr_contract_views.xml',
+        'views/hr_employee_views.xml',
+        'views/hr_company_views.xml',
+        'reports/l10n_ma_payroll_reports.xml',
+        'reports/report_payslip_template.xml',
+        'reports/report_bank_advice_template.xml',
+    ],
+    'license': 'LGPL-3',
+}
