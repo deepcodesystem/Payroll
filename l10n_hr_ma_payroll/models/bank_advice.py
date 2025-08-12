@@ -56,7 +56,6 @@ class HrBankAdvice(models.Model):
     bank_account_id = fields.Many2one(
         'res.partner.bank',
         string='Compte Bancaire de l\'Entreprise',
-        #domain="[('partner_id', '=', company_id)]",
         required=True,
         tracking=True
     )
@@ -137,6 +136,24 @@ class HrBankAdvice(models.Model):
         ('cheque', 'Chèque'),
         ('especes', 'Espèces')
     ], string='Mode de Paiement', default='virement')
+
+    @api.onchange('company_id')
+    def _onchange_company_id(self):
+        if self.company_id:
+            return {'domain': {'bank_account_id': [('partner_id', '=', self.company_id.partner_id.id)]}}
+        return {'domain': {'bank_account_id': []}}
+
+    @api.model
+    def default_get(self, fields_list):
+        res = super().default_get(fields_list)
+        if 'bank_account_id' in fields_list:
+            company = self.env.company
+            bank_accounts = self.env['res.partner.bank'].search([
+                ('partner_id', '=', company.partner_id.id)
+            ])
+            if bank_accounts:
+                res['bank_account_id'] = bank_accounts[0].id
+        return res
 
     # Contraintes
     @api.constrains('date', 'date_execution')

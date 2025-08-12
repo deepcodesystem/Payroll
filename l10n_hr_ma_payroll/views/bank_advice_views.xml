@@ -6,13 +6,13 @@
             <field name="name">hr.bank.advice.tree</field>
             <field name="model">hr.bank.advice</field>
             <field name="arch" type="xml">
-                <tree string="Conseils Bancaires" decoration-info="state=='draft'" decoration-success="state=='paid'" decoration-warning="state=='confirm'" decoration-danger="state=='cancel'">
+                <tree string="Bank Advices" decoration-info="state=='draft'" decoration-success="state=='paid'" decoration-warning="state=='confirm'" decoration-danger="state=='cancel'">
                     <field name="name"/>
                     <field name="date"/>
                     <field name="bank_id"/>
                     <field name="batch_id"/>
-                    <field name="employee_count" string="Employés"/>
-                    <field name="total_amount" string="Montant Total"/>
+                    <field name="employee_count" string="Employees"/>
+                    <field name="total_amount" string="Total Amount"/>
                     <field name="currency_id" invisible="1"/>
                     <field name="state" decoration-bf="1"/>
                 </tree>
@@ -24,20 +24,20 @@
             <field name="name">hr.bank.advice.form</field>
             <field name="model">hr.bank.advice</field>
             <field name="arch" type="xml">
-                <form string="Conseil Bancaire">
+                <form string="Bank Advice">
                     <header>
-                        <button name="compute_advice" string="Calculer le Conseil" type="object" class="oe_highlight" invisible="state != 'draft'"/>
-                        <button name="action_confirm" string="Confirmer" type="object" class="oe_highlight" invisible="state != 'draft'"/>
-                        <button name="action_send" string="Envoyer à la Banque" type="object" class="oe_highlight" invisible="state != 'confirm'"/>
-                        <button name="action_paid" string="Marquer comme Payé" type="object" class="oe_highlight" invisible="state != 'sent'"/>
-                        <button name="action_cancel" string="Annuler" type="object" invisible="state in ['cancel', 'paid']"/>
-                        <button name="action_set_to_draft" string="Remettre en Brouillon" type="object" invisible="state not in ['cancel', 'confirm']"/>
+                        <button name="compute_advice" string="Calculate" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                        <button name="action_confirm" string="Confirm" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                        <button name="action_send" string="Sent to bank" type="object" class="oe_highlight" invisible="state != 'confirm'"/>
+                        <button name="action_paid" string="Mark as Payed" type="object" class="oe_highlight" invisible="state != 'sent'"/>
+                        <button name="action_cancel" string="Cancel" type="object" invisible="state in ['cancel', 'paid']"/>
+                        <button name="action_set_to_draft" string="Back to Draft" type="object" invisible="state not in ['cancel', 'confirm']"/>
                         <field name="state" widget="statusbar" nolabel="1" statusbar_visible="draft,confirm,sent,paid"/>
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
                             <button class="oe_stat_button" type="object" name="action_view_payslips" icon="fa-money">
-                                <field string="Fiches de Paie" name="employee_count" widget="statinfo"/>
+                                <field string="Payslips" name="employee_count" widget="statinfo"/>
                             </button>
                         </div>
                         <div class="oe_title">
@@ -46,31 +46,31 @@
                             </h1>
                         </div>
                         <group>
-                            <group string="Informations Générales">
+                            <group string="Generale Informations">
                                 <field name="date" readonly="state != 'draft'"/>
                                 <field name="batch_id" readonly="state != 'draft'"/>
                                 <field name="mode_paiement" readonly="state != 'draft'"/>
                                 <field name="date_execution"/>
                             </group>
-                            <group string="Informations Bancaires">
+                            <group string="Bank Information">
                                 <field name="bank_id" readonly="state != 'draft'"/>
-                                <field name="bank_account_id" readonly="state != 'draft'"/>
+                                <field name="bank_account_id" domain="[('partner_id', '=', company_id)]" options="{'no_create': True, 'no_create_edit': True}" readonly="state != 'draft'" groups="base.group_multi_company"/>
                                 <field name="check_number" invisible="mode_paiement != 'cheque'" readonly="state != 'draft'"/>
                                 <field name="reference_externe"/>
                             </group>
                         </group>
                         <group>
-                            <group string="Montants">
+                            <group string="Amount">
                                 <field name="total_amount" readonly="1"/>
                                 <field name="currency_id" invisible="1"/>
                             </group>
                             <group>
-                                <field name="company_id" groups="base.group_multi_company" readonly="state != 'draft'"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
                             </group>
                         </group>
                         <notebook>
-                            <page string="Détails des Employés">
-                                <field name="line_ids" colspan="4" readonly="state != 'draft'">
+                            <page string="Employees Details">
+                                <field name="line_ids" colspan="4">
                                     <tree editable="bottom" decoration-muted="bysal &lt;= 0">
                                         <field name="employee_id"/>
                                         <!--<field name="employee_code"/>-->
@@ -89,7 +89,7 @@
                                 </group>
                             </page>
                             <page string="Notes">
-                                <field name="note" placeholder="Description ou instructions pour la banque..."/>
+                                <field name="note" placeholder="Description ou instructions for bank..."/>
                             </page>
                         </notebook>
                     </sheet>
@@ -113,13 +113,13 @@
                     <field name="batch_id" string="Lot"/>
                     <field name="employee_count"/>
                     <separator/>
-                    <filter string="Brouillon" name="draft" domain="[('state', '=', 'draft')]"/>
-                    <filter string="Confirmé" name="confirm" domain="[('state', '=', 'confirm')]"/>
-                    <filter string="Envoyé" name="sent" domain="[('state', '=', 'sent')]"/>
-                    <filter string="Payé" name="paid" domain="[('state', '=', 'paid')]"/>
+                    <filter string="Draft" name="draft" domain="[('state', '=', 'draft')]"/>
+                    <filter string="Confirmed" name="confirm" domain="[('state', '=', 'confirm')]"/>
+                    <filter string="Sent" name="sent" domain="[('state', '=', 'sent')]"/>
+                    <filter string="Sold" name="paid" domain="[('state', '=', 'paid')]"/>
                     <separator/>
-                    <filter string="Ce Mois" name="current_month" domain="[('date', '&gt;=', (context_today() - datetime.timedelta(days=30)).strftime('%Y-%m-01')),                                      ('date', '&lt;=', (context_today().replace(day=1) + datetime.timedelta(days=32)).replace(day=1) - datetime.timedelta(days=1))]"/>
-                    <filter string="Mois Dernier" name="last_month" domain="[('date', '&gt;=', ((context_today().replace(day=1) - datetime.timedelta(days=1)).replace(day=1)).strftime('%Y-%m-%d')),                                      ('date', '&lt;=', (context_today().replace(day=1) - datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]"/>
+                    <filter string="This month" name="current_month" domain="[('date', '&gt;=', (context_today() - datetime.timedelta(days=30)).strftime('%Y-%m-01')),                                      ('date', '&lt;=', (context_today().replace(day=1) + datetime.timedelta(days=32)).replace(day=1) - datetime.timedelta(days=1))]"/>
+                    <filter string="Last month" name="last_month" domain="[('date', '&gt;=', ((context_today().replace(day=1) - datetime.timedelta(days=1)).replace(day=1)).strftime('%Y-%m-%d')),                                      ('date', '&lt;=', (context_today().replace(day=1) - datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]"/>
                     <separator/>
                     <group expand="0" string="Grouper Par">
                         <filter string="Banque" name="bank_id" context="{'group_by':'bank_id'}"/>
@@ -134,17 +134,16 @@
 
         <!-- Action Window optimisée -->
         <record id="action_view_hr_bank_advice_tree" model="ir.actions.act_window">
-            <field name="name">Conseils de Paiement Bancaire</field>
+            <field name="name">Bank Advices</field>
             <field name="res_model">hr.bank.advice</field>
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_hr_bank_advice_filter"/>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
-                    Créez votre premier conseil de paiement bancaire !
+                    Create your first Bank Advice !
                 </p>
                 <p>
-                    Les conseils de paiement bancaire permettent de générer des fichiers
-                    pour les virements de salaires vers les comptes bancaires des employés.
+                    Bank Advice allow you to generate files for salary transfers to employees' bank accounts.
                 </p>
             </field>
         </record>
@@ -205,11 +204,11 @@
         </record>
 
         <!-- Menu -->
-        <menuitem id="hr_menu_bank_advice" name="Conseils de Paiement" parent="payroll.payroll_menu_root" action="action_view_hr_bank_advice_tree" sequence="10"/>
+        <menuitem id="hr_menu_bank_advice" name="Bank Advices" parent="payroll.payroll_menu_root" action="action_view_hr_bank_advice_tree" sequence="10"/>
 
         <!-- Séquence -->
         <record id="seq_hr_bank_advice" model="ir.sequence">
-            <field name="name">Conseil Bancaire</field>
+            <field name="name">Bank Advices</field>
             <field name="code">hr.bank.advice</field>
             <field name="prefix">CB</field>
             <field name="suffix">/%(year)s</field>
