@@ -204,7 +204,14 @@
         </record>
 
         <!-- Menu -->
-        <menuitem id="hr_menu_bank_advice" name="Bank Advices" parent="payroll.payroll_menu_root" action="action_view_hr_bank_advice_tree" sequence="10"/>
+        <menuitem
+                id="hr_menu_bank_advice"
+                name="Bank Advices"
+                parent="payroll.payroll_menu_root"
+                groups="payroll.group_payroll_user"
+                action="action_view_hr_bank_advice_tree"
+                sequence="10"
+        />
 
         <!-- Séquence -->
         <record id="seq_hr_bank_advice" model="ir.sequence">
