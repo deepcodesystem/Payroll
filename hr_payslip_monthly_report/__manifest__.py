@@ -7,7 +7,7 @@
                    'Payroll-Payslip Reporting, Automatic Mail During '
                    'Confirmation of Payslip, Mass Confirm Payslip ',
     'category': 'Generic Modules/Human Resources',
-    'version': '17.0.2.1.0',
+    'version': '18.0.2.1.0',
     'author': 'GetapPRO',
     'company': 'GetapPRO',
     'maintainer': 'GetapPRO',
