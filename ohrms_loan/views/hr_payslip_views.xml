@@ -6,7 +6,7 @@
         <field name="model">hr.payslip</field>
         <field name="inherit_id" ref="payroll.hr_payslip_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='input_line_ids']//tree//field[@name='sequence']" position="after">
+            <xpath expr="//field[@name='input_line_ids']//list//field[@name='sequence']" position="after">
                 <field name="loan_line_id" column_invisible="True"/>
             </xpath>
         </field>

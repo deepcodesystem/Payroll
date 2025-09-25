@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Open HRMS Loan Management',
-    'version': '17.0.1.2.0',
+    'version': '18.0.1.2.0',
     'category': 'Human Resources',
     'summary': 'Manage Employee Loan Requests',
     'description': """This module facilitates the creation and management of employee loan requests. 
