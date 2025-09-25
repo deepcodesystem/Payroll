@@ -46,12 +46,12 @@
             <field name="name">Employee Logement</field>
             <field name="model">hr.logement</field>
             <field name="arch" type="xml">
-                <tree string="Employee Logement">
+                <list string="Employee Logement">
                     <field name="date_from"/>
                     <field name="date_to"/>
                     <field name="amount"/>
                     <field name="company_id" invisible="1"/>
-                </tree>
+                </list>
             </field>
         </record>
     </data>

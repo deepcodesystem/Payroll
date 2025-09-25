@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Payslip Logement Calcul IR Maroc',
-    'version': '17.0.15.1.0',
+    'version': '18.0.15.1.0',
     'summary': """Employee Interet Logement Principal pour la Paie Maroc.""",
     'description': """Gestion des intérêts Logement Principal pour la Paie Maroc.""",
     'category': 'Generic Modules/Human Resources',
