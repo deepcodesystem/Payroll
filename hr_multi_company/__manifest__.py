@@ -2,7 +2,7 @@
 
 {
     'name': 'Humain Ressources Multi-Company',
-    'version': '17.0.1.5.0',
+    'version': '18.0.1.5.0',
     'category': 'Generic Modules/Human Resources',
     'summary': """Enables Multi-Company""",
     'description': 'This module enables multi company features',
