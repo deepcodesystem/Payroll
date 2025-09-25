@@ -2,7 +2,7 @@
     'name': 'Paie Maroc 2025',
     'description': 'Configuration de la paie Marocaine pour 2025',
     'category': 'Humain Ressources',
-    'version': '17.0.1.0.0',
+    'version': '18.0.1.0.0',
     'depends': ['hr','payroll'],
     'data': [
         'data/l10n_ma_payroll_data.xml',
