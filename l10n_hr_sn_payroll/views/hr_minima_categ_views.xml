@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Vue Formulaire pour les Catégories de Minima -->
+    <record id="view_hr_minima_categ_form" model="ir.ui.view">
+        <field name="name">hr.minima.categ.form</field>
+        <field name="model">min.categoriels</field>
+        <field name="arch" type="xml">
+            <form string="Catégorie de Minima">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Nom de la catégorie"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Informations Financières">
+                            <field name="amount"/>
+                            <field name="currency_id"/>
+                        </group>
+                        <group string="Informations Générales">
+                            <field name="company_id"/>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vue Liste pour édition directe des Catégories de Minima -->
+    <record id="view_hr_minima_categ_list" model="ir.ui.view">
+        <field name="name">hr.minima.categ.list</field>
+        <field name="model">min.categoriels</field>
+        <field name="arch" type="xml">
+            <list string="Catégories de Minima" editable="bottom">
+                <field name="name"/>
+                <field name="amount"/>
+                <field name="currency_id"/>
+                <field name="company_id"/>
+                <field name="description"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Vue de Recherche -->
+    <record id="view_hr_minima_categ_search" model="ir.ui.view">
+        <field name="name">hr.minima.categ.search</field>
+        <field name="model">min.categoriels</field>
+        <field name="arch" type="xml">
+            <search string="Catégories de Minima">
+                <field name="name"/>
+                <field name="company_id"/>
+                <separator/>
+                <filter name="filter_company" string="Ma Société" domain="[('company_id', '=', company_id)]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action Window pour accéder aux Catégories de Minima -->
+    <record id="action_hr_minima_categ" model="ir.actions.act_window">
+        <field name="name">Catégories de Minima</field>
+        <field name="res_model">min.categoriels</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_hr_minima_categ_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Créer une nouvelle catégorie de minima
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu dans Configuration > Contrats -->
+    <menuitem
+        id="menu_hr_minima_categ"
+        name="Catégories de Minima"
+        action="action_hr_minima_categ"
+        parent="hr_contract.menu_human_resources_configuration_contract"
+        sequence="30"/>
+
+</odoo>

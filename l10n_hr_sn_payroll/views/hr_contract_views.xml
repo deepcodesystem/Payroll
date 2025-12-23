@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="hr_contract_inherited_ma_payroll" model="ir.ui.view">
+            <field name="name">Moroccan Payroll contract</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='date_end']" position="after">
+                        <field name="worked_age"/>
+                    </xpath>
+                    <!-- Masquer complètement le champ wage -->
+                    <xpath expr="//div[@name='wage']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                    </xpath>
+                    <!-- Ajouter une nouvelle section pour la rémunération sénégalaise -->
+                    <xpath expr="//group[@name='salary_info']" position="inside">
+                        <group string="Minima Catégoriels" col="2">
+                            <field name="minima_categ_id"/>
+                            <field name="minima_categ_amount" readonly="1"/>
+                        </group>
+                        <group string="Sursalaire">
+                            <field name="sursalaire_base"/>
+                        </group>
+                    </xpath>
+                    <xpath expr="//page[@name='other']" position="after">
+                        <page string="Primes et indémnités Non Taxables" name="primesntax">
+                            <group>
+                                <group class="col-6">
+                                    <label for="indem_transp"/>
+                                    <div class="o_row">
+                                        <field name="indem_transp" nolabel="1"/>
+                                        <span>/ mois</span>
+                                    </div>
+                                    <label for="indem_km"/>
+                                    <div class="o_row">
+                                        <field name="indem_km" nolabel="1"/>
+                                        <span>/ mois</span>
+                                    </div>
+                                </group>
+                                <group class="col-6">
+                                    <label for="indem_panier"/>
+                                    <div class="o_row">
+                                        <field name="indem_panier" nolabel="1"/>
+                                        <span>/ mois</span>
+                                    </div>
+                                </group>
+                            </group>
+                        </page>
+
+                    </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</odoo>

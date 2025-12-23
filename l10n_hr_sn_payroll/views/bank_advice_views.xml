@@ -1,0 +1,229 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- Vue Tree optimisée -->
+        <record id="view_hr_bank_advice_tree" model="ir.ui.view">
+            <field name="name">hr.bank.advice.tree</field>
+            <field name="model">hr.bank.advice</field>
+            <field name="arch" type="xml">
+                <list string="Bank Advices" decoration-info="state=='draft'" decoration-success="state=='paid'" decoration-warning="state=='confirm'" decoration-danger="state=='cancel'">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="bank_id"/>
+                    <field name="batch_id"/>
+                    <field name="employee_count" string="Employees"/>
+                    <field name="total_amount" string="Total Amount"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="state" decoration-bf="1"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Vue Form optimisée -->
+        <record model="ir.ui.view" id="view_hr_bank_advice_form">
+            <field name="name">hr.bank.advice.form</field>
+            <field name="model">hr.bank.advice</field>
+            <field name="arch" type="xml">
+                <form string="Bank Advice">
+                    <header>
+                        <button name="compute_advice" string="Calculate" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                        <button name="action_confirm" string="Confirm" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                        <button name="action_send" string="Sent to bank" type="object" class="oe_highlight" invisible="state != 'confirm'"/>
+                        <button name="action_paid" string="Mark as Payed" type="object" class="oe_highlight" invisible="state != 'sent'"/>
+                        <button name="action_cancel" string="Cancel" type="object" invisible="state in ['cancel', 'paid']"/>
+                        <button name="action_set_to_draft" string="Back to Draft" type="object" invisible="state not in ['cancel', 'confirm']"/>
+                        <field name="state" widget="statusbar" nolabel="1" statusbar_visible="draft,confirm,sent,paid"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="object" name="action_view_payslips" icon="fa-money">
+                                <field string="Payslips" name="employee_count" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="Generale Informations">
+                                <field name="date" readonly="state != 'draft'"/>
+                                <field name="batch_id" readonly="state != 'draft'"/>
+                                <field name="mode_paiement" readonly="state != 'draft'"/>
+                                <field name="date_execution"/>
+                            </group>
+                            <group string="Bank Information">
+                                <field name="bank_id" readonly="state != 'draft'"/>
+                                <field name="bank_account_id" domain="[('partner_id', '=', company_id)]" options="{'no_create': True, 'no_create_edit': True}" readonly="state != 'draft'" groups="base.group_multi_company"/>
+                                <field name="check_number" invisible="mode_paiement != 'cheque'" readonly="state != 'draft'"/>
+                                <field name="reference_externe"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Amount">
+                                <field name="total_amount" readonly="1"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Employees Details">
+                                <field name="line_ids" colspan="4">
+                                    <list editable="bottom" decoration-muted="bysal &lt;= 0">
+                                        <field name="employee_id"/>
+                                        <!--<field name="employee_code"/>-->
+                                        <field name="department_id"/>
+                                        <field name="account_number" domain="[('partner_id', '=', employee_id)]"/>
+                                        <field name="bank_name"/>
+                                        <field name="bysal" sum="Total"/>
+                                        <field name="debit_credit"/>
+                                        <field name="payslip_id"/>
+                                        <field name="currency_id" invisible="1"/>
+                                        <field name="company_id" groups="base.group_multi_company"/>
+                                    </list>
+                                </field>
+                                <group class="oe_subtotal_footer oe_right">
+                                    <field name="total_amount" readonly="1" class="oe_subtotal_footer_separator"/>
+                                </group>
+                            </page>
+                            <page string="Notes">
+                                <field name="note" placeholder="Description ou instructions for bank..."/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <!--<div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>-->
+                </form>
+            </field>
+        </record>
+
+        <!-- Vue Search optimisée -->
+        <record id="view_hr_bank_advice_filter" model="ir.ui.view">
+            <field name="name">hr.bank.advice.select</field>
+            <field name="model">hr.bank.advice</field>
+            <field name="arch" type="xml">
+                <search string="Rechercher Conseils de Paiement">
+                    <field name="name" string="Référence"/>
+                    <field name="bank_id" string="Banque"/>
+                    <field name="batch_id" string="Lot"/>
+                    <field name="employee_count"/>
+                    <separator/>
+                    <filter string="Draft" name="draft" domain="[('state', '=', 'draft')]"/>
+                    <filter string="Confirmed" name="confirm" domain="[('state', '=', 'confirm')]"/>
+                    <filter string="Sent" name="sent" domain="[('state', '=', 'sent')]"/>
+                    <filter string="Sold" name="paid" domain="[('state', '=', 'paid')]"/>
+                    <separator/>
+                    <filter string="This month" name="current_month" domain="[('date', '&gt;=', (context_today() - datetime.timedelta(days=30)).strftime('%Y-%m-01')),                                      ('date', '&lt;=', (context_today().replace(day=1) + datetime.timedelta(days=32)).replace(day=1) - datetime.timedelta(days=1))]"/>
+                    <filter string="Last month" name="last_month" domain="[('date', '&gt;=', ((context_today().replace(day=1) - datetime.timedelta(days=1)).replace(day=1)).strftime('%Y-%m-%d')),                                      ('date', '&lt;=', (context_today().replace(day=1) - datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]"/>
+                    <separator/>
+                    <group expand="0" string="Grouper Par">
+                        <filter string="Banque" name="bank_id" context="{'group_by':'bank_id'}"/>
+                        <filter string="Statut" name="state" context="{'group_by':'state'}"/>
+                        <filter string="Date" name="date" context="{'group_by':'date:month'}"/>
+                        <filter string="Lot de Paie" name="batch_id" context="{'group_by':'batch_id'}"/>
+                        <filter string="Société" name="company_id" groups="base.group_multi_company" context="{'group_by':'company_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action Window optimisée -->
+        <record id="action_view_hr_bank_advice_tree" model="ir.actions.act_window">
+            <field name="name">Bank Advices</field>
+            <field name="res_model">hr.bank.advice</field>
+            <field name="view_mode">list,form</field>
+            <field name="search_view_id" ref="view_hr_bank_advice_filter"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first Bank Advice !
+                </p>
+                <p>
+                    Bank Advice allow you to generate files for salary transfers to employees' bank accounts.
+                </p>
+            </field>
+        </record>
+
+        <!-- Vue Kanban -->
+        <record id="view_hr_bank_advice_kanban" model="ir.ui.view">
+            <field name="name">hr.bank.advice.kanban</field>
+            <field name="model">hr.bank.advice</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="bank_id"/>
+                    <field name="total_amount"/>
+                    <field name="employee_count"/>
+                    <field name="state"/>
+                    <field name="currency_id"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <strong><span><t t-esc="record.name.value"/></span></strong>
+                                    </div>
+                                    <div class="col-6">
+                                        <span class="float-right badge badge-pill" t-attf-class="badge-#{record.state.raw_value === 'paid' ? 'success' : (record.state.raw_value === 'draft' ? 'secondary' : 'warning')}">
+                                            <t t-esc="record.state.value"/>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <t t-esc="record.date.value"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <i class="fa fa-bank"/> <t t-esc="record.bank_id.value"/>
+                                    </div>
+                                    <div class="col-4">
+                                        <span class="float-right">
+                                            <i class="fa fa-users"/> <t t-esc="record.employee_count.value"/>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span class="float-right">
+                                            <strong><t t-esc="record.total_amount.value"/> <t t-esc="record.currency_id.value"/></strong>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Menu -->
+        <menuitem
+                id="hr_menu_bank_advice"
+                name="Bank Advices"
+                parent="payroll.payroll_menu_root"
+                groups="payroll.group_payroll_user"
+                action="action_view_hr_bank_advice_tree"
+                sequence="10"
+        />
+
+        <!-- Séquence -->
+        <record id="seq_hr_bank_advice" model="ir.sequence">
+            <field name="name">Bank Advices</field>
+            <field name="code">hr.bank.advice</field>
+            <field name="prefix">CB</field>
+            <field name="suffix">/%(year)s</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

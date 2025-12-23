@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+        <!-- Travailleurs du commerce - Catégories de salaires mensuels -->
+
+        <record id="min_cat_1ere_a" model="min.categoriels">
+            <field name="name">1ère A</field>
+            <field name="amount">70706</field>
+            <field name="currency_id" ref="base.XOF"/>
+            <field name="description">Travailleurs du commerce - Catégorie 1ère A</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="min_cat_1ere_b" model="min.categoriels">
+            <field name="name">1ère B</field>
+            <field name="amount">74870</field>
+            <field name="currency_id" ref="base.XOF"/>
+            <field name="description">Travailleurs du commerce - Catégorie 1ère B</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="min_cat_2eme" model="min.categoriels">
+            <field name="name">2ème</field>
+            <field name="amount">75361</field>
+            <field name="currency_id" ref="base.XOF"/>
+            <field name="description">Travailleurs du commerce - Catégorie 2ème</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="min_cat_3eme" model="min.categoriels">
+            <field name="name">3ème</field>
+            <field name="amount">77840</field>
+            <field name="currency_id" ref="base.XOF"/>
+            <field name="description">Travailleurs du commerce - Catégorie 3ème</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="min_cat_4eme" model="min.categoriels">
+            <field name="name">4ème</field>
+            <field name="amount">82272</field>
+            <field name="currency_id" ref="base.XOF"/>
+            <field name="description">Travailleurs du commerce - Catégorie 4ème</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="min_cat_5eme" model="min.categoriels">
+            <field name="name">5ème</field>
+            <field name="amount">89244</field>
+            <field name="currency_id" ref="base.XOF"/>
+            <field name="description">Travailleurs du commerce - Catégorie 5ème</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="min_cat_6eme" model="min.categoriels">
+            <field name="name">6ème</field>
+            <field name="amount">93790</field>
+            <field name="currency_id" ref="base.XOF"/>
+            <field name="description">Travailleurs du commerce - Catégorie 6ème</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="min_cat_7eme_a" model="min.categoriels">
+            <field name="name">7ème A</field>
+            <field name="amount">105342</field>
+            <field name="currency_id" ref="base.XOF"/>
+            <field name="description">Travailleurs du commerce - Catégorie 7ème A</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="min_cat_7eme_b" model="min.categoriels">
+            <field name="name">7ème B</field>
+            <field name="amount">113984</field>
+            <field name="currency_id" ref="base.XOF"/>
+            <field name="description">Travailleurs du commerce - Catégorie 7ème B</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="min_cat_8eme_a" model="min.categoriels">
+            <field name="name">8ème A</field>
+            <field name="amount">115718</field>
+            <field name="currency_id" ref="base.XOF"/>
+            <field name="description">Travailleurs du commerce - Catégorie 8ème A</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="min_cat_8eme_b" model="min.categoriels">
+            <field name="name">8ème B</field>
+            <field name="amount">123484</field>
+            <field name="currency_id" ref="base.XOF"/>
+            <field name="description">Travailleurs du commerce - Catégorie 8ème B</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="min_cat_8eme_c" model="min.categoriels">
+            <field name="name">8ème C</field>
+            <field name="amount">124255</field>
+            <field name="currency_id" ref="base.XOF"/>
+            <field name="description">Travailleurs du commerce - Catégorie 8ème C</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="min_cat_9eme_a" model="min.categoriels">
+            <field name="name">9ème A</field>
+            <field name="amount">125543</field>
+            <field name="currency_id" ref="base.XOF"/>
+            <field name="description">Travailleurs du commerce - Catégorie 9ème A</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="min_cat_9eme_b" model="min.categoriels">
+            <field name="name">9ème B</field>
+            <field name="amount">132498</field>
+            <field name="currency_id" ref="base.XOF"/>
+            <field name="description">Travailleurs du commerce - Catégorie 9ème B</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="min_cat_10eme_a" model="min.categoriels">
+            <field name="name">10ème A</field>
+            <field name="amount">141024</field>
+            <field name="currency_id" ref="base.XOF"/>
+            <field name="description">Travailleurs du commerce - Catégorie 10ème A</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="min_cat_10eme_b" model="min.categoriels">
+            <field name="name">10ème B</field>
+            <field name="amount">157097</field>
+            <field name="currency_id" ref="base.XOF"/>
+            <field name="description">Travailleurs du commerce - Catégorie 10ème B</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="min_cat_10eme_c" model="min.categoriels">
+            <field name="name">10ème C</field>
+            <field name="amount">174049</field>
+            <field name="currency_id" ref="base.XOF"/>
+            <field name="description">Travailleurs du commerce - Catégorie 10ème C</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="min_cat_11eme" model="min.categoriels">
+            <field name="name">11ème</field>
+            <field name="amount">195119</field>
+            <field name="currency_id" ref="base.XOF"/>
+            <field name="description">Travailleurs du commerce - Catégorie 11ème</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+    </data>
+</odoo>
+
