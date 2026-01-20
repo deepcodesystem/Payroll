@@ -14,7 +14,6 @@
                 'hr_expense', 'hr_attendance'],
     'data': [
         'security/multi_company_security.xml',
-        'views/hr_payslip_run_views.xml',
         'views/hr_attendance_views.xml',
         'views/hr_salary_rule_category_views.xml',
     ],
