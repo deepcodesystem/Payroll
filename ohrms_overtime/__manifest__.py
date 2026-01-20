@@ -1,7 +1,7 @@
 # -- coding: utf-8 --
 {
     'name': 'Payroll Overtime',
-    'version': '17.0.1.0.0',
+    'version': '18.0.1.0.0',
     'category': 'Human Resources',
     'summary': 'Manage employee overtime efficiently by tracking and analyzing.',
     'description': """This module provides a solution for streamline and 
