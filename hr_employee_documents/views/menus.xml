@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Main menu item for Employee Documents -->
+        <menuitem 
+            id="menu_employee_documents"
+            name="Employee Documents"
+            web_icon="hr_employee_documents,static/description/icon.png"
+            sequence="50"
+            groups="hr.group_hr_manager"
+        />
+        <!-- Employee Documents submenu -->
+        <menuitem 
+            id="menu_employee_documents_list"
+            name="Documents"
+            parent="menu_employee_documents"
+            action="action_employee_document"
+            sequence="10"
+        />
+        <!-- Document Types submenu -->
+        <menuitem 
+            id="menu_document_types"
+            name="Document Types"
+            parent="menu_employee_documents"
+            action="action_document_type"
+            sequence="20"
+            groups="hr.group_hr_manager"
+        />
+
+        <!-- Report Templates submenu -->
+        <menuitem
+            id="menu_report_templates"
+            name="Report Templates"
+            parent="menu_employee_documents"
+            action="action_hr_report_template"
+            sequence="30"
+            groups="hr.group_hr_manager"
+        />
+    </data>
+</odoo>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Reject Document Wizard Form -->
+        <record id="view_employee_document_reject_wizard_form" model="ir.ui.view">
+            <field name="name">employee.document.reject.wizard.form</field>
+            <field name="model">employee.document.reject.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Reject Document">
+                    <group>
+                        <field name="document_id" readonly="1"/>
+                        <field name="rejection_reason"/>
+                        <field name="notify_employee" widget="boolean_button"/>
+                    </group>
+                    <footer>
+                        <button name="action_reject" string="Reject" type="object" class="btn-danger"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Reject Document Wizard Action -->
+        <record id="action_employee_document_reject_wizard" model="ir.actions.act_window">
+            <field name="name">Reject Document</field>
+            <field name="res_model">employee.document.reject.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="model_employee_document"/>
+            <field name="binding_view_types">form</field>
+        </record>
+
+    </data>
+</odoo>

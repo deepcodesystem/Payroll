@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 20px; }
+        ul { line-height: 1.8; }
+        .feature { margin: 15px 0; padding: 10px; background-color: #ecf0f1; border-left: 4px solid #3498db; }
+        .badge { display: inline-block; background-color: #27ae60; color: white; padding: 5px 10px; border-radius: 3px; margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📄 Employee Document Management</h1>
+        <p><strong>Version:</strong> 18.0.1.0.0 | <strong>Category:</strong> Human Resources / Payroll</p>
+
+        <h2>Overview</h2>
+        <p>Comprehensive solution for managing and distributing employee documents. Allow HR managers and responsible persons to upload, manage, approve, and control access to various employee documents such as work certificates, training certificates, and more.</p>
+
+        <h2>✨ Key Features</h2>
+        <div class="feature">
+            <strong>📤 Document Upload</strong><br/>
+            Upload various types of employee documents (PDF, Word, etc.) with automatic metadata tracking.
+        </div>
+
+        <div class="feature">
+            <strong>🏷️ Document Organization</strong><br/>
+            Categorize documents using predefined types: Work Certificates, Training Certificates, Salary Certificates, Medical Records, Performance Reviews, and more.
+        </div>
+
+        <div class="feature">
+            <strong>✅ Approval Workflow</strong><br/>
+            Complete approval workflow with Draft, Pending, Approved, and Rejected statuses with detailed audit trail.
+        </div>
+
+        <div class="feature">
+            <strong>🔐 Access Control</strong><br/>
+            Role-based permissions with manager assignment, visibility controls, and approval requirements by document type.
+        </div>
+
+        <div class="feature">
+            <strong>🔍 Advanced Search & Filtering</strong><br/>
+            Search by employee, type, dates, status. Group by employee, type, status, or manager. Quick filters for expiry tracking.
+        </div>
+
+        <div class="feature">
+            <strong>📅 Expiry Tracking</strong><br/>
+            Track document expiration dates and identify expired documents at a glance.
+        </div>
+
+        <div class="feature">
+            <strong>📊 Reports & Analytics</strong><br/>
+            Generate PDF reports of employee documents with status and details.
+        </div>
+
+        <div class="feature">
+            <strong>📧 Notifications</strong><br/>
+            Automatic notifications to employees about document status changes through chatter.
+        </div>
+
+        <h2>📋 Document Types Included</h2>
+        <ul>
+            <li>✓ Work Certificate (Attestation de travail)</li>
+            <li>✓ Experience Certificate</li>
+            <li>✓ Salary Certificate</li>
+            <li>✓ Training Certificate</li>
+            <li>✓ Medical Record</li>
+            <li>✓ Performance Review</li>
+            <li>✓ Other Documents</li>
+        </ul>
+
+        <h2>👥 User Roles & Permissions</h2>
+        <ul>
+            <li><strong>HR Managers:</strong> Full access to create, edit, approve, and delete documents</li>
+            <li><strong>HR Officers:</strong> Full access to manage documents</li>
+            <li><strong>Managers:</strong> Can view and manage subordinate documents</li>
+            <li><strong>Employees:</strong> Can view approved documents visible to them</li>
+        </ul>
+
+        <h2>🔧 Integration</h2>
+        <p>Seamlessly integrates with:</p>
+        <ul>
+            <li>HR Module (Employees, Contracts, Attendance)</li>
+            <li>Payroll Module</li>
+            <li>Email & Notifications (Chatter)</li>
+        </ul>
+
+        <h2>📝 How to Use</h2>
+        <h3>For HR Managers</h3>
+        <ol>
+            <li>Go to <strong>Human Resources > Employee Documents > Documents</strong></li>
+            <li>Click <strong>Create</strong> to add a new document</li>
+            <li>Select employee, document type, and upload file</li>
+            <li>Save and manage the document lifecycle</li>
+            <li>Approve or reject pending documents</li>
+        </ol>
+
+        <h3>For Employees</h3>
+        <ol>
+            <li>Go to <strong>Human Resources > Employees > Your Profile</strong></li>
+            <li>Select the <strong>Documents</strong> tab</li>
+            <li>View approved documents</li>
+            <li>Download documents as needed</li>
+        </ol>
+
+        <h2>📦 Included Components</h2>
+        <ul>
+            <li>Models: DocumentType, EmployeeDocument, RejectWizard</li>
+            <li>Views: Tree, Form, Kanban, Search</li>
+            <li>Reports: PDF document reports</li>
+            <li>Security: Role-based access control with record rules</li>
+            <li>Data: Predefined document types and demo data</li>
+            <li>Tests: Comprehensive unit tests</li>
+        </ul>
+
+        <h2>🎯 Benefits</h2>
+        <ul>
+            <li>Centralized document management</li>
+            <li>Improved employee experience</li>
+            <li>Reduced manual document handling</li>
+            <li>Better compliance and audit trail</li>
+            <li>Secure access control</li>
+            <li>Easy document distribution</li>
+        </ul>
+
+        <h2>ℹ️ Support</h2>
+        <p><strong>Author:</strong> GetapPRO</p>
+        <p><strong>Website:</strong> https://www.getap.pro</p>
+        <p><strong>License:</strong> LGPL-3</p>
+
+        <p style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; color: #7f8c8d;">
+            <em>This module is designed to streamline HR document management and improve organizational efficiency.</em>
+        </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Report Template List View -->
+        <record id="view_hr_report_template_list" model="ir.ui.view">
+            <field name="name">hr.employee.report.template.list</field>
+            <field name="model">hr.employee.report.template</field>
+            <field name="arch" type="xml">
+                <list string="Report Templates">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="report_type"/>
+                    <field name="sequence" widget="handle"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Report Template Form View -->
+        <record id="view_hr_report_template_form" model="ir.ui.view">
+            <field name="name">hr.employee.report.template.form</field>
+            <field name="model">hr.employee.report.template</field>
+            <field name="arch" type="xml">
+                <form string="Report Template">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Template Name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="code" placeholder="e.g., WORK_CERT_FR"/>
+                                <field name="report_type"/>
+                                <field name="sequence"/>
+                            </group>
+                            <group>
+                                <field name="group_ids" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="description" nolabel="1" placeholder="Description of this template..."/>
+                        </group>
+                        <separator string="Template Content"/>
+                        <div class="alert alert-info" role="alert">
+                            <strong>Available Placeholders:</strong><br/>
+                            {{employee.name}} - Employee name<br/>
+                            {{employee.job_title}} - Job title<br/>
+                            {{employee.department}} - Department<br/>
+                            {{employee.email}} - Work email<br/>
+                            {{employee.phone}} - Mobile phone<br/>
+                            {{employee.address}} - Home address<br/>
+                            {{employee.id_number}} - ID number<br/>
+                            {{employee.hire_date}} - Hire date<br/>
+                            {{employee.contract_date}} - Contract date<br/>
+                            {{company_name}} - Company name<br/>
+                            {{today_date}} - Today (DD/MM/YYYY)<br/>
+                            {{today_date_long}} - Today (DD Month YYYY)
+                        </div>
+                        <field name="template_content" nolabel="1" widget="html" placeholder="Enter your template content with placeholders..."/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Report Template Search View -->
+        <record id="view_hr_report_template_search" model="ir.ui.view">
+            <field name="name">hr.employee.report.template.search</field>
+            <field name="model">hr.employee.report.template</field>
+            <field name="arch" type="xml">
+                <search string="Search Templates">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="report_type"/>
+                    <filter name="active" string="Active" domain="[('active', '=', True)]"/>
+                    <filter name="work_cert" string="Work Certificate" domain="[('report_type', '=', 'work_certificate')]"/>
+                    <filter name="salary_cert" string="Salary Certificate" domain="[('report_type', '=', 'salary_certificate')]"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- Report Template Action -->
+        <record id="action_hr_report_template" model="ir.actions.act_window">
+            <field name="name">Report Templates</field>
+            <field name="res_model">hr.employee.report.template</field>
+            <field name="view_mode">list,form</field>
+            <field name="search_view_id" ref="view_hr_report_template_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new report template
+                </p>
+                <p>
+                    Create templates for employee documents like work certificates, salary certificates, etc.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

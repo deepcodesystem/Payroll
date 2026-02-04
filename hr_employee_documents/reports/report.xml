@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Employee Document Report Template -->
+        <report
+            id="action_employee_document_report"
+            model="employee.document"
+            string="Employee Document Report"
+            report_type="qweb-pdf"
+            file="hr_employee_documents.employee_document_report"
+            name="hr_employee_documents.employee_document_report"
+        />
+
+    </data>
+</odoo>

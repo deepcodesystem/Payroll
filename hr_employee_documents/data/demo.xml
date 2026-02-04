@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Sample Document Types (already in document_type_data.xml, but here for demo reference) -->
+
+        <!-- Sample Employees and Documents -->
+        <record id="employee_sample_1" model="hr.employee">
+            <field name="name">Marie Dupont</field>
+            <field name="department_id" ref="hr.department_sales"/>
+        </record>
+
+        <record id="employee_sample_2" model="hr.employee">
+            <field name="name">Pierre Martin</field>
+            <field name="department_id" ref="hr.department_it"/>
+            <field name="parent_id" ref="employee_sample_1"/>
+        </record>
+
+        <!-- Sample Employee Documents -->
+        <record id="employee_document_sample_1" model="employee.document">
+            <field name="employee_id" ref="employee_sample_2"/>
+            <field name="document_type_id" ref="document_type_work_certificate"/>
+            <field name="name">Work Certificate - Pierre Martin</field>
+            <field name="description">Official work certificate for employment verification</field>
+            <field name="document_file">JVBERi0xLjQKJeLjz9MNCjEgMCBvYmo8PC9UeXBlL0NhdGFsb2cvUGFnZXMgMiAwIFI+PmVuZG9iajoyIDAgb2JqPDwvVHlwZS9QYWdlcwovS2lkcyBbMyAwIFJdCi9Db3VudCAxPj5lbmRvYmoKMyAwIG9iajw8L1R5cGUvUGFnZQovUGFyZW50IDIgMCBSCi9NZWRpYUJveCBbMCAwIDYxMiA3OTJdCi9SZXNvdXJjZXM8PC9Gb250PDwvRjE8PC9UeXBlL0ZvbnQKL1N1YnR5cGUvVHlwZTEvQmFzZUZvbnQvSGVsdmV0aWNhPj4+Pj4KL1Byb2NDU2V0Ky9QREZYPj4KL0NvbnRlbnRzIDQgMCBSPj5lbmRvYmoKNCAwIG9iajw8L0xlbmd0aCA0NT4+c3RyZWFtCkJUCi9GMSAxMiBUZgoxMDAgNzAwIFRkCihUZXN0IERvY3VtZW50KSBUagpFVAplbmRzdHJlYW0KZW5kb2JqCnhyZWYKMCA1CjAwMDAwIDY1NTM1IGYgCjAwMDAwIDAwMDAwIG4gCjAwMDAwICA2ODAgbiAKMDAwMDAgIDc0NSBuIAowMDAwMCAgODU5IG4gCnRyYWlsZXI8PC9TaXplIDUgL1Jvb3QgMSAwIFI+PgpzdGFydHhyZWYKOTA0CiUlRU9GCg==</field>
+            <field name="issue_date">2024-01-15</field>
+            <field name="expiry_date">2026-01-15</field>
+            <field name="state">approved</field>
+        </record>
+
+    </data>
+</odoo>

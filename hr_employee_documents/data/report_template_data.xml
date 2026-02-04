@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Predefined Report Templates -->
+        <!-- Work Certificate Template -->
+        <record id="report_template_work_cert_fr" model="hr.employee.report.template">
+            <field name="name">Attestation de Travail (FR)</field>
+            <field name="code">WORK_CERT_FR</field>
+            <field name="report_type">work_certificate</field>
+            <field name="sequence">10</field>
+            <field name="description">Official work certificate / Attestation officielle de travail</field>
+            <field name="template_content"><![CDATA[
+                <div style="font-family: Arial, sans-serif;">
+                    <div style="text-align: right; margin-bottom: 40px; font-weight: bold;">
+                        <p>Fait à {{company_city}}, le {{today_date}}</p>
+                    </div>
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <h1>ATTESTATION DE TRAVAIL</h1>
+                    </div>
+                    <p>Nous soussignés, {{company_name}}, Siège social {{company_address}}.</p>
+                    <p>Attestons par la présente que {{gender}} {{employee.name}},
+                    née le {{employee.birth_date}} affilié à la C.N.S.S. sous
+                    le N°{{employee.cnss_number}} titulaire de Carte d'Identité National
+                    N°{{employee.id_number}} demeurant à {{employee.address}},
+                    est employé dans notre société en qualité de {{employee.job_title}},
+                    depuis le <span class="underline">{{employee.hire_date}}</span> à ce jour.</p>
+                    <p>En foi de quoi, la présente attestation délivrée à la demande de l'intéressé,
+                    pour servir et valoir ce que de droit.</p>
+                    <p style="padding : 20px;font-weight:bold;">La Direction </p>
+                </div>
+            ]]></field>
+        </record>
+        <!-- Salary Certificate Template -->
+        <record id="report_template_salary_cert_fr" model="hr.employee.report.template">
+            <field name="name">Certificat de Salaire (FR)</field>
+            <field name="code">SALARY_CERT_FR</field>
+            <field name="report_type">salary_certificate</field>
+            <field name="sequence">20</field>
+            <field name="description">Salary certificate for income verification / Certificat de salaire</field>
+            <field name="template_content"><![CDATA[
+                <div style="font-family: Arial, sans-serif; padding: 40px;">
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <h1>CERTIFICAT DE SALAIRE</h1>
+                        <p style="color: #666;">Salary Certificate</p>
+                    </div>
+                    <p>Je soussigné(e), {{company_name}}, certifie que {{employee.name}} est employé(e) à temps plein par {{company_name}} depuis le {{employee.hire_date}}.</p>
+                    <p>Cette attestation est délivrée pour servir et valoir ce que de droit.</p>
+                    <div style="margin-top: 50px;">
+                        <p>Établi à {{company_name}}</p>
+                        <p>Le {{today_date_long}}</p>
+                        <p style="margin-top: 30px; text-align: right;">
+                            __________________________<br/>
+                            Signature et Cachet<br/>
+                            {{company_name}}
+                        </p>
+                    </div>
+                </div>
+            ]]></field>
+        </record>
+        <!-- Domicile Certificate Template -->
+        <record id="report_template_domicile_cert_fr" model="hr.employee.report.template">
+            <field name="name">Certificat de Domiciliation (FR)</field>
+            <field name="code">DOMICILE_CERT_FR</field>
+            <field name="report_type">domicile_certificate</field>
+            <field name="sequence">30</field>
+            <field name="description">Domicile certificate / Certificat de domiciliation</field>
+            <field name="template_content"><![CDATA[
+                <div style="font-family: Arial, sans-serif; padding: 40px;">
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <h1>CERTIFICAT DE DOMICILIATION</h1>
+                        <p style="color: #666;">Certificate of Residence</p>
+                    </div>
+                    <p>Je soussigné(e), {{company_name}}, certifie que {{employee.name}} domicilié(e) à l'adresse suivante :</p>
+                    <p style="margin-left: 40px; font-weight: bold;">{{employee.address}}</p>
+                    <p>travaille pour {{company_name}} en tant que {{employee.job_title}}.</p>
+                    <p>Cette attestation est délivrée pour servir et valoir ce que de droit.</p>
+                    <div style="margin-top: 50px;">
+                        <p>Établi à {{company_name}}</p>
+                        <p>Le {{today_date_long}}</p>
+                        <p style="margin-top: 30px; text-align: right;">
+                            __________________________<br/>
+                            Signature et Cachet<br/>
+                            {{company_name}}
+                        </p>
+                    </div>
+                </div>
+            ]]></field>
+        </record>
+        <!-- Experience Certificate Template -->
+        <record id="report_template_experience_cert_fr" model="hr.employee.report.template">
+            <field name="name">Certificat d'Expérience (FR)</field>
+            <field name="code">EXPERIENCE_CERT_FR</field>
+            <field name="report_type">experience_certificate</field>
+            <field name="sequence">40</field>
+            <field name="description">Experience certificate / Certificat d'expérience</field>
+            <field name="template_content"><![CDATA[
+                <div style="font-family: Arial, sans-serif; padding: 40px;">
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <h1>CERTIFICAT D'EXPÉRIENCE</h1>
+                        <p style="color: #666;">Experience Certificate</p>
+                    </div>
+                    <p>Je soussigné(e), {{company_name}}, certifie que {{employee.name}} a travaillé dans notre entreprise en qualité de {{employee.job_title}} depuis {{employee.hire_date}}.</p>
+                    <p>Pendant son emploi, {{employee.name}} a démontré :</p>
+                    <ul style="margin-left: 40px;">
+                        <li>Une grande capacité professionnelle</li>
+                        <li>Un engagement envers ses responsabilités</li>
+                        <li>Une excellente collaboration avec l'équipe</li>
+                    </ul>
+                    <p>Cette attestation est délivrée à titre informatif.</p>
+                    <div style="margin-top: 50px;">
+                        <p>Établi à {{company_name}}</p>
+                        <p>Le {{today_date_long}}</p>
+                        <p style="margin-top: 30px; text-align: right;">
+                            __________________________<br/>
+                            Signature et Cachet<br/>
+                            {{company_name}}
+                        </p>
+                    </div>
+                </div>
+            ]]></field>
+        </record>
+    </data>
+</odoo>

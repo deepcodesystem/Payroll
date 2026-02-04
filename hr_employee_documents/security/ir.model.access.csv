@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_document_type_all,document.type access,model_document_type,base.group_user,1,0,0,0
+access_document_type_hr_manager,document.type hr manager,model_document_type,hr.group_hr_manager,1,1,1,1
+access_employee_document_all,employee.document access,model_employee_document,base.group_user,1,0,0,0
+access_employee_document_hr_manager,employee.document hr manager,model_employee_document,hr.group_hr_manager,1,1,1,1
+access_reject_wizard_all,reject wizard access,model_employee_document_reject_wizard,base.group_user,1,1,1,1
+access_report_template_user,report template user access,model_hr_employee_report_template,base.group_user,1,0,0,0
+access_report_template_manager,report template manager access,model_hr_employee_report_template,hr.group_hr_manager,1,1,1,1
+access_report_generator_user,report generator user access,model_hr_report_template_generator,base.group_user,1,1,1,1

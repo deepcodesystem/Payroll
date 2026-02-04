@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="employee_document_report">
+        <t t-call="web.html_container">
+            <div class="header">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <h2>Employee Document Report</h2>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <p t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                    </div>
+                </div>
+            </div>
+
+            <t t-foreach="docs" t-as="doc">
+                <div class="page">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h3><span t-field="doc.name"/></h3>
+                        </div>
+                    </div>
+
+                    <table class="table table-bordered" style="margin-top: 20px;">
+                        <tbody>
+                            <tr>
+                                <td class="text-right" style="width: 25%; font-weight: bold;">Employee:</td>
+                                <td><span t-field="doc.employee_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" style="font-weight: bold;">Document Type:</td>
+                                <td><span t-field="doc.document_type_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" style="font-weight: bold;">Status:</td>
+                                <td>
+                                    <span t-if="doc.state == 'draft'" class="badge badge-secondary">Draft</span>
+                                    <span t-elif="doc.state == 'pending'" class="badge badge-warning">Pending Approval</span>
+                                    <span t-elif="doc.state == 'approved'" class="badge badge-success">Approved</span>
+                                    <span t-elif="doc.state == 'rejected'" class="badge badge-danger">Rejected</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" style="font-weight: bold;">Issue Date:</td>
+                                <td><span t-field="doc.issue_date"/></td>
+                            </tr>
+                            <tr t-if="doc.expiry_date">
+                                <td class="text-right" style="font-weight: bold;">Expiry Date:</td>
+                                <td>
+                                    <span t-field="doc.expiry_date"/>
+                                    <t t-if="doc.is_expired">
+                                        <span class="badge badge-danger" style="margin-left: 10px;">EXPIRED</span>
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" style="font-weight: bold;">Upload Date:</td>
+                                <td><span t-field="doc.upload_date"/></td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" style="font-weight: bold;">Created By:</td>
+                                <td><span t-field="doc.created_by_id.name"/></td>
+                            </tr>
+                            <tr t-if="doc.manager_id">
+                                <td class="text-right" style="font-weight: bold;">Manager:</td>
+                                <td><span t-field="doc.manager_id.name"/></td>
+                            </tr>
+                            <tr t-if="doc.reference_number">
+                                <td class="text-right" style="font-weight: bold;">Reference:</td>
+                                <td><span t-field="doc.reference_number"/></td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" style="font-weight: bold;">Visible to Employee:</td>
+                                <td>
+                                    <span t-if="doc.is_visible_to_employee" class="badge badge-success">Yes</span>
+                                    <span t-else="" class="badge badge-danger">No</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div t-if="doc.description" style="margin-top: 20px;">
+                        <h4>Description:</h4>
+                        <p><span t-field="doc.description"/></p>
+                    </div>
+
+                    <div t-if="doc.notes and user.groups_id.filtered(lambda g: g.id == ref('hr.group_hr_manager').id)" style="margin-top: 20px;">
+                        <h4>Internal Notes:</h4>
+                        <p><span t-field="doc.notes"/></p>
+                    </div>
+
+                    <div t-if="doc.state == 'rejected' and doc.rejection_reason" style="margin-top: 20px; padding: 10px; background-color: #f8d7da; border: 1px solid #f5c6cb;">
+                        <h4 style="color: #721c24;">Rejection Reason:</h4>
+                        <p style="color: #721c24;"><span t-field="doc.rejection_reason"/></p>
+                    </div>
+
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

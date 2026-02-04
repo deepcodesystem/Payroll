@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Document Types -->
+        <record id="document_type_work_certificate" model="document.type">
+            <field name="name">Work Certificate</field>
+            <field name="code">WORK_CERT</field>
+            <field name="description">Official certificate of employment/work attestation</field>
+            <field name="sequence">10</field>
+            <field name="require_manager_approval">True</field>
+        </record>
+
+        <record id="document_type_experience_certificate" model="document.type">
+            <field name="name">Experience Certificate</field>
+            <field name="code">EXP_CERT</field>
+            <field name="description">Certificate proving work experience and competencies</field>
+            <field name="sequence">20</field>
+            <field name="require_manager_approval">True</field>
+        </record>
+
+        <record id="document_type_salary_certificate" model="document.type">
+            <field name="name">Salary Certificate</field>
+            <field name="code">SALARY_CERT</field>
+            <field name="description">Certificate proving salary/income for various purposes</field>
+            <field name="sequence">30</field>
+            <field name="require_manager_approval">True</field>
+        </record>
+
+        <record id="document_type_training_certificate" model="document.type">
+            <field name="name">Training Certificate</field>
+            <field name="code">TRAINING_CERT</field>
+            <field name="description">Certificate for training and professional development</field>
+            <field name="sequence">40</field>
+            <field name="require_manager_approval">False</field>
+        </record>
+
+        <record id="document_type_medical_record" model="document.type">
+            <field name="name">Medical Record</field>
+            <field name="code">MEDICAL_REC</field>
+            <field name="description">Medical certificates and health-related documents</field>
+            <field name="sequence">50</field>
+            <field name="require_manager_approval">False</field>
+        </record>
+
+        <record id="document_type_performance_review" model="document.type">
+            <field name="name">Performance Review</field>
+            <field name="code">PERF_REVIEW</field>
+            <field name="description">Annual performance evaluation and review documents</field>
+            <field name="sequence">60</field>
+            <field name="require_manager_approval">True</field>
+        </record>
+
+        <record id="document_type_other" model="document.type">
+            <field name="name">Other Documents</field>
+            <field name="code">OTHER</field>
+            <field name="description">Other miscellaneous employee documents</field>
+            <field name="sequence">100</field>
+            <field name="require_manager_approval">False</field>
+        </record>
+
+    </data>
+</odoo>

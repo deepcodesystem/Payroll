@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Employee Document List View -->
+        <record id="view_employee_document_tree" model="ir.ui.view">
+            <field name="name">employee.document.list</field>
+            <field name="model">employee.document</field>
+            <field name="arch" type="xml">
+                <list string="Employee Documents" decoration-danger="is_expired and state == 'approved'">
+                    <field name="employee_id"/>
+                    <field name="document_type_id"/>
+                    <field name="name"/>
+                    <field name="issue_date"/>
+                    <field name="expiry_date"/>
+                    <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-warning="state == 'pending'" decoration-success="state == 'approved'" decoration-danger="state == 'rejected'"/>
+                    <field name="is_visible_to_employee" widget="boolean"/>
+                </list>
+            </field>
+        </record>
+        <!-- Employee Document Form View -->
+        <record id="view_employee_document_form" model="ir.ui.view">
+            <field name="name">employee.document.form</field>
+            <field name="model">employee.document</field>
+            <field name="arch" type="xml">
+                <form string="Employee Document">
+                    <header>
+                        <button name="action_submit_for_approval" string="Submit for Approval" type="object" class="btn-primary" invisible="state != 'draft'" groups="hr.group_hr_manager"/>
+                        <button name="action_approve" string="Approve" type="object" class="btn-success" invisible="state != 'pending'" groups="hr.group_hr_manager"/>
+                        <button name="action_reject" string="Reject" type="object" class="btn-danger" invisible="state != 'pending'" groups="hr.group_hr_manager"/>
+                        <button name="action_reset_to_draft" string="Reset to Draft" type="object" invisible="state not in ('approved', 'rejected')" groups="hr.group_hr_manager"/>
+                        <button name="action_download" string="Download" type="object" class="btn-info" icon="fa-download"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,pending,approved,rejected"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_employee_documents" type="object" class="oe_stat_button" icon="fa-list">
+                                <span>All Documents</span>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Document Title"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="employee_id" required="1" options="{'no_create_edit': True}"/>
+                                <field name="document_type_id" required="1"/>
+                                <field name="created_by_id" readonly="1"/>
+                                <field name="manager_id" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="issue_date"/>
+                                <field name="expiry_date"/>
+                                <field name="is_expired" readonly="1"/>
+                                <field name="reference_number"/>
+                            </group>
+                        </group>
+                        <group string="File Information">
+                            <group>
+                                <field name="document_file" required="1" filename="file_name" widget="binary"/>
+                                <field name="file_name" invisible="1"/>
+                                <field name="file_size" readonly="1" widget="integer"/>
+                                <field name="file_type" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="upload_date" readonly="1"/>
+                            </group>
+                        </group>
+                        <group string="Approval Information">
+                            <group>
+                                <field name="is_visible_to_employee" widget="boolean_button"/>
+                                <field name="approval_date" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="description" nolabel="1" placeholder="Description..."/>
+                        </group>
+                        <group string="Internal Notes" groups="hr.group_hr_manager">
+                            <field name="notes" nolabel="1" placeholder="Internal notes..."/>
+                        </group>
+                        <group string="Rejection Details" invisible="state != 'rejected'">
+                            <field name="rejection_reason" readonly="1" nolabel="1"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- Employee Document Kanban View -->
+        <record id="view_employee_document_kanban" model="ir.ui.view">
+            <field name="name">employee.document.kanban</field>
+            <field name="model">employee.document</field>
+            <field name="arch" type="xml">
+                <kanban string="Employee Documents" create="true">
+                    <field name="id"/>
+                    <field name="employee_id"/>
+                    <field name="document_type_id"/>
+                    <field name="name"/>
+                    <field name="issue_date"/>
+                    <field name="state"/>
+                    <field name="is_expired"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card">
+                                <div class="oe_kanban_content">
+                                    <div class="oe_kanban_main">
+                                        <div class="oe_module_icon" t-if="record.is_expired.raw_value">
+                                            <i class="fa fa-exclamation-triangle text-danger"/>
+                                        </div>
+                                        <h4><field name="name"/></h4>
+                                        <p>
+                                            <strong><field name="employee_id"/></strong>
+                                        </p>
+                                        <p>
+                                            Type: <field name="document_type_id"/>
+                                        </p>
+                                        <p>
+                                            Issue Date: <field name="issue_date"/>
+                                        </p>
+                                    </div>
+                                    <div class="oe_kanban_footer_left">
+                                        <field name="state" widget="badge"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- Employee Document Search View -->
+        <record id="view_employee_document_search" model="ir.ui.view">
+            <field name="name">employee.document.search</field>
+            <field name="model">employee.document</field>
+            <field name="arch" type="xml">
+                <search string="Search Employee Documents">
+                    <field name="employee_id"/>
+                    <field name="document_type_id"/>
+                    <field name="name"/>
+                    <field name="reference_number"/>
+                    <separator/>
+                    <filter name="active_docs" string="Active" domain="[('active', '=', True)]"/>
+                    <filter name="draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                    <filter name="pending_approval" string="Pending Approval" domain="[('state', '=', 'pending')]"/>
+                    <filter name="approved" string="Approved" domain="[('state', '=', 'approved')]"/>
+                    <filter name="rejected" string="Rejected" domain="[('state', '=', 'rejected')]"/>
+                    <separator/>
+                    <filter name="expired" string="Expired" domain="[('is_expired', '=', True), ('state', '=', 'approved')]"/>
+                    <filter name="not_expired" string="Not Expired" domain="[('is_expired', '=', False)]"/>
+                    <separator/>
+                    <filter name="visible_to_emp" string="Visible to Employee" domain="[('is_visible_to_employee', '=', True)]"/>
+                    <group expand="1" string="Group By">
+                        <filter name="groupby_employee" string="Employee" domain="[]" context="{'group_by': 'employee_id'}"/>
+                        <filter name="groupby_type" string="Document Type" domain="[]" context="{'group_by': 'document_type_id'}"/>
+                        <filter name="groupby_state" string="State" domain="[]" context="{'group_by': 'state'}"/>
+                        <filter name="groupby_manager" string="Manager" domain="[]" context="{'group_by': 'manager_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- Employee Document Action -->
+        <record id="action_employee_document" model="ir.actions.act_window">
+            <field name="name">Employee Documents</field>
+            <field name="res_model">employee.document</field>
+            <field name="view_mode">list,kanban,form</field>
+            <field name="search_view_id" ref="view_employee_document_search"/>
+            <field name="context">{'search_default_active_docs': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Upload a new employee document
+                </p>
+                <p>
+                    Manage employee documents like work certificates, training certificates, and other HR documents.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>
