@@ -11,4 +11,9 @@ class hr_contract(models.Model):
     dependants = fields.Integer(string='Nombre de dépendants', help='Nombre Total des personnes à charge pour le calcule de Paie')
     cimr_id = fields.Char(string='Numéro de CIMR', help='CIMR')
     matricule = fields.Char(string='Matricule', help='Matricule')
+    stc_settlement = fields.Boolean(
+        string='Solde Tout Compte',
+        default=False,
+        help='Appliquer le calcul du Solde Tout Compte au dernier bulletin de paie'
+    )
 

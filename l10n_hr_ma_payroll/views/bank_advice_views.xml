@@ -31,6 +31,7 @@
                         <button name="action_send" string="Sent to bank" type="object" class="oe_highlight" invisible="state != 'confirm'"/>
                         <button name="action_paid" string="Mark as Payed" type="object" class="oe_highlight" invisible="state != 'sent'"/>
                         <button name="action_cancel" string="Cancel" type="object" invisible="state in ['cancel', 'paid']"/>
+                        <button name="generate_bank_export_file" string="Générer Fichier Banque (.txt)" type="object" class="oe_highlight" invisible="state != 'confirm'"/>
                         <button name="action_set_to_draft" string="Back to Draft" type="object" invisible="state not in ['cancel', 'confirm']"/>
                         <field name="state" widget="statusbar" nolabel="1" statusbar_visible="draft,confirm,sent,paid"/>
                     </header>
@@ -93,11 +94,7 @@
                             </page>
                         </notebook>
                     </sheet>
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids"/>
-                        <field name="activity_ids"/>
-                        <field name="message_ids"/>
-                    </div>
+                    <chatter/>
                 </form>
             </field>
         </record>

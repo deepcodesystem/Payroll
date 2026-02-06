@@ -1,0 +1,1186 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_employee_documents
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-05 20:10+0000\n"
+"PO-Revision-Date: 2026-02-05 20:10+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.employee_document_report
+msgid "<span class=\"badge badge-danger\" style=\"margin-left: 10px;\">EXPIRED</span>"
+msgstr "<span class=\"badge badge-danger\" style=\"margin-left: 10px;\">EXPIRÉ</span>"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_form
+msgid "<span>All Documents</span>"
+msgstr "<span>Tous les documents</span>"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_hr_report_template_form
+msgid ""
+"<strong>Available Placeholders:</strong><br/>\n"
+"                            {{employee.name}} - Employee name<br/>\n"
+"                            {{employee.job_title}} - Job title<br/>\n"
+"                            {{employee.department}} - Department<br/>\n"
+"                            {{employee.email}} - Work email<br/>\n"
+"                            {{employee.phone}} - Mobile phone<br/>\n"
+"                            {{employee.address}} - Home address<br/>\n"
+"                            {{employee.id_number}} - ID number<br/>\n"
+"                            {{employee.hire_date}} - Hire date<br/>\n"
+"                            {{employee.contract_date}} - Contract date<br/>\n"
+"                            {{company_name}} - Company name<br/>\n"
+"                            {{today_date}} - Today (DD/MM/YYYY)<br/>\n"
+"                            {{today_date_long}} - Today (DD Month YYYY)"
+msgstr "<strong>Espaces réservés disponibles :</strong><br/>\n {{employee.name}} - Nom de l'employé<br/>\n {{employee.job_title}} - Titre du poste<br/>\n {{employee.department}} - Département<br/>\n {{employee.email}} - E-mail professionnel<br/>\n {{employee.phone}} - Téléphone portable<br/>\n {{employee.address}} - Accueil "
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__message_needaction
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__message_needaction
+msgid "Action Needed"
+msgstr "Action requise"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__active
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__active
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_employee_report_template__active
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_document_type_search
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_search
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_hr_report_template_search
+msgid "Active"
+msgstr "Actif"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__activity_ids
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__activity_ids
+msgid "Activities"
+msgstr "Activités"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__activity_exception_decoration
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Décoration d'exception d'activité"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__activity_state
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__activity_state
+msgid "Activity State"
+msgstr "État d’activité"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__activity_type_icon
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icône de type d'activité"
+
+#. module: hr_employee_documents
+#: model:ir.model,name:hr_employee_documents.model_hr_employee
+msgid "Add fields for moroccan employee"
+msgstr "Employé"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__description
+msgid "Additional notes or description about this document"
+msgstr "Notes supplémentaires ou description de ce document"
+
+#. module: hr_employee_documents
+#: model:document.type,description:hr_employee_documents.document_type_performance_review
+msgid "Annual performance evaluation and review documents"
+msgstr "Documents annuels d’évaluation et d’examen des performances"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__approval_date
+msgid "Approval Date"
+msgstr "Date d'approbation"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_form
+msgid "Approval Information"
+msgstr "Informations d'approbation"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_form
+msgid "Approve"
+msgstr "Approuver"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields.selection,name:hr_employee_documents.selection__employee_document__state__approved
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.employee_document_report
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_search
+msgid "Approved"
+msgstr "Approuvé"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_document_type_search
+msgid "Archived"
+msgstr "Archivé"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__message_attachment_count
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__message_attachment_count
+msgid "Attachment Count"
+msgstr "Nombre de pièces jointes"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_reject_wizard_form
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_hr_report_generator_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: hr_employee_documents
+#: model:document.type,description:hr_employee_documents.document_type_training_certificate
+msgid "Certificate for training and professional development"
+msgstr "Attestation de formation et de perfectionnement professionnel"
+
+#. module: hr_employee_documents
+#: model:document.type,description:hr_employee_documents.document_type_salary_certificate
+msgid "Certificate proving salary/income for various purposes"
+msgstr "Certificat prouvant le salaire/revenu à diverses fins"
+
+#. module: hr_employee_documents
+#: model:document.type,description:hr_employee_documents.document_type_experience_certificate
+msgid "Certificate proving work experience and competencies"
+msgstr "Certificat prouvant l'expérience professionnelle et les compétences"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__code
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_employee_report_template__code
+msgid "Code"
+msgstr ""
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__color
+msgid "Color"
+msgstr "Couleur"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_document_type__color
+msgid "Color indicator for this document type"
+msgstr "Indicateur de couleur pour ce type de document"
+
+#. module: hr_employee_documents
+#: model_terms:ir.actions.act_window,help:hr_employee_documents.action_document_type
+msgid "Create a new document type"
+msgstr "Créer un nouveau type de document"
+
+#. module: hr_employee_documents
+#: model_terms:ir.actions.act_window,help:hr_employee_documents.action_hr_report_template
+msgid "Create a new report template"
+msgstr "Créer un nouveau modèle de rapport"
+
+#. module: hr_employee_documents
+#: model_terms:ir.actions.act_window,help:hr_employee_documents.action_hr_report_template
+msgid ""
+"Create templates for employee documents like work certificates, salary "
+"certificates, etc."
+msgstr "Créez des modèles pour les documents des employés tels que les certificats de travail, les certificats de salaire, etc."
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__created_by_id
+msgid "Created By"
+msgstr "Créé par"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.employee_document_report
+msgid "Created By:"
+msgstr "Créé par :"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__create_uid
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__create_uid
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document_reject_wizard__create_uid
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_employee_report_template__create_uid
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_report_template_generator__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__create_date
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__create_date
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document_reject_wizard__create_date
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_employee_report_template__create_date
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_report_template_generator__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__state
+msgid "Current status of the document"
+msgstr "Statut actuel du document"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields.selection,name:hr_employee_documents.selection__hr_employee_report_template__report_type__custom
+msgid "Custom Report"
+msgstr "Rapport personnalisé"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__expiry_date
+msgid "Date when the document expires (if applicable)"
+msgstr "Date d'expiration du document (le cas échéant)"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__issue_date
+msgid "Date when the document was issued"
+msgstr "Date de délivrance du document"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__description
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__description
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_employee_report_template__description
+msgid "Description"
+msgstr ""
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_document_type_form
+msgid "Description of this document type..."
+msgstr "Description de ce type de document..."
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_hr_report_template_form
+msgid "Description of this template..."
+msgstr "Description de ce modèle..."
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_hr_employee_report_template__description
+msgid "Description of what this template generates"
+msgstr "Description de ce que ce modèle génère"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_form
+msgid "Description..."
+msgstr ""
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.employee_document_report
+msgid "Description:"
+msgstr "Description :"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_document_type__description
+msgid "Detailed description of what this document type contains"
+msgstr "Description détaillée de ce que contient ce type de document"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__display_name
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__display_name
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document_reject_wizard__display_name
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_employee_report_template__display_name
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_report_template_generator__display_name
+msgid "Display Name"
+msgstr "Nom d'affichage"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document_reject_wizard__document_id
+msgid "Document"
+msgstr "Documents"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__document_file
+msgid "Document File"
+msgstr "Fichier de documents"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__name
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_form
+msgid "Document Title"
+msgstr "Titre du document"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__document_type_id
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_document_type_form
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_search
+msgid "Document Type"
+msgstr "Type de document"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__name
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_document_type_form
+msgid "Document Type Name"
+msgstr "Nom du type de document"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.employee_document_report
+msgid "Document Type:"
+msgstr "Type de document :"
+
+#. module: hr_employee_documents
+#: model:ir.actions.act_window,name:hr_employee_documents.action_document_type
+#: model:ir.ui.menu,name:hr_employee_documents.menu_document_types
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_document_type_tree
+msgid "Document Types"
+msgstr "Types de documents"
+
+#. module: hr_employee_documents
+#: model:ir.model.constraint,message:hr_employee_documents.constraint_employee_document_name_not_empty
+msgid "Document title cannot be empty!"
+msgstr "Le titre du document ne peut pas être vide !"
+
+#. module: hr_employee_documents
+#: model:ir.model.constraint,message:hr_employee_documents.constraint_document_type_code_unique
+msgid "Document type code must be unique!"
+msgstr "Le code du type de document doit être unique !"
+
+#. module: hr_employee_documents
+#: model:ir.model.constraint,message:hr_employee_documents.constraint_document_type_name_unique
+msgid "Document type name must be unique!"
+msgstr "Le nom du type de document doit être unique !"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_employee__document_ids
+#: model:ir.ui.menu,name:hr_employee_documents.menu_employee_documents_list
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_page
+msgid "Documents"
+msgstr ""
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_employee__documents_count
+msgid "Documents Count"
+msgstr "Nombre de documents"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_hr_employee__document_ids
+msgid "Documents related to this employee"
+msgstr "Documents relatifs à cet employé"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields.selection,name:hr_employee_documents.selection__hr_employee_report_template__report_type__domicile_certificate
+msgid "Domicile Certificate (Certificat de domiciliation)"
+msgstr "Certificat de domiciliation"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_form
+msgid "Download"
+msgstr "Télécharger"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_hr_report_generator_form
+msgid "Download Report"
+msgstr "Télécharger le rapport"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields.selection,name:hr_employee_documents.selection__employee_document__state__draft
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.employee_document_report
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_search
+msgid "Draft"
+msgstr "Brouillon"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__employee_id
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_report_template_generator__employee_id
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_search
+msgid "Employee"
+msgstr "Employé"
+
+#. module: hr_employee_documents
+#: model:ir.model,name:hr_employee_documents.model_employee_document
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_form
+msgid "Employee Document"
+msgstr "Document de l'employé"
+
+#. module: hr_employee_documents
+#: model:ir.model,name:hr_employee_documents.model_report_hr_employee_documents_employee_document_report
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.employee_document_report
+msgid "Employee Document Report"
+msgstr "Rapport sur les documents de l'employé"
+
+#. module: hr_employee_documents
+#: model:ir.model,name:hr_employee_documents.model_document_type
+msgid "Employee Document Type"
+msgstr "Type de document d'employé"
+
+#. module: hr_employee_documents
+#: model:ir.actions.act_window,name:hr_employee_documents.action_employee_document
+#: model:ir.ui.menu,name:hr_employee_documents.menu_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_kanban
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_page
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_tree
+msgid "Employee Documents"
+msgstr "Documents des employés"
+
+#. module: hr_employee_documents
+#: model:ir.model,name:hr_employee_documents.model_hr_employee_report_template
+msgid "Employee Report Template"
+msgstr "Modèle de rapport d'employé"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.employee_document_report
+msgid "Employee:"
+msgstr "Employé :"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields.selection,name:hr_employee_documents.selection__hr_employee_report_template__report_type__employment_history
+msgid "Employment History (Historique d'emploi)"
+msgstr "Historique d'emploi"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_hr_report_template_form
+msgid "Enter your template content with placeholders..."
+msgstr "Entrez le contenu de votre modèle avec des espaces réservés..."
+
+#. module: hr_employee_documents
+#: model:document.type,name:hr_employee_documents.document_type_experience_certificate
+msgid "Experience Certificate"
+msgstr "Certificat d'expérience"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields.selection,name:hr_employee_documents.selection__hr_employee_report_template__report_type__experience_certificate
+msgid "Experience Certificate (Certificat d'expérience)"
+msgstr "Certificat d'expérience"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_search
+msgid "Expired"
+msgstr "Expiré"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__expiry_date
+msgid "Expiry Date"
+msgstr "Date d'expiration"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.employee_document_report
+msgid "Expiry Date:"
+msgstr "Date d’expiration :"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__reference_number
+msgid "External reference or document ID"
+msgstr "Référence externe ou ID de document"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_form
+msgid "File Information"
+msgstr "Informations sur le fichier"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__file_name
+msgid "File Name"
+msgstr "Nom du fichier"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__file_size
+msgid "File Size (bytes)"
+msgstr "Taille du fichier (octets)"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__file_type
+msgid "File Type"
+msgstr "Type de fichier"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__message_follower_ids
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__message_follower_ids
+msgid "Followers"
+msgstr "Abonnés"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__message_partner_ids
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Abonnés (Partenaires)"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_document_type__activity_type_icon
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icône de police géniale, par ex. "
+
+#. module: hr_employee_documents
+#: model:ir.actions.act_window,name:hr_employee_documents.action_hr_report_generator
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_hr_report_generator_form
+msgid "Generate Employee Report"
+msgstr "Générer un rapport sur les employés"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_search
+msgid "Group By"
+msgstr "Regrouper par"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_hr_employee_report_template__template_content
+msgid ""
+"HTML template content with placeholders like {{employee.name}}, "
+"{{employee.job_title}}, etc."
+msgstr "contenu du modèle HTML avec des espaces réservés tels que {{employee.name}}, {{employee.job_title}}, etc."
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__has_message
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__has_message
+msgid "Has Message"
+msgstr "A un message"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__id
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__id
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document_reject_wizard__id
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_employee_report_template__id
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_report_template_generator__id
+msgid "ID"
+msgstr ""
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__activity_exception_icon
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__activity_exception_icon
+msgid "Icon"
+msgstr "Icône"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_document_type__activity_exception_icon
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icône pour indiquer une activité d'exception."
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_document_type__require_manager_approval
+msgid "If checked, manager approval is required before employee can access"
+msgstr "si coché, l'approbation du responsable est requise avant que l'employé puisse accéder"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_document_type__message_needaction
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si cette case est cochée, les nouveaux messages nécessitent votre attention."
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_document_type__message_has_error
+#: model:ir.model.fields,help:hr_employee_documents.field_document_type__message_has_sms_error
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__message_has_error
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si coché, certains messages ont une erreur de livraison."
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__is_visible_to_employee
+msgid "If checked, the employee can see this document"
+msgstr "Si coché, le salarié peut voir ce document"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_hr_employee_report_template__group_ids
+msgid "If set, only users in these groups can access this template"
+msgstr "si défini, seuls les utilisateurs de ces groupes peuvent accéder à ce modèle"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__notes
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_form
+msgid "Internal Notes"
+msgstr "Notes internes"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.employee_document_report
+msgid "Internal Notes:"
+msgstr "Notes internes :"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__notes
+msgid "Internal notes (not visible to employee)"
+msgstr "Notes internes (non visibles par l'employé)"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_form
+msgid "Internal notes..."
+msgstr "Notes internes..."
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__is_expired
+msgid "Is Expired"
+msgstr "est expiré"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__message_is_follower
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__message_is_follower
+msgid "Is Follower"
+msgstr "Est un suiveur"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__issue_date
+msgid "Issue Date"
+msgstr "Date d'émission"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.employee_document_report
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_kanban
+msgid "Issue Date:"
+msgstr "Date d'émission :"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__write_uid
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__write_uid
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document_reject_wizard__write_uid
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_employee_report_template__write_uid
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_report_template_generator__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__write_date
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__write_date
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document_reject_wizard__write_date
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_employee_report_template__write_date
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_report_template_generator__write_date
+msgid "Last Updated on"
+msgstr "dernière mise à jour le"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields.selection,name:hr_employee_documents.selection__hr_employee_report_template__report_type__leave_balance
+msgid "Leave Balance (Solde de congés)"
+msgstr "Solde de congés"
+
+#. module: hr_employee_documents
+#: model_terms:ir.actions.act_window,help:hr_employee_documents.action_employee_document
+msgid ""
+"Manage employee documents like work certificates, training certificates, and"
+" other HR documents."
+msgstr "Gérer les documents des employés tels que les certificats de travail, les certificats de formation et autres documents RH."
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__manager_id
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_search
+msgid "Manager"
+msgstr "Gérant"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.employee_document_report
+msgid "Manager:"
+msgstr "Gérant :"
+
+#. module: hr_employee_documents
+#: model:document.type,name:hr_employee_documents.document_type_medical_record
+msgid "Medical Record"
+msgstr "Dossier médical"
+
+#. module: hr_employee_documents
+#: model:document.type,description:hr_employee_documents.document_type_medical_record
+msgid "Medical certificates and health-related documents"
+msgstr "Certificats médicaux et documents relatifs à la santé"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__message_has_error
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__message_has_error
+msgid "Message Delivery error"
+msgstr "Erreur de remise du message"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__message_ids
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__my_activity_date_deadline
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Date limite de mon activité"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_hr_employee_report_template__name
+msgid "Name of the document template"
+msgstr "Nom du modèle de document"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_document_type__name
+msgid ""
+"Name of the document type (e.g., Work Certificate, Experience Certificate)"
+msgstr "Nom du type de document (par exemple, certificat de travail, certificat d'expérience)"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__file_name
+msgid "Name of the uploaded file"
+msgstr "Nom du fichier téléchargé"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__activity_calendar_event_id
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "Prochain événement du calendrier d'activité"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__activity_date_deadline
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Date limite de la prochaine activité"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__activity_summary
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__activity_summary
+msgid "Next Activity Summary"
+msgstr "Récapitulatif de l'activité suivante"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__activity_type_id
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__activity_type_id
+msgid "Next Activity Type"
+msgstr "Type d'activité suivant"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.employee_document_report
+msgid "No"
+msgstr "Non"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_search
+msgid "Not Expired"
+msgstr "non expiré"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document_reject_wizard__notify_employee
+msgid "Notify Employee"
+msgstr "Avertir l'employé"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__message_needaction_counter
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Nombre d'actions"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__message_has_error_counter
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__message_has_error_counter
+msgid "Number of errors"
+msgstr "Nombre d'erreurs"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_document_type__message_needaction_counter
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Nombre de messages nécessitant une action"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_document_type__message_has_error_counter
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Nombre de messages avec erreur de livraison"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_hr_employee__pending_documents_count
+msgid "Number of pending documents for this employee"
+msgstr "Nombre de documents en attente pour cet employé"
+
+#. module: hr_employee_documents
+#: model:document.type,description:hr_employee_documents.document_type_work_certificate
+msgid "Official certificate of employment/work attestation"
+msgstr "Certificat officiel d'emploi/attestation de travail"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_hr_employee_report_template__sequence
+msgid "Order in menu"
+msgstr "Commander dans le menu"
+
+#. module: hr_employee_documents
+#: model_terms:ir.actions.act_window,help:hr_employee_documents.action_document_type
+msgid ""
+"Organize your employee documents by type (e.g., Work Certificates, Training "
+"Certificates, etc.)"
+msgstr "Organisez vos documents d'employé par type (par exemple, certificats de travail, certificats de formation, etc.)"
+
+#. module: hr_employee_documents
+#: model:document.type,name:hr_employee_documents.document_type_other
+msgid "Other Documents"
+msgstr "Autres documents"
+
+#. module: hr_employee_documents
+#: model:document.type,description:hr_employee_documents.document_type_other
+msgid "Other miscellaneous employee documents"
+msgstr "Autres documents divers du personnel"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields.selection,name:hr_employee_documents.selection__employee_document__state__pending
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.employee_document_report
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_search
+msgid "Pending Approval"
+msgstr "En attente d'approbation"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_employee__pending_documents_count
+msgid "Pending Documents"
+msgstr "Documents en attente"
+
+#. module: hr_employee_documents
+#: model:document.type,name:hr_employee_documents.document_type_performance_review
+msgid "Performance Review"
+msgstr "Évaluation des performances"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__rating_ids
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__rating_ids
+msgid "Ratings"
+msgstr "Notes"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__rejection_reason
+msgid "Reason for rejection (if applicable)"
+msgstr "Motif du rejet (le cas échéant)"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__reference_number
+msgid "Reference Number"
+msgstr "numéro de référence"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.employee_document_report
+msgid "Reference:"
+msgstr "Référence :"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_form
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_reject_wizard_form
+msgid "Reject"
+msgstr "Rejeter"
+
+#. module: hr_employee_documents
+#: model:ir.actions.act_window,name:hr_employee_documents.action_employee_document_reject_wizard
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_reject_wizard_form
+msgid "Reject Document"
+msgstr "Rejeter le document"
+
+#. module: hr_employee_documents
+#: model:ir.model,name:hr_employee_documents.model_employee_document_reject_wizard
+msgid "Reject Employee Document"
+msgstr "Rejeter le document de l'employé"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields.selection,name:hr_employee_documents.selection__employee_document__state__rejected
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.employee_document_report
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_search
+msgid "Rejected"
+msgstr "Rejeté"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_form
+msgid "Rejection Details"
+msgstr "Détails du rejet"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__rejection_reason
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document_reject_wizard__rejection_reason
+msgid "Rejection Reason"
+msgstr "Raison du rejet"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.employee_document_report
+msgid "Rejection Reason:"
+msgstr "Raison du rejet :"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_hr_report_template_form
+msgid "Report Template"
+msgstr "Modèle de rapport"
+
+#. module: hr_employee_documents
+#: model:ir.model,name:hr_employee_documents.model_hr_report_template_generator
+msgid "Report Template Generator"
+msgstr "Générateur de modèles de rapport"
+
+#. module: hr_employee_documents
+#: model:ir.actions.act_window,name:hr_employee_documents.action_hr_report_template
+#: model:ir.ui.menu,name:hr_employee_documents.menu_report_templates
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_hr_report_template_list
+msgid "Report Templates"
+msgstr "Modèles de rapport"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_employee_report_template__report_type
+msgid "Report Type"
+msgstr "Type de rapport"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__require_manager_approval
+msgid "Require Manager Approval"
+msgstr "exiger l'approbation du gestionnaire"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_employee_report_template__group_ids
+msgid "Required Groups"
+msgstr "Groupes requis"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_document_type_search
+msgid "Requires Approval"
+msgstr "nécessite une approbation"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_form
+msgid "Reset to Draft"
+msgstr "Réinitialiser au brouillon"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__activity_user_id
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__activity_user_id
+msgid "Responsible User"
+msgstr "Utilisateur responsable"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__message_has_sms_error
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Erreur d'envoi de SMS"
+
+#. module: hr_employee_documents
+#: model:document.type,name:hr_employee_documents.document_type_salary_certificate
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_hr_report_template_search
+msgid "Salary Certificate"
+msgstr "Attestation de salaire"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields.selection,name:hr_employee_documents.selection__hr_employee_report_template__report_type__salary_certificate
+msgid "Salary Certificate (Attestat ion de salaire)"
+msgstr "Salary Certificate (Attestation de salaire)"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_document_type_search
+msgid "Search Document Types"
+msgstr "Rechercher des types de documents"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_search
+msgid "Search Employee Documents"
+msgstr "Rechercher les documents des employés"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_hr_report_template_search
+msgid "Search Templates"
+msgstr "Modèles de recherche"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document_reject_wizard__notify_employee
+msgid "Send notification to employee about the rejection"
+msgstr "Envoyer une notification à l'employé concernant le rejet"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__sequence
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__sequence
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_employee_report_template__sequence
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__file_size
+msgid "Size of the document file"
+msgstr "Taille du fichier du document"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_search
+msgid "State"
+msgstr "État"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__state
+msgid "Status"
+msgstr "Statut"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_document_type__activity_state
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr "Statut basé sur les activités\nEn retard : la date d'échéance est déjà dépassée\nAujourd'hui : la date de l'activité est aujourd'hui\nPlanifiée : activités futures."
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.employee_document_report
+msgid "Status:"
+msgstr "Statut :"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_form
+msgid "Submit for Approval"
+msgstr "Soumettre pour approbation"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_report_template_generator__template_id
+msgid "Template"
+msgstr "Modèle"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_employee_report_template__template_content
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_hr_report_template_form
+msgid "Template Content"
+msgstr "Contenu du modèle"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_hr_employee_report_template__name
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_hr_report_template_form
+msgid "Template Name"
+msgstr "Nom du modèle"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__document_file
+msgid "The document file (PDF, Word, etc.)"
+msgstr "Le fichier du document (PDF, Word, etc.)"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__employee_id
+msgid "The employee this document belongs to"
+msgstr "L'employé auquel ce document appartient"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__manager_id
+msgid "The employee's manager"
+msgstr "Le responsable du salarié"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__name
+msgid "Title or name of the document"
+msgstr "Titre ou nom du document"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_hr_employee__documents_count
+msgid "Total number of documents for this employee"
+msgstr "Nombre total de documents pour cet employé"
+
+#. module: hr_employee_documents
+#: model:document.type,name:hr_employee_documents.document_type_training_certificate
+msgid "Training Certificate"
+msgstr "Certificat de formation"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__document_type_id
+msgid "Type of document"
+msgstr "Type de document"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_document_type__activity_exception_decoration
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Type d'activité d'exception enregistrée."
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__file_type
+msgid "Type/Extension of the file"
+msgstr "Type/Extension du fichier"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_kanban
+msgid "Type:"
+msgstr "Tapez :"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__active
+msgid "Uncheck to archive this document"
+msgstr "Décochez pour archiver ce document"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_document_type__active
+msgid "Uncheck to archive this document type"
+msgstr "Décochez pour archiver ce type de document"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_document_type__code
+msgid "Unique code for the document type"
+msgstr "Code unique pour le type de document"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_hr_employee_report_template__code
+msgid "Unique code for the template"
+msgstr "Code unique du modèle"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__upload_date
+msgid "Upload Date"
+msgstr "Date de téléchargement"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.employee_document_report
+msgid "Upload Date:"
+msgstr "Date de téléchargement :"
+
+#. module: hr_employee_documents
+#: model_terms:ir.actions.act_window,help:hr_employee_documents.action_employee_document
+msgid "Upload a new employee document"
+msgstr "Télécharger un nouveau document d'employé"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_document_type__sequence
+msgid "Used to order document types in lists"
+msgstr "Utilisé pour classer les types de documents dans des listes"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__sequence
+msgid "Used to order documents"
+msgstr "Utilisé pour commander des documents"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__created_by_id
+msgid "User who uploaded this document"
+msgstr "Utilisateur qui a téléchargé ce document"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__is_visible_to_employee
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_document_search
+msgid "Visible to Employee"
+msgstr "Visible par l'employé"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.employee_document_report
+msgid "Visible to Employee:"
+msgstr "Visible par l'employé :"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,field_description:hr_employee_documents.field_document_type__website_message_ids
+#: model:ir.model.fields,field_description:hr_employee_documents.field_employee_document__website_message_ids
+msgid "Website Messages"
+msgstr "Messages du site Web"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_document_type__website_message_ids
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__website_message_ids
+msgid "Website communication history"
+msgstr "Historique des communications du site Web"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__approval_date
+msgid "When the document was approved"
+msgstr "Quand le document a été approuvé"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__upload_date
+msgid "When the document was uploaded"
+msgstr "Quand le document a été téléchargé"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields,help:hr_employee_documents.field_employee_document__is_expired
+msgid "Whether the document has expired"
+msgstr "Si le document a expiré"
+
+#. module: hr_employee_documents
+#: model:document.type,name:hr_employee_documents.document_type_work_certificate
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_hr_report_template_search
+msgid "Work Certificate"
+msgstr "Certificat de travail"
+
+#. module: hr_employee_documents
+#: model:ir.model.fields.selection,name:hr_employee_documents.selection__hr_employee_report_template__report_type__work_certificate
+msgid "Work Certificate (Attestation de travail)"
+msgstr "Attestation de travail"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.employee_document_report
+msgid "Yes"
+msgstr "Oui"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_document_type_form
+msgid "e.g., WORK_CERT"
+msgstr "par exemple, WORK_CERT"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_hr_report_template_form
+msgid "e.g., WORK_CERT_FR"
+msgstr "par exemple, WORK_CERT_FR"
+
+#. module: hr_employee_documents
+#: model_terms:ir.ui.view,arch_db:hr_employee_documents.view_employee_report_buttons
+msgid "📄 Download Reports"
+msgstr "📄 Télécharger les rapports"
+

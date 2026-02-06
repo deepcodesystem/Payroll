@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
-
+import base64
 from odoo import api, fields, models, _
 from odoo.addons import decimal_precision as dp
 from odoo.exceptions import UserError, ValidationError
@@ -276,6 +276,100 @@ class HrBankAdvice(models.Model):
             'type': 'ir.actions.act_window',
             'domain': [('id', 'in', payslips.ids)],
             'context': {'create': False}
+        }
+
+
+class HrBankAdvice(models.Model):
+    _inherit = 'hr.bank.advice'
+
+    def generate_bank_export_file(self):
+        self.ensure_one()
+
+        # 1. Récupérer le RIB de la société pour la banque sélectionnée
+        company_bank = self.env['res.partner.bank'].search([
+            ('partner_id', '=', self.company_id.partner_id.id),
+            ('bank_id', '=', self.bank_id.id)
+        ], limit=1)
+
+        if not company_bank:
+            raise UserError(_("Aucun compte bancaire (RIB) n'est configuré pour la société '%s' à la banque '%s'.") % (
+                self.company_id.name, self.bank_id.name))
+
+        # Nettoyage du RIB (enlever espaces/tirets) et s'assurer qu'il fait 24 car.
+        source_rib = (company_bank.acc_number or '').replace(' ', '').replace('-', '')
+        if len(source_rib) < 16:  # Certains formats acceptent 16, mais le standard Maroc est 24
+            source_rib = source_rib.zfill(16)
+
+        date_str = self.date.strftime('%d%m%Y')
+        lines = []
+
+        # --- LIGNE D'ENTÊTE (0308) ---
+        # Positions basées sur votre fichier texte
+        company_name = (self.company_id.name or '')[:24].upper().ljust(24)
+
+        header = "0308        000000    07"
+        header += date_str
+        header += company_name
+        header += "       1125436                "  # Code fixe/ID de votre exemple
+        header += source_rib.ljust(16)  # Dans votre exemple le RIB source fait 16
+        header += " " * 47  # Espaces de remplissage
+        header += "0000778038"  # Code fin entête
+        lines.append(header)
+
+        # --- LIGNES DE DÉTAILS (0608) ---
+        sequence = 1
+        total_amount = 0
+
+        for line in self.line_ids:
+            sequence_str = str(sequence).zfill(7)
+
+            # Correction ici : on accède à .acc_number qui est la chaîne de caractères
+            # On ajoute aussi une sécurité au cas où le compte n'est pas rempli
+            raw_acc_number = line.account_number.acc_number if line.account_number else ''
+
+            # Maintenant on peut faire le replace sur la string
+            rib_benef = raw_acc_number.replace(' ', '').replace('-', '').zfill(24)
+
+            # Le reste de votre logique...
+            nom_beneficiaire = (line.employee_id.name or '')[:60].upper().ljust(60)
+
+            # Montant formaté (ex: 850.00 -> 0000000000850000)
+            amount_val = int(round(line.bysal * 100))
+            amount_str = str(amount_val).zfill(16)
+
+            # Construction de la ligne selon votre exemple
+            detail = f"0608{date_str}{sequence_str}           "
+            detail += nom_beneficiaire
+            detail += rib_benef
+            detail += amount_str
+            detail += " " * 31  # Ajustez le nombre d'espaces selon votre besoin
+            detail += "0002278074"
+
+            lines.append(detail)
+            total_amount += line.bysal
+            sequence += 1
+
+        # --- LIGNE DE PIED (0808) ---
+        total_str = str(int(round(total_amount * 100))).zfill(12)
+        # Structure de pied basée sur votre fichier : 0808 + espaces + total (position 90 environ)
+        footer = "0808        000000"
+        footer = footer.ljust(80) + total_str.zfill(22)
+        lines.append(footer)
+
+        # --- GÉNÉRATION DU FICHIER ---
+        file_content = "\r\n".join(lines)  # Utilisation de CRLF pour Windows/Banques
+        file_name = f"Virements_{self.bank_id.name}_{date_str}.txt"
+
+        attachment = self.env['ir.attachment'].create({
+            'name': file_name,
+            'datas': base64.b64encode(file_content.encode('utf-8')),
+            'mimetype': 'text/plain',
+        })
+
+        return {
+            'type': 'ir.actions.act_url',
+            'url': f'/web/content/{attachment.id}?download=true',
+            'target': 'self',
         }
 
 

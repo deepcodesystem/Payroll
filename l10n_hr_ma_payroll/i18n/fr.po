@@ -1,0 +1,1553 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_hr_ma_payroll
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-05 20:02+0000\n"
+"PO-Revision-Date: 2026-02-05 20:02+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.actions.report,print_report_name:l10n_hr_ma_payroll.action_report_bank_advice
+msgid ""
+"\n"
+"'Bank Advice - %s' % (object.name)\n"
+"        "
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.actions.report,print_report_name:l10n_hr_ma_payroll.action_report_payslip
+msgid ""
+"\n"
+"'Bulletin de paie - %s' % (object.employee_id.name)\n"
+"        "
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_rule_gross
+msgid "*** Salaire Brut Global ***"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_net
+msgid "*** Salaire Net à Payer ***"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid ""
+",\n"
+"                                nous vous prions de bien vouloir créditer les comptes de nos collaborateurs selon les détails ci-après :"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "<i class=\"fa fa-bank\"/> Informations Bancaires"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "<i class=\"fa fa-calendar\"/> Période de Paie"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "<i class=\"fa fa-credit-card\"/> N° Compte Bancaire"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "<i class=\"fa fa-euro\"/> Montant Net"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "<i class=\"fa fa-info-circle\"/> Instructions importantes"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "<i class=\"fa fa-university\"/> Avis de Crédit Bancaire"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "<i class=\"fa fa-user\"/> Nom du Salarié"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "<small class=\"text-muted\">Signature et cachet</small>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "<small>Montant moyen</small>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "<small>Montant total</small>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "<small>Nombre de salariés</small>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "<span class=\"badge badge-warning ml-2\">⚠ Manquant</span>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.hr_contract_inherited_ma_payroll
+msgid "<span>/ mois</span>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "<strong style=\"color: #2E86AB;\">Adresse:</strong>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "<strong>Ancienneté:</strong><br/>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "<strong>BIC Entreprise :</strong>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "<strong>Banque destinataire :</strong><br/>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "<strong>CIMR:</strong>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "<strong>CIMR:</strong><br/>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "<strong>CIN:</strong><br/>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "<strong>CNSS:</strong>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "<strong>CNSS:</strong><br/>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "<strong>Code BIC :</strong>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "<strong>Compte de l'entreprise :</strong><br/>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "<strong>Date :</strong>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "<strong>Date d'embauche:</strong><br/>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "<strong>Département:</strong><br/>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "<strong>IF:</strong>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "<strong>Matricule:</strong><br/>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "<strong>Messieurs,</strong>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "<strong>Nombre de déductions:</strong><br/>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "<strong>Poste occupé:</strong><br/>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "<strong>RC:</strong>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "<strong>Référence :</strong>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "<strong>Situation familiale:</strong><br/>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "<strong>Société :</strong>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "<strong>Statut :</strong>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "<strong>TOTAL GÉNÉRAL</strong>"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "Acquis"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model,name:l10n_hr_ma_payroll.model_res_company
+msgid "Add fields for moroccan company"
+msgstr "Sociétés"
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model,name:l10n_hr_ma_payroll.model_hr_employee
+msgid "Add fields for moroccan employee"
+msgstr "Employé"
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model,name:l10n_hr_ma_payroll.model_hr_contract
+msgid "Add fields for moroccan payroll"
+msgstr "Contrat de l'employé"
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_allfp
+msgid "Allocation Familiale P.P"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule.category,name:l10n_hr_ma_payroll.ALW
+msgid "Allowance"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_form
+msgid "Amount"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_contract__worked_age
+msgid "Ancienneté"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields.selection,name:l10n_hr_ma_payroll.selection__hr_bank_advice__state__cancel
+msgid "Annulé"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_employee__stc_settlement
+msgid "Appliquer le calcul du Solde Tout Compte au dernier bulletin de paie"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_amop
+msgid "Assurance Maladie Obligatoire AMO PP"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid ""
+"Avec nos remerciements,<br/>\n"
+"                                    Veuillez agréer, Messieurs, nos salutations distinguées."
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "BULLETIN DE PAIE"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_form
+msgid "Back to Draft"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.actions.report,name:l10n_hr_ma_payroll.action_report_bank_advice
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_form
+msgid "Bank Advice"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.actions.act_window,help:l10n_hr_ma_payroll.action_view_hr_bank_advice_tree
+msgid ""
+"Bank Advice allow you to generate files for salary transfers to employees' "
+"bank accounts."
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.actions.act_window,name:l10n_hr_ma_payroll.action_view_hr_bank_advice_tree
+#: model:ir.ui.menu,name:l10n_hr_ma_payroll.hr_menu_bank_advice
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_tree
+msgid "Bank Advices"
+msgstr "Virement bancaire"
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_form
+msgid "Bank Information"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__bank_id
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_filter
+msgid "Banque"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "Base"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_res_company__cnss_limit
+msgid "Base salary ceiling for calculating the cnss"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule.category,name:l10n_hr_ma_payroll.BASIC
+msgid "Basic"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_bonus
+msgid "Bonus Annuel"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields.selection,name:l10n_hr_ma_payroll.selection__hr_bank_advice__state__draft
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "Brouillon"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.actions.report,name:l10n_hr_ma_payroll.action_report_payslip
+msgid "Bulletin de Paie"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_employee__cimr_id
+msgid "CIMR"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_res_company__company_cimr_id
+msgid "CIMR affiliation number"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_res_company__cnss_limit
+msgid "CNSS Base Salary Limit"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_res_company__company_cnss_id
+msgid "CNSS affiliation number"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_form
+msgid "Calculate"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_departure_wizard__calculate_stc
+msgid "Calculer Solde Tout Compte"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_form
+msgid "Cancel"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_res_company__capital
+msgid "Capital Social"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid ""
+"Ce bulletin de paie est conforme à la législation marocaine en vigueur."
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_contract__indem_lice
+msgid ""
+"Cette indemnité est exonérée dans les limites fixées par le Code Général des"
+" Impôts"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields.selection,name:l10n_hr_ma_payroll.selection__hr_bank_advice__mode_paiement__cheque
+msgid "Chèque"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_departure_wizard__calculate_stc
+msgid "Cocher pour appliquer le STC au dernier bulletin de paie"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule.category,name:l10n_hr_ma_payroll.COMP
+msgid "Company Contribution"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__bank_account_id
+msgid "Compte Bancaire de l'Entreprise"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_form
+msgid "Confirm"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_filter
+msgid "Confirmed"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields.selection,name:l10n_hr_ma_payroll.selection__hr_bank_advice__state__confirm
+msgid "Confirmé"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_cp
+msgid "Congé Payé"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "Congés Payés"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice_line__advice_id
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_payslip__advice_id
+msgid "Conseil Bancaire"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_amo
+msgid "Cotisation A.M.O"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_cimre
+msgid "Cotisation C.I.M.R"
+msgstr "Cotisation C.I.M.R 6%"
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_cimrp
+msgid "Cotisation C.I.M.R PP"
+msgstr "Cotisation C.I.M.R PP 15.6%"
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_cnsse
+msgid "Cotisation C.N.S.S"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_cnssp
+msgid "Cotisation C.N.S.S P.P"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.actions.act_window,help:l10n_hr_ma_payroll.action_view_hr_bank_advice_tree
+msgid "Create your first Bank Advice !"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__create_uid
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__create_date
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice_line__debit_credit
+msgid "D/C"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "DH"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_filter
+msgid "Date"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__date_execution
+msgid "Date d'Exécution Prévue"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_res_company__date_immat
+msgid "Date d'immatriculation"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__date
+msgid "Date de Conseil"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_bank_advice__date_execution
+msgid "Date prévue pour l'exécution des virements"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule.category,name:l10n_hr_ma_payroll.DED
+msgid "Deduction"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model,name:l10n_hr_ma_payroll.model_hr_departure_wizard
+msgid "Departure Wizard"
+msgstr "Assistant de départ"
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__note
+msgid "Description"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_form
+msgid "Description ou instructions for bank..."
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__currency_id
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice_line__currency_id
+msgid "Devise"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__display_name
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_filter
+msgid "Draft"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "Du"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_bank_advice_line__debit_credit
+msgid "Débit ou Crédit"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice_line__department_id
+msgid "Département"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "Désignation"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__line_ids
+msgid "Détails Salaires Employés"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "EMPLOYÉ"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "ENTREPRISE"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_contract__indem_transp
+msgid ""
+"Elle est accordée au salarié se rendant de son domicile au lieu habituel de "
+"son travail. 500 Dirhams par mois, dans le périmètre urbain des villes - 750"
+" Dirhams par mois, lorsque le lieu de travail est situé en dehors du "
+"périmètre urbain de la ville."
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_contract__indem_km
+msgid ""
+"Elle est accordée au salarié utilisant son propre véhicule pour l’exercice "
+"de ses fonctions professionnelles."
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_contract__indem_deplace
+msgid ""
+"Elle est accordée aux salariés dont les conditions de travail nécessitent "
+"des déplacements de leur domicile vers un lieu de travail autre que le lieu "
+"habituel, situé en dehors du périmètre urbain et ce en remboursement des "
+"frais de nourriture, de logement et de transport qu’ils supportent."
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_tree
+msgid "Employees"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_form
+msgid "Employees Details"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice_line__employee_id
+msgid "Employé"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "En attente"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_payslip__stc_settlement_id
+msgid "Enregistrement STC"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields.selection,name:l10n_hr_ma_payroll.selection__hr_bank_advice__state__sent
+msgid "Envoyé"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_contract__epargne_retraite
+msgid "Epargne Retraite"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields.selection,name:l10n_hr_ma_payroll.selection__hr_bank_advice__mode_paiement__especes
+msgid "Espèces"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice_line__payslip_id
+msgid "Fiche de Paie"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_bank_advice__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_formp
+msgid "Formation Professionnelle P.P"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_res_company__form_juridique
+msgid "Forme Juridique"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_frpro
+msgid "Frais Professionnels"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "Gains"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_form
+msgid "Generale Informations"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_gratsocial
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_contract__grat_social
+msgid "Gratifications sociales"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule.category,name:l10n_hr_ma_payroll.GROSS
+msgid "Gross"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_filter
+msgid "Grouper Par"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "Généré le"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_res_company__ice
+msgid "I.C.E"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__id
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice_line__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_bank_advice__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_res_company__ident_fiscal
+msgid "Identifiant Fiscal"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_bank_advice__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_bank_advice__message_has_error
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_bank_advice__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_res_company__company_cimr_id
+msgid "If the company is affiliated with the CIMR, include the CIMR number."
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_res_company__company_cnss_id
+msgid "If the company is affiliated with the CNSS, include the CNSS number."
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_ir
+#: model:hr.salary.rule.category,name:l10n_hr_ma_payroll.IR
+msgid "Impôt sur le Revenu"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_indemlice
+msgid "Indemnité de Licenciement"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_indemcaisse
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_contract__indem_caisse
+msgid "Indemnité de caisse"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_indemdepl
+msgid "Indemnité de déplacement"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_contract__indem_deplace
+msgid "Indemnité de déplacement "
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_contract__indem_lice
+msgid "Indemnité de licenciement"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_indemrep
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_contract__indem_rep
+msgid "Indemnité de représentation"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_indemtransp
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_contract__indem_transp
+msgid "Indemnité de transport"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_indemkm
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_contract__indem_km
+msgid "Indemnité kilométrique"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "Informations Générales"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.res_company_inherited_ma_payroll
+msgid "Informations Légales"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.res_company_inherited_ma_payroll
+msgid "Informations Ressources Humaines"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_jcp
+msgid "Jours de Congé Payé"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_bank_advice__date
+msgid "La date de conseil est utilisée pour rechercher les fiches de paie"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__write_uid
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__write_date
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_filter
+msgid "Last month"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_contract__indem_caisse
+msgid ""
+"Le montant de l’indemnité admis en exonération ne doit pas dépasser 190 "
+"Dirhams par mois."
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model,name:l10n_hr_ma_payroll.model_hr_bank_advice_line
+msgid "Lignes de Conseil Bancaire"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_filter
+msgid "Lot"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__batch_id
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_filter
+msgid "Lot de Paie"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_contract__prim_tournee
+msgid "L’exonération est plafonnée à 1 500 Dirhams/mois."
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_contract__indem_rep
+msgid "L’exonération est plafonnée à 10% du salaire de base."
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_contract__prim_outil
+msgid "L’exonération est plafonnée à 100 Dirhams par mois."
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_contract__prim_salis
+msgid "L’exonération est plafonnée à 210 Dirhams par mois."
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_contract__prim_panier
+msgid "L’exonération est plafonnée à deux fois le SMIG horaire."
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_contract__grat_social
+msgid ""
+"L’indemnité est exonérée dans la limite de 2 500 Dirhams par an et couvre "
+"tous les événements confondus survenus au cours d’une même année."
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_form
+msgid "Mark as Payed"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_employee__matricule
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_employee__matricule
+msgid "Matricule"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__mode_paiement
+msgid "Mode de Paiement"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__total_amount
+msgid "Montant Total"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model,name:l10n_hr_ma_payroll.model_report_l10n_hr_ma_payroll_report_bank_advice
+msgid "Moroccan Bank Advice Report for payroll"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model,name:l10n_hr_ma_payroll.model_hr_bank_advice
+msgid "Moroccan HR Payroll Bank Advice"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model,name:l10n_hr_ma_payroll.model_report_l10n_hr_ma_payroll_report_payslip
+msgid "Morocco PaySlip"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_jrtv
+msgid "NB Jours Travaillés"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "NET À PAYER"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule.category,name:l10n_hr_ma_payroll.NOCAT
+msgid "NO CATEGORY"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule.category,name:l10n_hr_ma_payroll.NET
+msgid "Net"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice_line__bank_name
+msgid "Nom de la Banque"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "Nombre"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_employee__dependants
+msgid "Nombre Total des personnes à charge pour le calcule de Paie"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__employee_count
+msgid "Nombre d'Employés"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_employee__dependants
+msgid "Nombre de dépendants"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_form
+msgid "Notes"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_departure_wizard__stc_notes
+msgid "Notes STC"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_departure_wizard__stc_notes
+msgid "Notes concernant le calcul du Solde Tout Compte"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_res_company__employee_nbre
+msgid "Number of employees"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_bank_advice__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_bank_advice__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_employee__cimr_id
+msgid "Numéro de CIMR"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice_line__account_number
+msgid "Numéro de Compte"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__check_number
+msgid "Numéros de Chèque"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_res_company__patente_id
+msgid "N° de la patente"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "Par le débit de notre compte bancaire N°"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "Part Patronale"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "Part Salariale"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_res_company__patente_id
+msgid "Patente ID"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model,name:l10n_hr_ma_payroll.model_hr_payslip
+msgid "Payslip"
+msgstr "Bulletin de paye"
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_form
+msgid "Payslips"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields.selection,name:l10n_hr_ma_payroll.selection__hr_bank_advice__state__paid
+msgid "Payé"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_primastr
+msgid "Prime Astreinte"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_primexcep
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_contract__prim_excep
+msgid "Prime Exceptionnelle"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_primanc
+msgid "Prime d'ancienneté"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_primpan
+msgid "Prime de Panier"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_primsalis
+msgid "Prime de Salissure"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_contract__prim_panier
+msgid "Prime de panier"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_contract__prim_salis
+msgid "Prime de salissure "
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_primtournee
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_contract__prim_tournee
+msgid "Prime de tournée"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_primoutil
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_contract__prim_outil
+msgid "Prime d’outillage"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule.category,name:l10n_hr_ma_payroll.PRINNT
+msgid "Primes et Indémnités Non Taxables"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.hr_contract_inherited_ma_payroll
+msgid "Primes et indémnités Non Taxables"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule.category,name:l10n_hr_ma_payroll.PRINT
+msgid "Primes et indémnités Taxables"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "Pris"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "Période du"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_rap
+msgid "Rappel sur Salaire de Base"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_filter
+msgid "Rechercher Conseils de Paiement"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_res_company__rc
+msgid "Registre de Commerce"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "Reste à prendre"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "Retenus"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__name
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_filter
+msgid "Référence"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__reference_externe
+msgid "Référence Externe Banque"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_bank_advice__reference_externe
+msgid "Référence fournie par la banque"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_sbi
+msgid "Salaire Brut Imposable"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice_line__bysal
+msgid "Salaire Net"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_sni
+msgid "Salaire Net Imposable"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_rule_basic
+msgid "Salaire de base"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields.selection,name:l10n_hr_ma_payroll.selection__res_company__form_juridique__seccursal_etr
+msgid "Seccursal ou Agence Entreprise Etrangère"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields.selection,name:l10n_hr_ma_payroll.selection__res_company__form_juridique__seccursal_mar
+msgid "Seccursal ou Agence Entreprise Marocaine"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_filter
+msgid "Sent"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_form
+msgid "Sent to bank"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__company_id
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice_line__company_id
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_filter
+msgid "Société"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields.selection,name:l10n_hr_ma_payroll.selection__res_company__form_juridique__sa
+msgid "Société Anonyme"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields.selection,name:l10n_hr_ma_payroll.selection__res_company__form_juridique__sas
+msgid "Société Anonyme Simplifiée"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields.selection,name:l10n_hr_ma_payroll.selection__res_company__form_juridique__scp
+msgid "Société Civile Professionnelle"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields.selection,name:l10n_hr_ma_payroll.selection__res_company__form_juridique__societe_part
+msgid "Société de Participation"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields.selection,name:l10n_hr_ma_payroll.selection__res_company__form_juridique__scs
+msgid "Société en Commandité Simple"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields.selection,name:l10n_hr_ma_payroll.selection__res_company__form_juridique__sca
+msgid "Société en Commandité par Action"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields.selection,name:l10n_hr_ma_payroll.selection__res_company__form_juridique__snc
+msgid "Société en Nom Collective"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields.selection,name:l10n_hr_ma_payroll.selection__res_company__form_juridique__sasimp
+msgid "Société par Action Simplifiée"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields.selection,name:l10n_hr_ma_payroll.selection__res_company__form_juridique__sarl
+msgid "Société à Responsabilité Limitée"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_filter
+msgid "Sold"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_employee__stc_settlement
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.hr_departure_wizard_view_form_ma
+msgid "Solde Tout Compte"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_stc
+msgid "Solde de Tout Compte"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_bank_advice__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__state
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_filter
+msgid "Statut"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_bank_advice__bank_id
+msgid "Sélectionnez la banque à partir de laquelle le salaire va être payé"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "Taux"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_filter
+msgid "This month"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_form
+msgid "Total"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.view_hr_bank_advice_tree
+msgid "Total Amount"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:hr.salary.rule,name:l10n_hr_ma_payroll.hr_payslip_rule_total
+msgid "Total Versé par l'Employeur"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_res_company__tribunal
+msgid "Tribunal RC"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_bank_advice__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_contract__epargne_retraite
+msgid ""
+"Utiliser ce champ si l'éparge de retraite doit être définit en permanence "
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_contract__prim_excep
+msgid ""
+"Utiliser ce champ si la prime exceptionnelle doit être définit en permanence"
+" "
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid "Validé"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields.selection,name:l10n_hr_ma_payroll.selection__hr_bank_advice__mode_paiement__virement
+msgid "Virement Bancaire"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,field_description:l10n_hr_ma_payroll.field_hr_bank_advice__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model:ir.model.fields,help:l10n_hr_ma_payroll.field_hr_bank_advice__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_payslip
+msgid "au"
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid ""
+"• En cas de problème sur un compte, merci de nous contacter avant exécution."
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid ""
+"• L'avis de débit que vous nous adresserez ne devra mentionner que le "
+"montant total ci-dessus."
+msgstr ""
+
+#. module: l10n_hr_ma_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_hr_ma_payroll.report_bank_advice
+msgid ""
+"• Merci de confirmer l'exécution de ces virements par email ou courrier."
+msgstr ""
+

@@ -102,7 +102,8 @@ result = (26 - ABS) if worked_days.ABS and worked_days.ABS.number_of_days > 0 el
         <field name="register_id" ref="contrib_register_employees"/>
         <field name="sequence">100</field>
         <field name="amount_select">code</field>
-        <field name="amount_python_compute">result = (contract.wage/26)*JRTV</field>
+        <field name="amount_python_compute">BC = contract.wage/26
+result = BC*JRTV if not worked_days.LEAVE120 and -(worked_days.LEAVE120.number_of_days) != 0 else BC*(JRTV-(worked_days.LEAVE120 and -(worked_days.LEAVE120.number_of_days)))</field>
     </record>
 
     <record id="hr_payslip_rule_rap" model="hr.salary.rule">
@@ -118,15 +119,42 @@ result = (26 - ABS) if worked_days.ABS and worked_days.ABS.number_of_days > 0 el
         <field name="appears_on_payslip" eval="True"/>
     </record>
 
+    <record id="hr_payslip_rule_jcp" model="hr.salary.rule">
+        <field name="name">Jours de Congé Payé</field>
+        <field name="code">JCP</field>
+        <field name="sequence">120</field>
+        <field name="category_id" ref="NOCAT"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = worked_days.LEAVE120 and -(worked_days.LEAVE120.number_of_days) > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = worked_days.LEAVE120 and -(worked_days.LEAVE120.number_of_days)</field>
+        <field name="appears_on_payslip" eval="True"/>
+    </record>
+
     <record id="hr_payslip_rule_cp" model="hr.salary.rule">
         <field name="name">Congé Payé</field>
         <field name="code">CP</field>
-        <field name="sequence">120</field>
-        <field name="category_id" ref="PRINT"/>
+        <field name="sequence">130</field>
+        <field name="category_id" ref="BASIC"/>
+        <field name="register_id" ref="contrib_register_employees"/>
         <field name="condition_select">python</field>
-        <field name="condition_python">result = inputs.CP and inputs.CP.amount > 0</field>
+        <field name="condition_python">result = worked_days.LEAVE120 and -(worked_days.LEAVE120.number_of_days) > 0</field>
         <field name="amount_select">code</field>
-        <field name="amount_python_compute">result = inputs.CP and inputs.CP.amount</field>
+        <field name="amount_python_compute">result = (worked_days.LEAVE120 and -(worked_days.LEAVE120.number_of_days))*(contract.wage/26) </field>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="register_id" ref="contrib_register_employees"/>
+    </record>
+
+    <record id="hr_payslip_rule_stc" model="hr.salary.rule">
+        <field name="name">Solde de Tout Compte</field>
+        <field name="code">STC</field>
+        <field name="sequence">140</field>
+        <field name="category_id" ref="BASIC"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = employee.stc_settlement</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">BC = contract.wage/26
+result = employee.remaining_leaves*BC</field>
         <field name="appears_on_payslip" eval="True"/>
         <field name="register_id" ref="contrib_register_employees"/>
     </record>
@@ -717,6 +745,7 @@ result = max(frais_pro_mensuel, 0)
             <field name="register_id" ref="hr_retraite_register"/>
         </record>
 
+
         <record id="hr_payslip_rule_total" model="hr.salary.rule">
             <field name="name">Total Versé par l'Employeur</field>
             <field name="code">TOTAL</field>
@@ -731,7 +760,7 @@ result = max(frais_pro_mensuel, 0)
     <record id="hr_payroll_salary_structure_base" model="hr.payroll.structure">
         <field name="code">Structure de Base</field>
         <field name="name">Structure de base paie Marocaine</field>
-        <field eval="[(6, 0, [ref('hr_payslip_rule_jrtv'),ref('hr_rule_basic'),ref('hr_payslip_rule_rap'),ref('hr_payslip_rule_cp'),ref('hr_payslip_rule_primanc'),ref('hr_payslip_rule_primexcep'),ref('hr_payslip_rule_primastr'),ref('hr_payslip_rule_bonus'),ref('hr_payslip_rule_indemdepl'), ref('hr_payslip_rule_indemkm'),ref('hr_payslip_rule_indemtransp'),ref('hr_payslip_rule_primtournee'),ref('hr_payslip_rule_gratsocial'),ref('hr_payslip_rule_indemcaisse'),ref('hr_payslip_rule_indemrep'),ref('hr_payslip_rule_primoutil'),ref('hr_payslip_rule_primsalis'),ref('hr_payslip_rule_indemlice'), ref('hr_payslip_rule_primpan'),ref('hr_rule_gross'),ref('hr_payslip_rule_sbi'),ref('hr_payslip_rule_cnsse'),ref('hr_payslip_rule_cimre'),ref('hr_payslip_rule_amo'),ref('hr_payslip_rule_frpro'),ref('hr_payslip_rule_sni'),ref('hr_payslip_rule_ir'),ref('hr_payslip_rule_net'),ref('hr_payslip_rule_cnssp'),ref('hr_payslip_rule_allfp'),ref('hr_payslip_rule_formp'),ref('hr_payslip_rule_amop'),ref('hr_payslip_rule_cimrp'),ref('hr_payslip_rule_total')])]"
+        <field eval="[(6, 0, [ref('hr_payslip_rule_jrtv'),ref('hr_rule_basic'),ref('hr_payslip_rule_rap'),ref('hr_payslip_rule_jcp'),ref('hr_payslip_rule_cp'),ref('hr_payslip_rule_primanc'),ref('hr_payslip_rule_primexcep'),ref('hr_payslip_rule_primastr'),ref('hr_payslip_rule_bonus'),ref('hr_payslip_rule_indemdepl'), ref('hr_payslip_rule_indemkm'),ref('hr_payslip_rule_indemtransp'),ref('hr_payslip_rule_primtournee'),ref('hr_payslip_rule_gratsocial'),ref('hr_payslip_rule_indemcaisse'),ref('hr_payslip_rule_indemrep'),ref('hr_payslip_rule_primoutil'),ref('hr_payslip_rule_primsalis'),ref('hr_payslip_rule_indemlice'), ref('hr_payslip_rule_primpan'),ref('hr_rule_gross'),ref('hr_payslip_rule_sbi'),ref('hr_payslip_rule_cnsse'),ref('hr_payslip_rule_cimre'),ref('hr_payslip_rule_amo'),ref('hr_payslip_rule_frpro'),ref('hr_payslip_rule_sni'),ref('hr_payslip_rule_ir'),ref('hr_payslip_rule_net'),ref('hr_payslip_rule_cnssp'),ref('hr_payslip_rule_allfp'),ref('hr_payslip_rule_formp'),ref('hr_payslip_rule_amop'),ref('hr_payslip_rule_cimrp'),ref('hr_payslip_rule_stc'),ref('hr_payslip_rule_total')])]"
                name="rule_ids"/>
         <field name="company_id" ref="base.main_company"/>
         <field name="note">Cette rubrique représente la structure des salariés marocains.</field>
@@ -767,5 +796,6 @@ result = max(frais_pro_mensuel, 0)
         <field name="name">Bonus</field>
         <field name="input_id" ref="hr_payslip_rule_bonus"/>
     </record>
-    
+
 </odoo>
+

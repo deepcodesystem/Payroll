@@ -2,198 +2,120 @@
 <odoo>
     <template id="report_payslip">
         <t t-call="web.html_container">
-        <t t-foreach="docs" t-as="o">
-            <t t-call="web.external_layout">
-                <div class="page" style="font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 12px; line-height: 1.4; color: #333;">
-
-                    <!-- En-tête du bulletin -->
-                    <div style="background: linear-gradient(135deg, #2E86AB 0%, #A23B72 100%); color: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <div>
-                                <h1 style="margin: 0; font-size: 28px; font-weight: 300; letter-spacing: 1px;">BULLETIN DE PAIE</h1>
-                            </div>
-                            <div style="text-align: right; background: rgba(255,255,255,0.1); padding: 10px 15px; border-radius: 6px;">
-                                <div style="font-size: 14px; margin-bottom: 5px;">Période du</div>
-                                <div style="font-size: 16px; font-weight: bold;">
-                                    <span t-field="o.date_from"/> au <span t-field="o.date_to"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Informations entreprise et employé -->
-                    <div style="display: flex; gap: 20px; margin-bottom: 25px;">
-
-                        <!-- Informations entreprise -->
-                        <div style="flex: 1; background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #2E86AB;">
-                            <h3 style="margin: 0 0 15px 0; color: #2E86AB; font-size: 16px; font-weight: 600;">ENTREPRISE</h3>
-                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 10px; color: #333;" t-field="o.company_id.name"/>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 13px;">
-                                <div><strong>CNSS:</strong> <span t-field="o.company_id.company_cnss_id"/></div>
-                                <div><strong>CIMR:</strong> <span t-field="o.company_id.company_cimr_id"/></div>
-                                <div><strong>RC:</strong> <span t-field="o.company_id.rc"/></div>
-                                <div><strong>IF:</strong> <span t-field="o.company_id.ident_fiscal"/></div>
-                            </div>
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <!-- En-tête -->
+                        <div style="background-color: #2E86AB; color: white; padding: 20px; margin-bottom: 20px; border-radius: 8px;">
+                            <h1 style="margin: 0; font-size: 24px; font-weight: bold;">BULLETIN DE PAIE</h1>
+                            <p style="margin: 5px 0 0 0;">
+                                Période: <span t-field="o.date_from"/> au <span t-field="o.date_to"/>
+                            </p>
                         </div>
 
-                        <!-- Informations employé -->
-                        <div style="flex: 1; background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #A23B72;">
-                            <h3 style="margin: 0 0 15px 0; color: #A23B72; font-size: 16px; font-weight: 600;">EMPLOYÉ</h3>
-                            <div style="font-size: 18px; font-weight: bold; margin-bottom: 10px; color: #333;" t-field="o.employee_id.name"/>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 13px;">
-                                <div><strong>Matricule:</strong><br/><span t-field="o.employee_id.matricule"/></div>
-                                <div><strong>CIN:</strong><br/><span t-field="o.employee_id.identification_id"/></div>
-                                <div><strong>CNSS:</strong><br/><span t-field="o.employee_id.ssnid"/></div>
-                                <div><strong>CIMR:</strong><br/><span t-field="o.employee_id.cimr_id"/></div>
-                                <div><strong>Date d'embauche:</strong><br/><span t-field="o.contract_id.date_start"/></div>
-                                <div><strong>Ancienneté:</strong><br/><span t-field="o.contract_id.worked_age"/></div>
-                                <div><strong>Poste occupé:</strong><br/><span t-field="o.contract_id.job_id"/></div>
-                                <div><strong>Département:</strong><br/><span t-field="o.contract_id.department_id"/></div>
-                                <div><strong>Situation familiale:</strong><br/><span t-field="o.employee_id.marital"/></div>
-                                <div><strong>Nombre de déductions:</strong><br/><span t-field="o.employee_id.dependants"/></div>
-                            </div>
-                        </div>
-                    </div>
+                        <!-- Infos Entreprise et Employé -->
+                        <table style="width: 100%; margin-bottom: 20px; border-collapse: collapse;">
+                            <tr>
+                                <td style="width: 50%; padding-right: 10px; vertical-align: top;">
+                                    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 8px;">
+                                        <h3 style="margin: 0 0 10px 0; color: #2E86AB; font-size: 14px; font-weight: bold;">ENTREPRISE</h3>
+                                        <p style="margin: 5px 0;"><strong><span t-field="o.company_id.name"/></strong></p>
+                                        <p style="margin: 5px 0; font-size: 12px;">CNSS: <span t-field="o.company_id.company_cnss_id"/></p>
+                                        <p style="margin: 5px 0; font-size: 12px;">CIMR: <span t-field="o.company_id.company_cimr_id"/></p>
+                                        <p style="margin: 5px 0; font-size: 12px;">RC: <span t-field="o.company_id.rc"/></p>
+                                        <p style="margin: 5px 0; font-size: 12px;">IF: <span t-field="o.company_id.ident_fiscal"/></p>
+                                    </div>
+                                </td>
+                                <td style="width: 50%; padding-left: 10px; vertical-align: top;">
+                                    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 8px;">
+                                        <h3 style="margin: 0 0 10px 0; color: #A23B72; font-size: 14px; font-weight: bold;">EMPLOYÉ</h3>
+                                        <p style="margin: 5px 0;"><strong><span t-field="o.employee_id.name"/></strong></p>
+                                        <p style="margin: 5px 0; font-size: 12px;">Matricule: <span t-field="o.employee_id.matricule"/></p>
+                                        <p style="margin: 5px 0; font-size: 12px;">CIN: <span t-field="o.employee_id.identification_id"/></p>
+                                        <p style="margin: 5px 0; font-size: 12px;">CNSS: <span t-field="o.employee_id.ssnid"/></p>
+                                        <p style="margin: 5px 0; font-size: 12px;">Poste: <span t-field="o.contract_id.job_id"/></p>
+                                        <p style="margin: 5px 0; font-size: 12px;">Date d'embauche: <span t-field="o.contract_id.date_start"/></p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
 
-                    <!-- Adresse -->
-                    <div style="background: linear-gradient(90deg, #e3f2fd 0%, #f3e5f5 100%); padding: 15px 20px; border-radius: 8px; margin-bottom: 25px;">
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <div style="background: #2E86AB; color: white; padding: 8px; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold;">📍</div>
-                            <div>
-                                <strong style="color: #2E86AB;">Adresse:</strong>
-                                <span t-field="o.employee_id.private_street"/>
-                                <span t-field="o.employee_id.private_street2"/>
-                                <span t-field="o.employee_id.private_city"/> - <span t-field="o.employee_id.private_zip"/>
-                                <span t-field="o.employee_id.private_country_id"/>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Congés payés -->
-                    <div style="background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 8px; padding: 15px; margin-bottom: 25px;">
-                        <h4 style="margin: 0 0 10px 0; color: #856404;">Congés Payés</h4>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; text-align: center;">
-                            <div>
-                                <div style="font-weight: bold; color: #856404;">Acquis</div>
-                                <div style="font-size: 16px; margin-top: 5px;">-</div>
-                            </div>
-                            <div>
-                                <div style="font-weight: bold; color: #856404;">Reste à prendre</div>
-                                <div style="font-size: 16px; margin-top: 5px;">-</div>
-                            </div>
-                            <div>
-                                <div style="font-weight: bold; color: #856404;">Pris</div>
-                                <div style="font-size: 16px; margin-top: 5px;">-</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tableau des éléments de paie -->
-                    <div style="margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden;">
-                        <table style="width: 100%; border-collapse: collapse; font-size: 11px;">
+                        <!-- Tableau de paie -->
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 1px solid #ddd;">
                             <thead>
-                                <tr style="background: linear-gradient(135deg, #2E86AB 0%, #A23B72 100%); color: white;">
-                                    <th rowspan="2" style="padding: 12px 8px; border: 1px solid rgba(255,255,255,0.2); text-align: center; font-weight: 600;">N°</th>
-                                    <th rowspan="2" style="padding: 12px 8px; border: 1px solid rgba(255,255,255,0.2); text-align: center; font-weight: 600;">Désignation</th>
-                                    <th rowspan="2" style="padding: 12px 8px; border: 1px solid rgba(255,255,255,0.2); text-align: center; font-weight: 600;">Nombre</th>
-                                    <th rowspan="2" style="padding: 12px 8px; border: 1px solid rgba(255,255,255,0.2); text-align: center; font-weight: 600;">Base</th>
-                                    <th colspan="3" style="padding: 12px 8px; border: 1px solid rgba(255,255,255,0.2); text-align: center; font-weight: 600; background: rgba(255,255,255,0.1);">Part Salariale</th>
-                                    <th colspan="2" style="padding: 12px 8px; border: 1px solid rgba(255,255,255,0.2); text-align: center; font-weight: 600; background: rgba(0,0,0,0.1);">Part Patronale</th>
-                                </tr>
-                                <tr style="background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%); color: white;">
-                                    <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.2); text-align: center; font-size: 10px;">Taux</th>
-                                    <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.2); text-align: center; font-size: 10px;">Gains</th>
-                                    <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.2); text-align: center; font-size: 10px;">Retenus</th>
-                                    <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.2); text-align: center; font-size: 10px;">Taux</th>
-                                    <th style="padding: 8px; border: 1px solid rgba(255,255,255,0.2); text-align: center; font-size: 10px;">Retenus</th>
+                                <tr style="background-color: #2E86AB; color: white;">
+                                    <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Désignation</th>
+                                    <th style="padding: 10px; text-align: center; border: 1px solid #ddd; width: 80px;">Nombre</th>
+                                    <th style="padding: 10px; text-align: right; border: 1px solid #ddd; width: 100px;">Base</th>
+                                    <th style="padding: 10px; text-align: right; border: 1px solid #ddd; width: 100px;">Gains</th>
+                                    <th style="padding: 10px; text-align: right; border: 1px solid #ddd; width: 100px;">Retenus</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr t-foreach="o.line_ids.filtered(lambda line: line.appears_on_payslip)" t-as="line" t-att-style="'background:' + ('#f8f9fa' if line_index % 2 == 0 else 'white') + '; border-bottom: 1px solid #dee2e6;'">
-                                    <td style="padding: 10px 8px; text-align: center; border-right: 1px solid #dee2e6;">
-                                        <t t-if="line.code != 'NET'">
-                                            <span t-esc="line.sequence or ''"/>
-                                        </t>
-                                    </td>
-                                    <td style="padding: 10px 8px; text-align: left; border-right: 1px solid #dee2e6;">
-                                        <t t-if="line.code != 'GROSS' and line.code != 'NET' and line.code != 'IR'">
-                                            <span t-esc="line.name"/>
-                                        </t>
-                                        <t t-if="line.code == 'GROSS'or line.code == 'IR'">
-                                            <span style="font-weight: bold; color: #2E86AB;" t-esc="line.name"/>
-                                        </t>
-                                    </td>
-                                    <td style="padding: 10px 8px; text-align: center; border-right: 1px solid #dee2e6;">
-                                        <t t-if="line.code == 'JRTV'">
-                                            <span t-esc="line.total or ''" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 0}"/>
-                                        </t>
-                                    </td>
-                                    <td style="padding: 10px 8px; text-align: right; border-right: 1px solid #dee2e6;">
-                                        <t t-if="line.code != 'NET' and line.code != 'JRTV' and line.code != 'IR' and line.code != 'GROSS' and line.category_id.code != 'PRINT' and line.category_id.code != 'PRINNT'">
-                                            <span t-esc="line.amount or ''" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
-                                        </t>
-                                    </td>
-                                    <td style="padding: 10px 8px; text-align: center; border-right: 1px solid #dee2e6;">
-                                        <t t-if="line.category_id.code == 'DED'">
-                                            <span t-esc="line.amount_percentage or ''" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>%
-                                        </t>
-                                    </td>
-                                    <td style="padding: 10px 8px; text-align: right; border-right: 1px solid #dee2e6;">
-                                        <t t-if="line.category_id.code != 'DED' and line.code != 'IR' and line.code != 'JRTV' and line.code != 'GROSS' and line.code != 'NET'">
-                                            <span t-esc="line.total or ''" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
-                                        </t>
-                                        <t t-if="line.category_id.code == 'GROSS'">
-                                            <span style="font-weight: bold; color: #27ae60;" t-esc="line.total or ''" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
-                                        </t>
-                                    </td>
-                                    <td style="padding: 10px 8px; text-align: right; border-right: 1px solid #dee2e6;">
-                                        <t t-if="line.category_id.code == 'DED' or line.code == 'IR'">
-                                            <span t-esc="line.total or ''" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
-                                        </t>
-                                    </td>
-                                    <td style="padding: 10px 8px; text-align: center; border-right: 1px solid #dee2e6;">
-                                        <t t-if="line.category_id.code == 'COMP'">
-                                            <span t-esc="line.rate or ''" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>%
-                                        </t>
-                                    </td>
-                                    <td style="padding: 10px 8px; text-align: right;">
-                                        <t t-if="line.category_id.code == 'COMP'">
-                                            <span t-esc="line.total or ''" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
-                                        </t>
-                                        <t t-if="line.code == 'TCOMP'">
-                                            <span style="font-weight: bold; color: #f39c12;" t-esc="line.total or ''" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/>
-                                        </t>
-                                    </td>
-                                </tr>
+                                <t t-set="line_count" t-value="0"/>
+                                <t t-foreach="o.line_ids.filtered(lambda line: line.appears_on_payslip)" t-as="line">
+                                    <t t-set="line_count" t-value="line_count + 1"/>
+                                    <tr t-if="line.code != 'NET'" style="background-color: white if line_count % 2 == 0 else #f9f9f9;">
+                                        <td style="padding: 8px; border: 1px solid #ddd; font-size: 12px;">
+                                            <t t-if="line.code == 'GROSS'">
+                                                <strong><span t-field="line.name"/></strong>
+                                            </t>
+                                            <t t-elif="line.code == 'IR'">
+                                                <strong><span t-field="line.name"/></strong>
+                                            </t>
+                                            <t t-else="">
+                                                <span t-field="line.name"/>
+                                            </t>
+                                        </td>
+                                        <td style="padding: 8px; border: 1px solid #ddd; text-align: center; font-size: 12px;">
+                                            <t t-if="line.code == 'JRTV' or line.code == 'JCP'">
+                                                <span t-esc="'{:.0f}'.format(line.total or 0)"/>
+                                            </t>
+                                        </td>
+                                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right; font-size: 12px;">
+                                            <t t-if="line.category_id.code not in ('PRINT', 'PRINNT', 'DED') and line.code not in ('NET', 'GROSS', 'IR', 'JRTV' , 'JCP')">
+                                                <span t-esc="'{:.2f}'.format(line.amount or 0)"/>
+                                            </t>
+                                        </td>
+                                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right; font-size: 12px;">
+                                            <t t-if="line.category_id.code != 'DED' and line.code not in ('IR', 'JRTV', 'JCP', 'NET')">
+                                                <t t-if="line.category_id.code == 'GROSS'">
+                                                    <span style="color: #27ae60; font-weight: bold;" t-esc="'{:.2f}'.format(line.total or 0)"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <span t-esc="'{:.2f}'.format(line.total or 0)"/>
+                                                </t>
+                                            </t>
+                                        </td><td style="padding: 8px; border: 1px solid #ddd; text-align: right; font-size: 12px;">
+                                            <t t-if="line.category_id.code == 'DED' or line.code == 'IR'">
+                                                <span style="color: #e74c3c;" t-esc="'{:.2f}'.format(line.total or 0)"/>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </t>
                             </tbody>
                         </table>
-                    </div>
 
-                    <!-- Net à payer -->
-                    <div style="text-align: center; margin-bottom: 30px;">
-                        <div style="display: inline-block; background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); color: white; padding: 20px 40px; border-radius: 12px; box-shadow: 0 6px 12px rgba(39, 174, 96, 0.3);">
-                            <div style="font-size: 18px; margin-bottom: 8px; font-weight: 300; letter-spacing: 1px;">NET À PAYER</div>
-                            <div t-foreach="get_payslip_lines(o.line_ids)" t-as="line">
-                                <t t-if="line.code == 'NET'">
-                                    <div style="font-size: 32px; font-weight: bold; letter-spacing: 1px;">
-                                        <span t-esc="line.total or ''" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}"/> DH
-                                    </div>
-                                </t>
-                            </div>
+                        <!-- Net à payer -->
+                        <div style="text-align: right; margin-bottom: 30px;">
+                            <t t-foreach="o.line_ids.filtered(lambda line: line.code == 'NET')" t-as="line">
+                                <div style="background-color: #27ae60; color: white; padding: 15px 25px; border-radius: 8px; display: inline-block;">
+                                    <p style="margin: 0 0 5px 0; font-size: 14px;">NET À PAYER</p>
+                                    <p style="margin: 0; font-size: 28px; font-weight: bold;">
+                                        <span t-esc="'{:.2f}'.format(line.total or 0)"/> DH
+                                    </p>
+                                </div>
+                            </t>
+                        </div>
+
+                        <!-- Pied de page -->
+                        <div style="border-top: 1px solid #ddd; padding-top: 15px; text-align: center; font-size: 11px; color: #666;">
+                            <p>Ce bulletin de paie est conforme à la législation marocaine en vigueur.</p>
+                            <p>Généré le <span t-esc="datetime.datetime.now().strftime('%d/%m/%Y à %H:%M')"/></p>
                         </div>
                     </div>
-
-                    <!-- Pied de page -->
-                    <div style="border-top: 2px solid #dee2e6; padding-top: 20px; text-align: center; color: #666; font-size: 11px;">
-                        <p>Ce bulletin de paie est conforme à la législation marocaine en vigueur.</p>
-                        <p style="margin-top: 10px; font-style: italic;">
-                            Généré le <span t-esc="datetime.datetime.now().strftime('%d/%m/%Y à %H:%M')"/>
-                        </p>
-                    </div>
-
-                </div>
+                </t>
             </t>
         </t>
-    </t>
     </template>
 </odoo>

@@ -16,6 +16,9 @@
                     <xpath expr="//field[@name='pin']" position="before">
                          <field name="matricule"/>
                      </xpath>
+                    <xpath expr="//group[@name='departure']" position="inside">
+                         <field name="stc_settlement" widget="boolean" readonly="1"/>
+                    </xpath>
                 </data>
             </field>
         </record>
