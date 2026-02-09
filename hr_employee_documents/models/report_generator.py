@@ -121,7 +121,6 @@ class ReportTemplateGenerator(models.TransientModel):
             raise UserError(_('Error generating report: %s') % error_msg)
    
     def _html_to_pdf(self, html_content):
-        def _html_to_pdf(self, html_content):
         """Version stricte pour débogage : ne cache aucune erreur"""
         # On encode le HTML en bytes pour wkhtmltopdf
         html_encoded = html_content.encode('utf-8')
