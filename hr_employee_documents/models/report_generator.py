@@ -119,32 +119,20 @@ class ReportTemplateGenerator(models.TransientModel):
         except Exception as e:
             error_msg = str(e)
             raise UserError(_('Error generating report: %s') % error_msg)
+   
     def _html_to_pdf(self, html_content):
-        """Convert HTML to PDF using Odoo's report engine"""
-        try:
-            # Try using Odoo's wkhtmltopdf wrapper
-            from odoo.tools.misc import html_escape
-            from wkhtmltopdf.css.urls import fetch_url as wkhtmltopdf_fetch_url
-            # Try to use report's engine
-            report_model = self.env['ir.actions.report']
-            # Use the internal method to convert HTML to PDF
-            return report_model._run_wkhtmltopdf([html_content])
-        except Exception:
-            pass
-        try:
-            # Fallback: Try using weasyprint if available
-            from weasyprint import HTML, CSS
-            import io
-            pdf_file = io.BytesIO()
-            HTML(string=html_content).write_pdf(pdf_file)
-            return pdf_file.getvalue()
-        except Exception:
-            pass
-        try:
-            # Last fallback: Return HTML encoded as UTF-8 (user can print to PDF)
-            return html_content.encode('utf-8')
-        except Exception:
-            return b"Error generating PDF"
+        def _html_to_pdf(self, html_content):
+        """Version stricte pour débogage : ne cache aucune erreur"""
+        # On encode le HTML en bytes pour wkhtmltopdf
+        html_encoded = html_content.encode('utf-8')
+        
+        # On utilise directement l'outil de base d'Odoo
+        # Si ça échoue, Odoo affichera une erreur rouge à l'écran
+        # ou une erreur détaillée dans les logs serveur
+        pdf_bytes = self.env['ir.actions.report']._run_wkhtmltopdf([html_encoded])
+        
+        return pdf_bytes
+        
     def _get_filled_content(self):
         """Fill template with employee data"""
         try:
