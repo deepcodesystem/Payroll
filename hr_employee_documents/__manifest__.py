@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Employee Document Management',
-    'version': '18.0.3.23.0',
+    'version': '18.0.3.25.0',
     'category': 'Human Resources/Payroll',
     'summary': 'Manage and download employee documents like work certificates, attestations, etc.',
     'description': """
@@ -24,7 +24,7 @@
     'company': 'GetapPRO',
     'maintainer': 'GetapPRO',
     'website': 'https://www.getap.pro',
-    'depends': ['hr', 'hr_contract', 'payroll'],
+    'depends': ['base', 'hr', 'hr_contract', 'payroll'],
     'data': [
         'security/ir.model.access.csv',
         'security/record_rules.xml',
@@ -37,6 +37,7 @@
         'views/report_template_views.xml',
         'views/report_generator_views.xml',
         'views/employee_report_buttons.xml',
+        'views/res_partner_bank_views.xml',
         'reports/report.xml',
         'reports/employee_document_report.xml',
         'reports/employee_document_qweb.xml',

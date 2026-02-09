@@ -6,3 +6,4 @@ from . import reject_wizard
 from . import report
 from . import report_template
 from . import report_generator
+from . import res_partner_bank

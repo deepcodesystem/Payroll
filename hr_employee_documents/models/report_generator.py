@@ -45,7 +45,7 @@ class ReportTemplateGenerator(models.TransientModel):
         }}
         .page {{
             page-break-after: always;
-            padding: 20mm;
+            padding: 20px;
             margin: 0;
         }}
         table {{
@@ -187,6 +187,9 @@ class ReportTemplateGenerator(models.TransientModel):
                 '{{employee.name}}': safe_get(employee, 'name', ''),
                 '{{employee.job_title}}': safe_get(employee, 'job_title', ''),
                 '{{employee.department}}': safe_get(employee.department_id, 'name', '') if employee.department_id else '',
+                '{{employee.acc_number}}': safe_get(employee.bank_account_id, 'acc_number', '') if employee.bank_account_id else '',
+                '{{employee.agence}}': safe_get(employee.bank_account_id, 'agence', '') if employee.bank_account_id else '',
+                '{{employee.bank}}': safe_get(employee.bank_account_id.bank_id, 'name', '') if employee.bank_account_id.bank_id else '',
                 '{{employee.email}}': safe_get(employee, 'work_email', ''),
                 '{{employee.phone}}': safe_get(employee, 'mobile_phone', ''),
                 '{{employee.street}}': safe_get(employee, 'street', ''),
