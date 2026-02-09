@@ -26,48 +26,22 @@ class ReportTemplateGenerator(models.TransientModel):
             raise UserError(_('Please select an employee'))
         if not self.template_id:
             raise UserError(_('Please select a template'))
+
         try:
-            # Get filled content
+            # 1. Obtenir le contenu rempli
             content = self._get_filled_content()
-            # Create HTML content for the report
+
+            # 2. Construire le HTML complet (f-string crée un 'str')
             html_content = f"""
 <html>
 <head>
     <meta charset="UTF-8">
     <title>{self.template_id.name}</title>
     <style>
-        body {{
-            font-family: 'Arial', 'Helvetica', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }}
-        .page {{
-            page-break-after: always;
-            padding: 20px;
-            margin: 0;
-        }}
-        table {{
-            width: 100%;
-            border-collapse: collapse;
-            margin: 10px 0;
-        }}
-        table, th, td {{
-            border: 1px solid #333;
-        }}
-        th, td {{
-            padding: 8px;
-            text-align: left;
-        }}
-        h1 {{ font-size: 24px; margin-bottom: 15px; text-align: center; }}
-        h2 {{ font-size: 18px; margin-bottom: 12px; }}
-        h3 {{ font-size: 14px; margin-bottom: 10px; }}
-        p {{ margin: 5px 0; }}
-        @page {{
-            size: A4;
-            margin: 20mm;
-        }}
+        body {{ font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; margin: 20px; }}
+        h1 {{ text-align: center; }}
+        .page {{ page-break-after: always; }}
+        .underline {{ text-decoration: underline; }}
     </style>
 </head>
 <body>
@@ -77,60 +51,47 @@ class ReportTemplateGenerator(models.TransientModel):
 </body>
 </html>
 """
-            # Use Odoo's Qweb engine to render the template
+            # 3. Conversion en PDF
+            # On passe par le moteur de rapport officiel pour garantir un flux PDF
             try:
-                qweb = self.env['ir.qweb']
-                # Render the template using Qweb
-                pdf_content = qweb._render('hr_employee_documents.report_employee_document_template', {
-                    'doc': self.employee_id,
-                    'docs': [self.employee_id],
-                    'doc_content': html_content,
-                }, minimal_qcontext=True)
-                # The result should be PDF bytes from Qweb rendering
-                if isinstance(pdf_content, str):
-                    # If it's HTML string, we need to convert it
-                    # Use Odoo's built-in PDF generation
-                    pdf_bytes = self._html_to_pdf(pdf_content)
-                else:
-                    pdf_bytes = pdf_content
-            except Exception as e:
-                # Fallback: If Qweb fails, generate simple PDF from HTML
+                # On utilise directement notre méthode de conversion
                 pdf_bytes = self._html_to_pdf(html_content)
-            # Create filename
+            except Exception as e:
+                raise UserError(_("Erreur lors de la conversion PDF : %s") % str(e))
+
+            # 4. Préparer le nom du fichier
             emp_name = str(self.employee_id.name).replace(' ', '_').replace('/', '-').replace('\\', '-')
-            template_code = str(self.template_id.code).replace(' ', '_')
-            filename = f"{template_code}_{emp_name}.pdf"
-            # Ensure pdf_bytes is in the right format
-            if isinstance(pdf_bytes, str):
-                pdf_bytes = pdf_bytes.encode('utf-8')
-            # Create attachment for download
+            filename = f"{self.template_id.code}_{emp_name}.pdf"
+
+            # 5. Créer l'attachement
+            # Pas besoin de vérifier si pdf_bytes est un str, _html_to_pdf renvoie des bytes
             attachment = self.env['ir.attachment'].create({
                 'name': filename,
                 'datas': base64.b64encode(pdf_bytes),
                 'type': 'binary',
                 'mimetype': 'application/pdf',
             })
-            # Return download URL
+
             return {
                 'type': 'ir.actions.act_url',
                 'url': f'/web/content/{attachment.id}?download=true',
                 'target': 'self',
             }
+
         except Exception as e:
-            error_msg = str(e)
-            raise UserError(_('Error generating report: %s') % error_msg)
-   
+            raise UserError(_('Error generating report: %s') % str(e))
+
     def _html_to_pdf(self, html_content):
-        """Version stricte pour débogage : ne cache aucune erreur"""
-        # On encode le HTML en bytes pour wkhtmltopdf
-        html_encoded = html_content.encode('utf-8')
-        
-        # On utilise directement l'outil de base d'Odoo
-        # Si ça échoue, Odoo affichera une erreur rouge à l'écran
-        # ou une erreur détaillée dans les logs serveur
-        pdf_bytes = self.env['ir.actions.report']._run_wkhtmltopdf([html_encoded])
-        
-        return pdf_bytes
+        """Convert HTML string to PDF bytes safely"""
+        # Sécurité : On s'assure d'avoir des bytes pour wkhtmltopdf
+        if isinstance(html_content, str):
+            html_encoded = html_content.encode('utf-8')
+        else:
+            html_encoded = html_content
+
+        # Appel au moteur binaire d'Odoo
+        # Cette méthode renvoie obligatoirement un flux PDF (bytes)
+        return self.env['ir.actions.report']._run_wkhtmltopdf([html_encoded])
         
     def _get_filled_content(self):
         """Fill template with employee data"""
