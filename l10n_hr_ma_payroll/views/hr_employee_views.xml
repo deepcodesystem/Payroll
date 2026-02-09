@@ -12,6 +12,7 @@
                      </xpath>
                     <xpath expr="//field[@name='ssnid']" position="after">
                          <field name="cimr_id"/>
+                        <field name="cimr_date"/>
                      </xpath>
                     <xpath expr="//field[@name='pin']" position="before">
                          <field name="matricule"/>
