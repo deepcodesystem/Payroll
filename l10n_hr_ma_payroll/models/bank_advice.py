@@ -174,11 +174,11 @@ class HrBankAdvice(models.Model):
             advice.employee_count = len(advice.line_ids)
 
     # Actions
-    @api.model
-    def create(self, vals):
-        if vals.get('name', _('New')) == _('New'):
-            vals['name'] = self.env['ir.sequence'].next_by_code('payment.advice') or _('New')
-        return super(HrBankAdvice, self).create(vals)
+    def create(self, vals_list):
+        for vals in vals_list if isinstance(vals_list, list) else [vals_list]:
+            if vals.get('name', _('New')) == _('New'):
+                vals['name'] = self.env['ir.sequence'].next_by_code('payment.advice') or _('New')
+        return super().create(vals_list)
 
     def compute_advice(self):
         """
@@ -407,7 +407,7 @@ class HrBankAdviceLine(models.Model):
 
     bysal = fields.Monetary(
         string='Salaire Net',
-        digits=dp.get_precision('Payroll'),
+        digits='Payroll',
         currency_field='currency_id'
     )
 

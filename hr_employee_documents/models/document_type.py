@@ -55,8 +55,8 @@ class DocumentType(models.Model):
     )
 
     _sql_constraints = [
-        ('name_unique', 'UNIQUE(name)', _('Document type name must be unique!')),
-        ('code_unique', 'UNIQUE(code)', _('Document type code must be unique!')),
+        ('name_unique', 'UNIQUE(name)', 'Document type name must be unique!'),
+        ('code_unique', 'UNIQUE(code)', 'Document type code must be unique!'),
     ]
 
     def name_get(self):

@@ -160,7 +160,7 @@ class EmployeeDocument(models.Model):
 
     _sql_constraints = [
         ('name_not_empty', 'CHECK(name IS NOT NULL AND name != \'\')',
-         _('Document title cannot be empty!')),
+         'Document title cannot be empty!'),
     ]
 
     @api.depends('employee_id')
@@ -283,12 +283,12 @@ class EmployeeDocument(models.Model):
             pass
         return 'bin'
 
-    @api.model
-    def create(self, vals):
+    def create(self, vals_list):
         """Override create to set file size"""
-        if vals.get('document_file'):
-            vals['file_size'] = len(base64.b64decode(vals['document_file']))
-        return super().create(vals)
+        for vals in vals_list if isinstance(vals_list, list) else [vals_list]:
+            if vals.get('document_file'):
+                vals['file_size'] = len(base64.b64decode(vals['document_file']))
+        return super().create(vals_list)
 
     def write(self, vals):
         """Override write to update file size when file changes"""

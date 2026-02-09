@@ -2,7 +2,7 @@
     'name': 'Paie Maroc 2025',
     'description': 'Configuration de la paie Marocaine pour 2025',
     'category': 'Humain Ressources',
-    'version': '18.0.1.0.0',
+    'version': '18.0.5.15.0',
     'author': 'DeepCode',
     'website': 'https://www.deepcode.ma',
     'license': 'LGPL-3',
@@ -10,6 +10,7 @@
     'data': [
         'data/l10n_ma_payroll_data.xml',
         'data/bank_advice_sequence.xml',
+        'data/ir_cron_data.xml',
         'security/ir.model.access.csv',
         'views/bank_advice_views.xml',
         'views/hr_contract_views.xml',
@@ -20,7 +21,9 @@
         'reports/report_payslip_template.xml',
         'reports/report_bank_advice_template.xml',
     ],
-    #'images': ['static/description/icon.png'],
+    'external_dependencies': {
+        'python': [],
+    },
     'installable': True,
     'application': True,
     'auto_install': False,

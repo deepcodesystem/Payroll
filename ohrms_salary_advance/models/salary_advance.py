@@ -109,13 +109,12 @@ class SalaryAdvance(models.Model):
         """Method of a button. Changing the state of the salary advance."""
         self.state = 'reject'
 
-    @api.model
-    def create(self, vals):
+    def create(self, vals_list):
         """Supering the create method to generate sequence for the salary
          advance."""
-        vals['name'] = self.env['ir.sequence'].get('salary.advance.seq') or ' '
-        res_id = super(SalaryAdvance, self).create(vals)
-        return res_id
+        for vals in vals_list if isinstance(vals_list, list) else [vals_list]:
+            vals['name'] = self.env['ir.sequence'].get('salary.advance.seq') or ' '
+        return super().create(vals_list)
 
     def approve_request(self):
         """This Approves the employee salary advance request."""
