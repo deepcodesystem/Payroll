@@ -3,6 +3,7 @@
 
 
 from odoo import api, fields, models, _
+from datetime import date, datetime, time
 
 class hr_contract(models.Model):
     _inherit = 'hr.employee'
@@ -10,6 +11,7 @@ class hr_contract(models.Model):
 
     dependants = fields.Integer(string='Nombre de dépendants', help='Nombre Total des personnes à charge pour le calcule de Paie')
     cimr_id = fields.Char(string='Numéro de CIMR', help='CIMR')
+    cimr_date = fields.Date(string='Date CIMR', help='Date affiliation à la CIMR' )
     matricule = fields.Char(string='Matricule', help='Matricule')
     stc_settlement = fields.Boolean(
         string='Solde Tout Compte',
