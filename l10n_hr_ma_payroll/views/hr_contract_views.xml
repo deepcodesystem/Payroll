@@ -10,6 +10,20 @@
                     <xpath expr="//field[@name='date_end']" position="after">
                         <field name="worked_age"/>
                     </xpath>
+                    <xpath expr="//page[@name='information']" position="inside">
+                        <group>
+                            <label for="epargne_retraite"/>
+                                    <div class="o_row">
+                                        <field name="epargne_retraite" nolabel="1"/>
+                                        <span>/ mois</span>
+                                    </div>
+                            <label for="epargne_retraite_ir"/>
+                                    <div class="o_row">
+                                        <field name="epargne_retraite_ir" nolabel="1"/>
+                                        <span>/ mois</span>
+                                    </div>
+                        </group>
+                    </xpath>
                     <xpath expr="//page[@name='other']" position="after">
                         <page string="Primes et indémnités Non Taxables" name="primesntax">
                             <group>

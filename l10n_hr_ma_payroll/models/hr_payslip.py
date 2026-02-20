@@ -110,3 +110,17 @@ class HrPayslip(models.Model):
 
         return result
 
+    def get_inputs(self, contract_ids, date_from, date_to):
+        """Supering get_inputs() method inorder to add details of advance
+           salary in the payslip."""
+        res = super(HrPayslip, self).get_inputs(contract_ids, date_from,
+                                                date_to)
+        epargne_amount = self.contract_id.epargne_retraite if self.contract_id.epargne_retraite else 0
+        epargne_ir_amount = self.contract_id.epargne_retraite_ir if self.contract_id.epargne_retraite_ir else 0
+        for result in res:
+            if result.get('code') == 'EPARGNE':
+                result['amount'] = epargne_amount
+            elif result.get('code') == 'EPARGNEIR':
+                result['amount'] = epargne_ir_amount
+        return res
+

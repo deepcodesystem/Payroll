@@ -209,10 +209,13 @@ class HrBankAdvice(models.Model):
 
             # Créer les lignes
             lines_to_create = []
+            employees_without_bank = []
+
             for slip in payslips:
                 # Vérifier le compte bancaire de l'employé
                 if not slip.employee_id.bank_account_id:
-                    raise UserError(_('Veuillez définir un compte bancaire pour l\'employé %s') % slip.employee_id.name)
+                    employees_without_bank.append(slip.employee_id.name)
+                    continue
 
                 # Chercher le salaire net
                 payslip_line = slip.line_ids.filtered(lambda l: l.code == 'NET')
@@ -233,6 +236,13 @@ class HrBankAdvice(models.Model):
 
                 # Lier la fiche de paie au conseil
                 slip.write({'advice_id': advice.id})
+
+            # Notification pour les employés sans compte bancaire
+            if employees_without_bank:
+                message = _(
+                    'Les employés suivants n\'ont pas de compte bancaire configuré et ont été exclus : %s') % ', '.join(
+                    employees_without_bank)
+                advice.message_post(body=message, message_type='notification')
 
             if lines_to_create:
                 self.env['hr.bank.advice.line'].create(lines_to_create)

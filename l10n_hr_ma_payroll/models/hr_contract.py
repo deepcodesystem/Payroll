@@ -67,6 +67,10 @@ class hr_contract(models.Model):
         string="Epargne Retraite",
         help="Utiliser ce champ si l'éparge de retraite doit être définit en permanence "
     )
+    epargne_retraite_ir = fields.Monetary(
+        string="Epargne Retraite (IR)",
+        help="Utiliser ce champ si l'éparge de retraite doit être définit en permanence "
+    )
     worked_age = fields.Char(
         string='Ancienneté',
         group='hr.group_hr_user',

@@ -89,8 +89,52 @@
         <field name="sequence">5</field>
         <field name="category_id" ref="NOCAT"/>
         <field name="amount_select">code</field>
-        <field name="amount_python_compute">ABS = worked_days.ABS and worked_days.ABS.number_of_days
-result = (26 - ABS) if worked_days.ABS and worked_days.ABS.number_of_days > 0 else 26
+        <field name="amount_python_compute"># Base de 26 jours ouvrables
+jours_base = 26
+
+# Déduction des absences
+absences = -(worked_days.ABS.number_of_days) if worked_days.ABS else 0
+
+# Déduction des congés
+conges = -(worked_days.LEAVE120.number_of_days) if worked_days.LEAVE120 else 0
+
+# Calcul des jours non travaillés en début de mois selon date de début de contrat
+jours_debut_mois = 0
+if contract.date_start:
+    debut_periode = payslip.date_from
+    fin_periode = payslip.date_to
+
+    # Si le contrat commence dans la période de paie
+    if debut_periode <= contract.date_start <= fin_periode:
+        # Calculer la différence de jours
+        delta_jours = (contract.date_start - debut_periode).days
+
+        # Compter les jours ouvrables (exclure les dimanches)
+        for i in range(delta_jours):
+            jour_actuel = debut_periode.replace(day=debut_periode.day + i)
+            if jour_actuel.weekday() != 6:  # Pas dimanche
+                jours_debut_mois += 1
+
+# Calcul des jours non travaillés en fin de mois selon date de fin de contrat
+jours_fin_mois = 0
+if contract.date_end:
+    debut_periode = payslip.date_from
+    fin_periode = payslip.date_to
+
+    # Si le contrat se termine dans la période de paie
+    if debut_periode <= contract.date_end <= fin_periode:
+        # Calculer du jour après la fin jusqu'à la fin de période
+        date_debut_calcul = contract.date_end.replace(day=contract.date_end.day + 1)
+        delta_jours = (fin_periode - date_debut_calcul).days + 1
+
+        # Compter les jours ouvrables (exclure les dimanches)
+        for i in range(delta_jours):
+            jour_actuel = date_debut_calcul.replace(day=date_debut_calcul.day + i)
+            if jour_actuel.weekday() != 6:  # Pas dimanche
+                jours_fin_mois += 1
+
+# Calcul final
+result = max(0, jours_base - absences - abs(conges) - jours_debut_mois - jours_fin_mois)
         </field>
         <field name="appears_on_payslip" eval="True"/>
     </record>
@@ -103,7 +147,7 @@ result = (26 - ABS) if worked_days.ABS and worked_days.ABS.number_of_days > 0 el
         <field name="sequence">100</field>
         <field name="amount_select">code</field>
         <field name="amount_python_compute">BC = contract.wage/26
-result = BC*JRTV if not worked_days.LEAVE120 and -(worked_days.LEAVE120.number_of_days) != 0 else BC*(JRTV-(worked_days.LEAVE120 and -(worked_days.LEAVE120.number_of_days)))</field>
+result = BC*JRTV</field>
     </record>
 
     <record id="hr_payslip_rule_rap" model="hr.salary.rule">
@@ -426,7 +470,7 @@ result = BC
             <field name="amount_select">percentage</field>
             <field name="amount_percentage_base">SBI</field>
             <field name="quantity">1</field>
-            <field name="amount_percentage">7</field>
+            <field name="amount_percentage">6</field>
             <field name="appears_on_payslip" eval="True"/>
             <field name="register_id" ref="hr_retraite_register"/>
         </record>
@@ -496,7 +540,7 @@ personnes_a_charge = employee.children or 0  # À adapter selon votre configurat
 
 # Plafonner à 6 personnes à charge maximum
 personnes_a_charge = min(personnes_a_charge, 6)
-deduction_charges_familiales_annuel = personnes_a_charge * 500
+deduction_charges_familiales_annuel = min((personnes_a_charge * 600), 3600)  # Plafonnement à 3600 DH par an
 
 # Appliquer la déduction des charges familiales
 ir_annuel = max(ir_annuel - deduction_charges_familiales_annuel, 0)
@@ -668,6 +712,32 @@ result = max(frais_pro_mensuel, 0)
          <field name="appears_on_payslip" eval="False"/>
     </record>
 
+    <record id="hr_payslip_rule_epargne" model="hr.salary.rule">
+        <field name="name">Épargne retraite complémentaire</field>
+        <field name="code">EPARGNE</field>
+        <field name="sequence">1700</field>
+        <field name="category_id" ref="l10n_hr_ma_payroll.DED"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.EPARGNE and inputs.EPARGNE.amount > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = inputs.EPARGNE and inputs.EPARGNE.amount</field>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="register_id" ref="contrib_register_employees"/>
+    </record>
+
+    <record id="hr_payslip_rule_epargne_ir" model="hr.salary.rule">
+        <field name="name">Épargne retraite complémentaire (IR)</field>
+        <field name="code">EPARGNEIR</field>
+        <field name="sequence">1710</field>
+        <field name="category_id" ref="l10n_hr_ma_payroll.DED"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.EPARGNE and inputs.EPARGNEIR.amount > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = inputs.EPARGNE and inputs.EPARGNEIR.amount</field>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="register_id" ref="contrib_register_employees"/>
+    </record>
+
     <record id="hr_payslip_rule_net" model="hr.salary.rule">
         <field name="name">*** Salaire Net à Payer ***</field>
         <field name="code">NET</field>
@@ -760,7 +830,7 @@ result = max(frais_pro_mensuel, 0)
     <record id="hr_payroll_salary_structure_base" model="hr.payroll.structure">
         <field name="code">Structure de Base</field>
         <field name="name">Structure de base paie Marocaine</field>
-        <field eval="[(6, 0, [ref('hr_payslip_rule_jrtv'),ref('hr_rule_basic'),ref('hr_payslip_rule_rap'),ref('hr_payslip_rule_jcp'),ref('hr_payslip_rule_cp'),ref('hr_payslip_rule_primanc'),ref('hr_payslip_rule_primexcep'),ref('hr_payslip_rule_primastr'),ref('hr_payslip_rule_bonus'),ref('hr_payslip_rule_indemdepl'), ref('hr_payslip_rule_indemkm'),ref('hr_payslip_rule_indemtransp'),ref('hr_payslip_rule_primtournee'),ref('hr_payslip_rule_gratsocial'),ref('hr_payslip_rule_indemcaisse'),ref('hr_payslip_rule_indemrep'),ref('hr_payslip_rule_primoutil'),ref('hr_payslip_rule_primsalis'),ref('hr_payslip_rule_indemlice'), ref('hr_payslip_rule_primpan'),ref('hr_rule_gross'),ref('hr_payslip_rule_sbi'),ref('hr_payslip_rule_cnsse'),ref('hr_payslip_rule_cimre'),ref('hr_payslip_rule_amo'),ref('hr_payslip_rule_frpro'),ref('hr_payslip_rule_sni'),ref('hr_payslip_rule_ir'),ref('hr_payslip_rule_net'),ref('hr_payslip_rule_cnssp'),ref('hr_payslip_rule_allfp'),ref('hr_payslip_rule_formp'),ref('hr_payslip_rule_amop'),ref('hr_payslip_rule_cimrp'),ref('hr_payslip_rule_stc'),ref('hr_payslip_rule_total')])]"
+        <field eval="[(6, 0, [ref('hr_payslip_rule_jrtv'),ref('hr_rule_basic'),ref('hr_payslip_rule_rap'),ref('hr_payslip_rule_jcp'),ref('hr_payslip_rule_cp'),ref('hr_payslip_rule_primanc'),ref('hr_payslip_rule_primexcep'),ref('hr_payslip_rule_primastr'),ref('hr_payslip_rule_bonus'),ref('hr_payslip_rule_indemdepl'), ref('hr_payslip_rule_indemkm'),ref('hr_payslip_rule_indemtransp'),ref('hr_payslip_rule_primtournee'),ref('hr_payslip_rule_gratsocial'),ref('hr_payslip_rule_indemcaisse'),ref('hr_payslip_rule_indemrep'),ref('hr_payslip_rule_primoutil'),ref('hr_payslip_rule_primsalis'),ref('hr_payslip_rule_indemlice'), ref('hr_payslip_rule_primpan'),ref('hr_rule_gross'),ref('hr_payslip_rule_sbi'),ref('hr_payslip_rule_cnsse'),ref('hr_payslip_rule_cimre'),ref('hr_payslip_rule_amo'),ref('hr_payslip_rule_frpro'),ref('hr_payslip_rule_sni'),ref('hr_payslip_rule_ir'),ref('hr_payslip_rule_epargne'),ref('hr_payslip_rule_epargne_ir'),ref('hr_payslip_rule_net'),ref('hr_payslip_rule_cnssp'),ref('hr_payslip_rule_allfp'),ref('hr_payslip_rule_formp'),ref('hr_payslip_rule_amop'),ref('hr_payslip_rule_cimrp'),ref('hr_payslip_rule_stc'),ref('hr_payslip_rule_total')])]"
                name="rule_ids"/>
         <field name="company_id" ref="base.main_company"/>
         <field name="note">Cette rubrique représente la structure des salariés marocains.</field>
@@ -795,6 +865,18 @@ result = max(frais_pro_mensuel, 0)
         <field name="code">BONUS</field>
         <field name="name">Bonus</field>
         <field name="input_id" ref="hr_payslip_rule_bonus"/>
+    </record>
+
+    <record id="hr_rule_input_epargne" model="hr.rule.input">
+        <field name="code">EPARGNE</field>
+        <field name="name">Épargne retraite complémentaire</field>
+        <field name="input_id" ref="hr_payslip_rule_epargne"/>
+    </record>
+
+    <record id="hr_rule_input_epargne_ir" model="hr.rule.input">
+        <field name="code">EPARGNEIR</field>
+        <field name="name">Épargne retraite complémentaire (IR)</field>
+        <field name="input_id" ref="hr_payslip_rule_epargne"/>
     </record>
 
 </odoo>
