@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ═══ DÉCLARATION BDS ═════════════════════════════════════════════ -->
+
+    <!-- Formulaire Principal -->
+    <record id="view_cnss_declaration_form" model="ir.ui.view">
+        <field name="name">cnss.declaration.form</field>
+        <field name="model">cnss.declaration</field>
+        <field name="arch" type="xml">
+            <form string="Déclaration CNSS BDS">
+
+                <!-- Barre d'état -->
+                <header>
+                    <button name="action_confirm" string="Confirmer"
+                            type="object" class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_generate_bds" string="🗂 Générer Fichier BDS"
+                            type="object" class="btn-success"
+                            invisible="state not in ('confirmed','generated')"/>
+                    <button name="action_import_payslips"
+                            string="📥 Importer Bulletins de Paie"
+                            type="object" class="btn-secondary"
+                            invisible="state not in ('draft','confirmed')"/>
+                    <button name="action_mark_sent" string="✓ Marqué Déposé sur CNSS"
+                            type="object"
+                            invisible="state != 'generated'"/>
+                    <button name="action_reset_draft" string="Remettre en Brouillon"
+                            type="object"
+                            invisible="state not in ('confirmed','cancelled')"/>
+                    <button name="action_cancel" string="Annuler"
+                            type="object"
+                            invisible="state in ('sent','cancelled')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,generated,sent"/>
+                </header>
+                <sheet>
+
+                    <!-- Bandeau téléchargement fichier généré -->
+                    <div class="alert alert-success" role="alert"
+                         invisible="not bds_file">
+                        <strong>✅ Fichier BDS généré :</strong>
+                        <field name="bds_filename" readonly="1" class="ms-2"/>
+                        — <a href="#" class="btn btn-sm btn-outline-success ms-2"
+                              invisible="not bds_file">
+                            <field name="bds_file" widget="binary"
+                                   filename="bds_filename" string="⬇ Télécharger"/>
+                        </a>
+                    </div>
+
+                    <div class="oe_title">
+                        <label for="name" string="Référence"/>
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group string="Affilié &amp; Période">
+                            <field name="affiliate_id"/>
+                            <field name="type_declaration"/>
+                            <field name="num_complementaire"
+                                   invisible="type_declaration != 'complementaire'"/>
+                            <field name="declaration_principale_id"
+                                   invisible="type_declaration != 'complementaire'"/>
+                            <field name="periode_annee"/>
+                            <field name="periode_mois"/>
+                            <field name="periode" readonly="1"/>
+                        </group>
+                        <group string="Dates &amp; Préétabli">
+                            <field name="date_emission"/>
+                            <field name="date_exigibilite"/>
+                            <field name="identif_transfert"
+                                   placeholder="Copier depuis le fichier préétabli A00"/>
+                        </group>
+                    </group>
+
+                    <!-- Onglets -->
+                    <notebook>
+
+                        <!-- Onglet Assurés Existants (préétabli) -->
+                        <page string="Assurés Existants (Préétabli)"
+                              name="existants"
+                              invisible="type_declaration == 'complementaire'">
+                            <div class="alert alert-info" role="alert">
+                                <strong>ℹ️ Rappel :</strong> Ces lignes doivent correspondre
+                                <em>exactement</em> au fichier préétabli émis par la CNSS
+                                (même ordre, mêmes données AF). Seuls les champs
+                                <strong>AF à Reverser, Jours, Salaires et Situation</strong>
+                                sont à renseigner.
+                            </div>
+                            <field name="line_ids"
+                                   widget="one2many"
+                                   mode="list"/>
+                        </page>
+
+                         <!-- Onglet Entrants -->
+                        <page string="Assurés Entrants / Occasionnels"
+                              name="entrants">
+                            <div class="alert alert-warning" role="alert"
+                                 invisible="type_declaration == 'complementaire'">
+                                <strong>⚠️ Important :</strong> Les entrants sont des salariés
+                                <em>nouveaux</em> qui ne figurent pas dans le préétabli CNSS.
+                                En cas d'oubli, déposez une
+                                <strong>déclaration complémentaire</strong>.
+                            </div>
+                            <div class="alert alert-info" role="alert"
+                                 invisible="type_declaration != 'complementaire'">
+                                <strong>ℹ️ Déclaration Complémentaire :</strong>
+                                Uniquement des entrants peuvent être déclarés ici.
+                            </div>
+                            <field name="entrant_ids"
+                                   widget="one2many"
+                                   mode="list"/>
+                        </page>
+
+                        <!-- Onglet Fichier généré -->
+                        <page string="Fichier BDS" name="fichier"
+                              invisible="not bds_file">
+                            <group>
+                                <field name="bds_filename" readonly="1"/>
+                                <field name="bds_file" widget="binary"
+                                       filename="bds_filename"
+                                       string="Télécharger le fichier BDS"
+                                       readonly="1"/>
+                            </group>
+                            <div class="alert alert-success" role="alert">
+                                <p><strong>✅ Votre fichier BDS est prêt.</strong></p>
+                                <p>Déposez-le sur le portail
+                                   <a href="https://www.damancom.ma" target="_blank">
+                                       Damancom (e-BDS)
+                                   </a>
+                                   dans votre espace privé, section Télédéclaration.
+                                </p>
+                                <p>Format attendu :
+                                   <code><field name="bds_filename" readonly="1"/></code>
+                                </p>
+                            </div>
+                        </page>
+
+                        <!-- Onglet Notes -->
+                        <page string="Notes" name="notes">
+                            <field name="note" nolabel="1"
+                                   placeholder="Notes internes..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+
+                <!-- Chatter -->
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vue Liste -->
+    <record id="view_cnss_declaration_tree" model="ir.ui.view">
+        <field name="name">cnss.declaration.tree</field>
+        <field name="model">cnss.declaration</field>
+        <field name="arch" type="xml">
+            <list string="Déclarations CNSS BDS"
+                  decoration-success="state == 'sent'"
+                  decoration-info="state == 'generated'"
+                  decoration-warning="state == 'confirmed'"
+                  decoration-muted="state == 'cancelled'">
+                <field name="name"/>
+                <field name="affiliate_id"/>
+                <field name="periode"/>
+                <field name="type_declaration"/>
+                <field name="date_emission"/>
+                <field name="date_exigibilite"/>
+                <!--<field name="total_salaries"/>-->
+                <!--<field name="total_sal_reel" string="Total Sal. Réel (cts)"/>-->
+                <field name="state" widget="badge"
+                       decoration-success="state == 'sent'"
+                       decoration-info="state == 'generated'"
+                       decoration-warning="state == 'confirmed'"
+                       decoration-danger="state == 'cancelled'"/>
+                <field name="bds_file" widget="binary"
+                       filename="bds_filename"
+                       optional="show" string="Fichier"/>
+
+            </list>
+        </field>
+    </record>
+
+    <!-- Vue Recherche -->
+    <record id="view_cnss_declaration_search" model="ir.ui.view">
+        <field name="name">cnss.declaration.search</field>
+        <field name="model">cnss.declaration</field>
+        <field name="arch" type="xml">
+            <search string="Rechercher Déclarations CNSS">
+                <field name="name"/>
+                <field name="affiliate_id"/>
+                <field name="periode"/>
+                <separator/>
+                <filter name="filter_draft" string="Brouillon"
+                        domain="[('state','=','draft')]"/>
+                <filter name="filter_confirmed" string="Confirmées"
+                        domain="[('state','=','confirmed')]"/>
+                <filter name="filter_generated" string="Fichier Généré"
+                        domain="[('state','=','generated')]"/>
+                <filter name="filter_sent" string="Déposées CNSS"
+                        domain="[('state','=','sent')]"/>
+                <separator/>
+                <filter name="filter_principale" string="Principales"
+                        domain="[('type_declaration','=','principale')]"/>
+                <filter name="filter_complementaire" string="Complémentaires"
+                        domain="[('type_declaration','=','complementaire')]"/>
+                <group expand="0" string="Grouper par">
+                    <filter name="group_affiliate" string="Affilié"
+                            context="{'group_by': 'affiliate_id'}"/>
+                    <filter name="group_periode" string="Période"
+                            context="{'group_by': 'periode'}"/>
+                    <filter name="group_state" string="État"
+                            context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action principale -->
+    <record id="action_cnss_declaration" model="ir.actions.act_window">
+        <field name="name">Déclarations BDS CNSS</field>
+        <field name="res_model">cnss.declaration</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_filter_draft': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Créer votre première déclaration BDS CNSS
+            </p>
+            <p>
+                Générez et téléchargez les fichiers de télédéclaration
+                conformes au cahier des charges CNSS v2.
+            </p>
+        </field>
+    </record>
+</odoo>

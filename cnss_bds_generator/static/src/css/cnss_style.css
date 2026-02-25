@@ -1,0 +1,26 @@
+/* CNSS BDS Generator - Styles */
+
+.o_form_view .o_field_widget[name="bds_file"] .o_field_binary_file {
+    background-color: #28a745;
+    color: white;
+    border-radius: 4px;
+    padding: 6px 12px;
+}
+
+/* Mise en valeur des champs importants */
+.o_field_widget[name="identif_transfert"] input {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.o_field_widget[name="num_assure"] input,
+.o_field_widget[name="num_affilie"] input {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* Badge état */
+.badge.text-bg-success { background-color: #28a745 !important; }
+.badge.text-bg-warning { background-color: #ffc107 !important; color: #000 !important; }

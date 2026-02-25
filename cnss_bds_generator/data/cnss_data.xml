@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Séquence pour les déclarations CNSS -->
+        <record id="seq_cnss_declaration" model="ir.sequence">
+            <field name="name">Déclaration CNSS BDS</field>
+            <field name="code">cnss.declaration</field>
+            <field name="prefix">BDS/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

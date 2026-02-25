@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ═══ MENUS ══════════════════════════════════════════════════════ -->
+
+    <!-- Déclarations -->
+    <menuitem id="menu_cnss_declarations"
+              name="Déclarations BDS"
+              parent="payroll.payroll_menu_root"
+              sequence="10"/>
+
+    <menuitem id="menu_cnss_declaration_list"
+              name="Toutes les Déclarations"
+              parent="menu_cnss_declarations"
+              action="action_cnss_declaration"
+              sequence="10"
+              groups="hr.group_hr_user"/>
+
+    <menuitem id="menu_cnss_declaration_nouvelle"
+              name="Nouvelle Déclaration Principale"
+              parent="menu_cnss_declarations"
+              action="action_cnss_declaration"
+              sequence="20"
+              groups="hr.group_hr_user"/>
+
+
+    <!-- Configuration -->
+
+    <menuitem id="menu_cnss_affilies"
+              name="Affiliés CNSS"
+              parent="payroll.payroll_menu_configuration"
+              action="action_cnss_affiliate"
+              sequence="10"
+              groups="hr.group_hr_manager"/>
+
+</odoo>

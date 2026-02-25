@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ═══ ENTRANTS ════════════════════════════════════════════════════ -->
+    <record id="view_cnss_entrant_tree" model="ir.ui.view">
+        <field name="name">cnss.entrant.tree</field>
+        <field name="model">cnss.entrant</field>
+        <field name="arch" type="xml">
+            <list string="Assurés Entrants" editable="bottom"
+                  decoration-info="type_entrant == 'occasionnel'">
+                <field name="employee_id" optional="show"/>
+                <field name="type_entrant"/>
+                <field name="num_assure"/>
+                <field name="nom_prenom"/>
+                <field name="num_cin"/>
+                <field name="jours"/>
+                <field name="sal_reel_mad" string="Sal. Réel (MAD)" widget="float"/>
+                <field name="sal_plaf_mad" string="Sal. Plaf. (MAD)" widget="float"/>
+                <field name="sal_reel" optional="hide"/>
+                <field name="sal_plaf" optional="hide"/>
+                <field name="ctr" optional="hide" string="CTR"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_cnss_entrant_form" model="ir.ui.view">
+        <field name="name">cnss.entrant.form</field>
+        <field name="model">cnss.entrant</field>
+        <field name="arch" type="xml">
+            <form string="Assuré Entrant">
+                <sheet>
+                    <group>
+                        <group string="Identification">
+                            <field name="employee_id"/>
+                            <field name="type_entrant"/>
+                            <field name="num_assure"
+                                   help="000000000 si pas encore immatriculé. 999999999 pour occasionnel."/>
+                            <field name="nom_prenom"/>
+                            <field name="num_cin"/>
+                        </group>
+                        <group string="Salaire">
+                            <field name="jours"/>
+                            <field name="sal_reel"
+                                   help="En centimes (ex: 350000 = 3500 MAD)"/>
+                            <field name="sal_plaf"
+                                   help="En centimes, ≤ salaire réel et ≤ plafond CNSS"/>
+                            <field name="sal_reel_mad" readonly="1" string="Salaire Réel (MAD)"/>
+                            <field name="sal_plaf_mad" readonly="1" string="Salaire Plafonné (MAD)"/>
+                        </group>
+                    </group>
+                    <group string="Contrôle">
+                        <field name="ctr" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="hr_employee_inherited_ma_payroll" model="ir.ui.view">
+            <field name="name">Moroccan Payroll CNSS employee</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <data>
+                     <xpath expr="//field[@name='ssnid']" position="after">
+                         <field name="cnss_date_entree"/>
+                         <field name="cnss_statut"/>
+                     </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ═══ LIGNES DÉCLARATION (ASSURÉS EXISTANTS) ══════════════════════ -->
+    <record id="view_cnss_declaration_line_tree" model="ir.ui.view">
+        <field name="name">cnss.declaration.line.tree</field>
+        <field name="model">cnss.declaration.line</field>
+        <field name="arch" type="xml">
+            <list string="Assurés Existants" editable="bottom"
+                  decoration-warning="situation in ('SO','DE')"
+                  decoration-muted="situation in ('CS','MS')"
+                  decoration-info="situation in ('IT','IL','AT','MP')">
+                <field name="employee_id" optional="show"/>
+                <field name="num_assure" required="1"/>
+                <field name="nom_prenom"/>
+                <field name="situation"/>
+                <field name="enfants"/>
+                <field name="jours"/>
+                <field name="sal_reel_mad" string="Sal. Réel (MAD)" widget="float"/>
+                <field name="sal_plaf_mad" string="Sal. Plaf. (MAD)" widget="float"/>
+                <field name="af_a_payer" optional="show"/>
+                <field name="af_net_a_payer" optional="show"/>
+                <field name="af_a_reverser"/>
+                <field name="sal_reel" optional="hide"/>
+                <field name="sal_plaf" optional="hide"/>
+                <field name="af_a_deduire" optional="hide"/>
+                <field name="ctr" optional="hide" string="CTR"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_cnss_declaration_line_form" model="ir.ui.view">
+        <field name="name">cnss.declaration.line.form</field>
+        <field name="model">cnss.declaration.line</field>
+        <field name="arch" type="xml">
+            <form string="Assuré Existant">
+                <sheet>
+                    <group>
+                        <group string="Identification">
+                            <field name="employee_id"/>
+                            <field name="num_assure"/>
+                            <field name="nom_prenom"/>
+                            <field name="situation"/>
+                        </group>
+                        <group string="Allocations Familiales (données préétabli)">
+                            <field name="enfants"/>
+                            <field name="af_a_payer"/>
+                            <field name="af_a_deduire"/>
+                            <field name="af_net_a_payer"/>
+                            <field name="af_a_reverser"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Salaire (en centimes)">
+                            <field name="jours"/>
+                            <field name="sal_reel"/>
+                            <field name="sal_plaf"/>
+                        </group>
+                        <group string="Salaire (en MAD - lecture seule)">
+                            <field name="sal_reel_mad" readonly="1"/>
+                            <field name="sal_plaf_mad" readonly="1"/>
+                            <field name="af_a_payer_mad" readonly="1"/>
+                            <field name="af_a_reverser_mad" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Contrôle">
+                        <field name="ctr" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

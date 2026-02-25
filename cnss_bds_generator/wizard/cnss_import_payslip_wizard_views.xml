@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ═══ WIZARD IMPORT BULLETINS ═════════════════════════════════════ -->
+    <record id="view_cnss_import_payslip_wizard_form" model="ir.ui.view">
+        <field name="name">cnss.import.payslip.wizard.form</field>
+        <field name="model">cnss.import.payslip.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Importer depuis les Bulletins de Paie">
+
+                <!-- Étape 1 : Paramètres -->
+                <group invisible="state != 'draft'">
+                    <group string="Paramètres de recherche">
+                        <field name="declaration_id" readonly="1"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="rule_code_sal_brut"
+                               help="Code de la règle salariale pour le salaire brut (ex: GROSS, BRUT)"/>
+                    </group>
+                    <group string="Paramètres CNSS">
+                        <field name="plafond_cnss"
+                               help="Plafond mensuel en centimes (ex: 600000 = 6 000 MAD)"/>
+                        <field name="smig_mensuel"
+                               help="SMIG mensuel en centimes pour le contrôle"/>
+                    </group>
+                </group>
+
+                <!-- Étape 2 : Aperçu -->
+                <group invisible="state != 'preview'"
+                       string="Aperçu des bulletins trouvés">
+                    <div class="alert alert-info" role="alert">
+                        Vérifiez les données ci-dessous avant l'import.
+                        Décochez les lignes à ne pas importer.
+                        Les employés avec statut CNSS <strong>Nouveau/Entrant</strong>
+                        seront créés dans la section "Entrants".
+                    </div>
+                </group>
+                <field name="line_ids" invisible="state != 'preview'">
+                    <list editable="bottom" string="Bulletins à Importer"
+                          decoration-info="cnss_statut in ('nouveau','occasionnel')"
+                          decoration-warning="not num_assure or num_assure == '000000000'">
+                        <field name="a_importer" widget="boolean_toggle"/>
+                        <field name="employee_id" readonly="1"/>
+                        <field name="cnss_statut" readonly="1"/>
+                        <field name="num_assure"/>
+                        <field name="nom_prenom"/>
+                        <field name="num_cin"/>
+                        <field name="enfants"/>
+                        <field name="jours"/>
+                        <field name="sal_reel_mad" string="Sal. Réel (MAD)"
+                               widget="float" readonly="1"/>
+                        <field name="sal_plaf_mad" string="Sal. Plaf. (MAD)"
+                               widget="float" readonly="1"/>
+                        <field name="sal_reel" optional="hide"/>
+                        <field name="sal_plaf" optional="hide"/>
+                        <field name="af_a_payer" readonly="1"/>
+                        <field name="situation"/>
+                    </list>
+                </field>
+
+                <footer>
+                    <button name="action_preview" string="🔍 Rechercher les Bulletins"
+                            type="object" class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_import" string="✅ Importer dans la Déclaration"
+                            type="object" class="btn-success"
+                            invisible="state != 'preview'"/>
+                    <button string="Annuler" class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+
+                <!-- Champs cachés -->
+                <field name="state" invisible="1"/>
+            </form>
+        </field>
+    </record>
+
+</odoo>

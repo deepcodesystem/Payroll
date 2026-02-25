@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cnss_affiliate_user,cnss.affiliate user,model_cnss_affiliate,hr.group_hr_user,1,0,0,0
+access_cnss_affiliate_manager,cnss.affiliate manager,model_cnss_affiliate,hr.group_hr_manager,1,1,1,1
+access_cnss_declaration_user,cnss.declaration user,model_cnss_declaration,hr.group_hr_user,1,1,1,0
+access_cnss_declaration_manager,cnss.declaration manager,model_cnss_declaration,hr.group_hr_manager,1,1,1,1
+access_cnss_declaration_line_user,cnss.declaration.line user,model_cnss_declaration_line,hr.group_hr_user,1,1,1,1
+access_cnss_entrant_user,cnss.entrant user,model_cnss_entrant,hr.group_hr_user,1,1,1,1
+access_cnss_import_wizard,cnss.import.payslip.wizard,model_cnss_import_payslip_wizard,hr.group_hr_user,1,1,1,1
+access_cnss_import_wizard_line,cnss.import.payslip.line,model_cnss_import_payslip_line,hr.group_hr_user,1,1,1,1
