@@ -105,7 +105,7 @@ if contract.date_start:
     fin_periode = payslip.date_to
 
     # Si le contrat commence dans la période de paie
-    if debut_periode <= contract.date_start <= fin_periode:
+    if debut_periode &lt;= contract.date_start &lt;= fin_periode:
         # Calculer la différence de jours
         delta_jours = (contract.date_start - debut_periode).days
 
@@ -122,7 +122,7 @@ if contract.date_end:
     fin_periode = payslip.date_to
 
     # Si le contrat se termine dans la période de paie
-    if debut_periode <= contract.date_end <= fin_periode:
+    if debut_periode &lt;= contract.date_end &lt;= fin_periode:
         # Calculer du jour après la fin jusqu'à la fin de période
         date_debut_calcul = contract.date_end.replace(day=contract.date_end.day + 1)
         delta_jours = (fin_periode - date_debut_calcul).days + 1
