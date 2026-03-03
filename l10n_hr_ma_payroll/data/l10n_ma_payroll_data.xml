@@ -279,7 +279,9 @@ result = BC
             <field name="condition_select">python</field>
             <field name="condition_python">result = contract.indem_deplace > 0</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = contract.indem_deplace</field>
+            <field name="amount_python_compute">BC = contract.indem_deplace/26
+JRCALC = JRTV + JCP if worked_days.LEAVE120 else JRTV
+result = BC*JRCALC</field>
             <field name="appears_on_payslip" eval="True"/>
             <field name="register_id" ref="contrib_register_employees"/>
         </record>
@@ -292,7 +294,9 @@ result = BC
             <field name="condition_select">python</field>
             <field name="condition_python">result = contract.indem_km> 0</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = contract.indem_km</field>
+            <field name="amount_python_compute">BC = contract.indem_km/26
+JRCALC = JRTV + JCP if worked_days.LEAVE120 else JRTV
+result = BC*JRCALC</field>
             <field name="appears_on_payslip" eval="True"/>
             <field name="register_id" ref="contrib_register_employees"/>
         </record>
@@ -305,7 +309,9 @@ result = BC
             <field name="condition_select">python</field>
             <field name="condition_python">result = contract.indem_transp> 0</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = contract.indem_transp</field>
+            <field name="amount_python_compute">BC = contract.indem_transp/26
+JRCALC = JRTV + JCP if worked_days.LEAVE120 else JRTV
+result = BC*JRCALC</field>
             <field name="appears_on_payslip" eval="True"/>
             <field name="register_id" ref="contrib_register_employees"/>
         </record>
@@ -318,7 +324,9 @@ result = BC
             <field name="condition_select">python</field>
             <field name="condition_python">result = contract.prim_tournee> 0</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = contract.prim_tournee</field>
+            <field name="amount_python_compute">BC = contract.prim_tournee/26
+JRCALC = JRTV + JCP if worked_days.LEAVE120 else JRTV
+result = BC*JRCALC</field>
             <field name="appears_on_payslip" eval="True"/>
             <field name="register_id" ref="contrib_register_employees"/>
         </record>
@@ -331,7 +339,9 @@ result = BC
             <field name="condition_select">python</field>
             <field name="condition_python">result = contract.grat_social > 0</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = contract.grat_social</field>
+            <field name="amount_python_compute">BC = contract.grat_social/26
+JRCALC = JRTV + JCP if worked_days.LEAVE120 else JRTV
+result = BC*JRCALC</field>
             <field name="appears_on_payslip" eval="True"/>
             <field name="register_id" ref="contrib_register_employees"/>
         </record>
@@ -344,7 +354,9 @@ result = BC
             <field name="condition_select">python</field>
             <field name="condition_python">result = contract.indem_caisse > 0</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = contract.indem_caisse</field>
+            <field name="amount_python_compute">BC = contract.indem_caisse/26
+JRCALC = JRTV + JCP if worked_days.LEAVE120 else JRTV
+result = BC*JRCALC</field>
             <field name="appears_on_payslip" eval="True"/>
             <field name="register_id" ref="contrib_register_employees"/>
         </record>
@@ -357,7 +369,9 @@ result = BC
             <field name="condition_select">python</field>
             <field name="condition_python">result = contract.indem_rep > 0</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = contract.indem_rep</field>
+            <field name="amount_python_compute">BC = contract.indem_rep/26
+JRCALC = JRTV + JCP if worked_days.LEAVE120 else JRTV
+result = BC*JRCALC</field>
             <field name="appears_on_payslip" eval="True"/>
             <field name="register_id" ref="contrib_register_employees"/>
         </record>
@@ -370,7 +384,9 @@ result = BC
             <field name="condition_select">python</field>
             <field name="condition_python">result = contract.prim_outil > 0</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = contract.prim_outil</field>
+            <field name="amount_python_compute">BC = contract.prim_outil/26
+JRCALC = JRTV + JCP if worked_days.LEAVE120 else JRTV
+result = BC*JRCALC</field>
             <field name="appears_on_payslip" eval="True"/>
             <field name="register_id" ref="contrib_register_employees"/>
         </record>
@@ -383,7 +399,9 @@ result = BC
             <field name="condition_select">python</field>
             <field name="condition_python">result = contract.prim_salis > 0</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = contract.prim_salis</field>
+            <field name="amount_python_compute">BC = contract.prim_salis/26
+JRCALC = JRTV + JCP if worked_days.LEAVE120 else JRTV
+result = BC*JRCALC</field>
             <field name="appears_on_payslip" eval="True"/>
             <field name="register_id" ref="contrib_register_employees"/>
         </record>
@@ -409,7 +427,9 @@ result = BC
             <field name="condition_select">python</field>
             <field name="condition_python">result = contract.prim_panier > 0</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result = contract.prim_panier</field>
+            <field name="amount_python_compute">BC = contract.prim_panier/26
+JRCALC = JRTV + JCP if worked_days.LEAVE120 else JRTV
+result = BC*JRCALC</field>
             <field name="appears_on_payslip" eval="True"/>
             <field name="register_id" ref="contrib_register_employees"/>
         </record>
@@ -430,7 +450,7 @@ result = BC
         <field name="category_id" ref="NOCAT"/>
         <field name="parent_rule_id" ref="hr_rule_gross"/>
         <field name="amount_select">code</field>
-        <field name="amount_python_compute">result = (categories.BASIC + categories.ALW) - categories.PRINNT</field>
+        <field name="amount_python_compute">result = GROSS - categories.PRINNT</field>
         <field name="appears_on_payslip" eval="False"/>
     </record>
 
@@ -485,10 +505,11 @@ result = BC
 sni_mensuel = SNI
 sni_connu = SNI
 mois_actuel = payslip.date_from.month
+annee_actuelle = payslip.date_from.year
 sni_par_mois = {mois_actuel: SNI}  # Pour le débogage
 
 for slip in employee.slip_ids:
-    if slip.date_from.year == 2025 and slip.state == "done":
+    if slip.date_from.year == annee_actuelle and slip.state == "done":
         slip_month = slip.date_from.month
         for line in slip.line_ids:
             if line.code == "SNI":
@@ -536,7 +557,7 @@ else:
 
 # 6. Déduction des charges familiales
 # Récupérer le nombre de personnes à charge
-personnes_a_charge = employee.children or 0  # À adapter selon votre configuration
+personnes_a_charge = employee.dependants or 0  # À adapter selon votre configuration
 
 # Plafonner à 6 personnes à charge maximum
 personnes_a_charge = min(personnes_a_charge, 6)
@@ -549,7 +570,7 @@ ir_annuel = max(ir_annuel - deduction_charges_familiales_annuel, 0)
 # IR déjà payé dans les mois précédents
 ir_deja_paye = 0
 for slip in employee.slip_ids:
-    if slip.date_from.year == 2025 and slip.state == "done":
+    if slip.date_from.year == annee_actuelle and slip.state == "done":
         for line in slip.line_ids:
             if line.code == "IR":
                 ir_deja_paye += line.total
@@ -614,11 +635,12 @@ sbi_mensuel = SBI or 0.0
 # 1. Calculer le SBI total connu jusqu'à présent (mois actuels + précédents)
 sbi_connu = sbi_mensuel
 mois_actuel = payslip.date_from.month
+annee_actuelle = payslip.date_from.year
 sbi_par_mois = {mois_actuel: sbi_mensuel}  # Stockage par mois pour débogage
 
 for slip in employee.slip_ids:
     slip_month = slip.date_from.month
-    if slip.date_from.year == 2025 and slip.state == "done":
+    if slip.date_from.year == annee_actuelle and slip.state == "done":
         for line in slip.line_ids:
             if line.code == 'SBI':
                 sbi_valeur = line.total
@@ -655,9 +677,9 @@ frais_pro_annuel = min(sbi_annuel * taux, 35000)  # Plafonnement à 35000 DH
 # 5. Retrouver les frais professionnels déjà attribués cette année
 frais_pro_deja_attribues = 0
 for slip in employee.slip_ids:
-    if slip.date_from.year == 2025 and slip.state == "done":
+    if slip.date_from.year == annee_actuelle and slip.state == "done":
         for line in slip.line_ids:
-            if line.code == "TFRPRO":
+            if line.code == "FRPRO":
                 frais_pro_deja_attribues += line.total
                 break
 
@@ -708,14 +730,15 @@ result = max(frais_pro_mensuel, 0)
          <field name="category_id" ref="NOCAT"/>
          <field name="parent_rule_id" ref="hr_payslip_rule_ir"/>
          <field name="amount_select">code</field>
-         <field name="amount_python_compute">result = SBI - categories.DED - FRPRO</field>
+         <field name="amount_python_compute">EPARGNE = contract.epargne_retraite
+result = SBI - categories.DED - categories.LOG - FRPRO - EPARGNE</field>
          <field name="appears_on_payslip" eval="False"/>
     </record>
 
     <record id="hr_payslip_rule_epargne" model="hr.salary.rule">
         <field name="name">Épargne retraite complémentaire</field>
         <field name="code">EPARGNE</field>
-        <field name="sequence">1700</field>
+        <field name="sequence">2300</field>
         <field name="category_id" ref="l10n_hr_ma_payroll.DED"/>
         <field name="condition_select">python</field>
         <field name="condition_python">result = inputs.EPARGNE and inputs.EPARGNE.amount > 0</field>
@@ -728,7 +751,7 @@ result = max(frais_pro_mensuel, 0)
     <record id="hr_payslip_rule_epargne_ir" model="hr.salary.rule">
         <field name="name">Épargne retraite complémentaire (IR)</field>
         <field name="code">EPARGNEIR</field>
-        <field name="sequence">1710</field>
+        <field name="sequence">2400</field>
         <field name="category_id" ref="l10n_hr_ma_payroll.DED"/>
         <field name="condition_select">python</field>
         <field name="condition_python">result = inputs.EPARGNE and inputs.EPARGNEIR.amount > 0</field>
