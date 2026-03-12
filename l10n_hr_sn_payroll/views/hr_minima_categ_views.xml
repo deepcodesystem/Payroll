@@ -32,13 +32,13 @@
         <field name="name">hr.minima.categ.list</field>
         <field name="model">min.categoriels</field>
         <field name="arch" type="xml">
-            <tree string="Catégories de Minima" editable="bottom">
+            <list string="Catégories de Minima" editable="bottom">
                 <field name="name"/>
                 <field name="amount"/>
                 <field name="currency_id"/>
                 <field name="company_id"/>
                 <field name="description"/>
-            </tree>
+            </list>
         </field>
     </record>
 

@@ -11,6 +11,11 @@ class HrContract(models.Model):
     _inherit = 'hr.contract'
     _description='Add fields for moroccan payroll'
 
+    forfait_hs = fields.Monetary(
+        string="Forfait Heures Supplémentaires",
+        help="Le forfait heures supplémentaires est une somme fixe versée au salarié pour compenser les heures supplémentaires effectuées au-delà de la durée légale du travail. Il est généralement calculé en fonction du nombre d'heures supplémentaires effectuées et du taux horaire applicable. Le montant du forfait peut varier en fonction de la convention collective ou des accords d'entreprise en vigueur. Il est important de noter que le forfait heures supplémentaires doit être clairement défini dans le contrat de travail ou dans un accord collectif pour éviter tout litige entre l'employeur et le salarié."
+    )
+
     indem_transp = fields.Monetary(
         string="Indemnité de transport",
         default="26000.0",

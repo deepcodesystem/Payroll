@@ -2,7 +2,7 @@
     'name': 'Paie Sénégal 2025',
     'description': 'Configuration de la paie Sénégalaise pour 2025',
     'category': 'Humain Ressources',
-    'version': '17.0.1.0.0',
+    'version': '18.0.1.0.0',
     'depends': ['hr', 'hr_contract', 'payroll'],
     'data': [
         'data/l10n_sn_payroll_data.xml',

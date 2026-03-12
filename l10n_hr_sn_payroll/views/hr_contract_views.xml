@@ -41,6 +41,11 @@
                                     </div>
                                 </group>
                                 <group class="col-6">
+                                    <label for="forfait_hs"/>
+                                    <div class="o_row">
+                                        <field name="forfait_hs" nolabel="1"/>
+                                        <span>/ mois</span>
+                                    </div>
                                     <label for="indem_panier"/>
                                     <div class="o_row">
                                         <field name="indem_panier" nolabel="1"/>

@@ -92,7 +92,18 @@ result = (26 - ABS) if worked_days.ABS and worked_days.ABS.number_of_days > 0 el
         <field name="register_id" ref="contrib_register_employees"/>
         <field name="sequence">100</field>
         <field name="amount_select">code</field>
-        <field name="amount_python_compute">base = contract.minima_categ_amount + contract.sursalaire_base
+        <field name="amount_python_compute">base = contract.minima_categ_amount
+result = (base/26)*JRTV</field>
+    </record>
+
+    <record id="hr_rule_sursal" model="hr.salary.rule">
+        <field name="name">SurSalaire</field>
+        <field name="code">SURSAL</field>
+        <field name="category_id" ref="BASIC"/>
+        <field name="register_id" ref="contrib_register_employees"/>
+        <field name="sequence">105</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">base = contract.sursalaire_base
 result = (base/26)*JRTV</field>
     </record>
 
@@ -158,6 +169,136 @@ result = (base * percentage) / 26  # Diviser par 26 jours pour le salaire journa
         <field name="appears_on_payslip" eval="True"/>
         <field name="register_id" ref="contrib_register_employees"/>
     </record>
+
+    <record id="hr_payslip_rule_forhs" model="hr.salary.rule">
+            <field name="name">Forfait Heures Supplémentaires</field>
+            <field name="code">FORHS</field>
+            <field name="sequence">300</field>
+            <field name="category_id" ref="PRINT"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.FORHS and inputs.FORHS.amount > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.FORHS and inputs.FORHS.amount</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="contrib_register_employees"/>
+        </record>
+
+    <record id="hr_payslip_rule_prresp" model="hr.salary.rule">
+            <field name="name">Prime de Responsabilité</field>
+            <field name="code">PRRESP</field>
+            <field name="sequence">310</field>
+            <field name="category_id" ref="PRINT"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.PRRESP and inputs.PRRESP.amount > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.PRRESP and inputs.PRRESP.amount</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="contrib_register_employees"/>
+        </record>
+
+    <record id="hr_payslip_rule_prrend" model="hr.salary.rule">
+            <field name="name">Prime de Rendement</field>
+            <field name="code">PRREND</field>
+            <field name="sequence">320</field>
+            <field name="category_id" ref="PRINT"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.PRREND and inputs.PRREND.amount > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.PRREND and inputs.PRREND.amount</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="contrib_register_employees"/>
+        </record>
+
+    <record id="hr_payslip_rule_tel" model="hr.salary.rule">
+            <field name="name">Téléphone</field>
+            <field name="code">TEL</field>
+            <field name="sequence">330</field>
+            <field name="category_id" ref="PRINT"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.TEL and inputs.TEL.amount > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.TEL and inputs.TEL.amount</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="contrib_register_employees"/>
+        </record>
+
+    <record id="hr_payslip_rule_chloc" model="hr.salary.rule">
+            <field name="name">Charge Locative</field>
+            <field name="code">CHLOC</field>
+            <field name="sequence">340</field>
+            <field name="category_id" ref="PRINT"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.CHLOC and inputs.CHLOC.amount > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.CHLOC and inputs.CHLOC.amount</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="contrib_register_employees"/>
+        </record>
+
+    <record id="hr_payslip_rule_permais" model="hr.salary.rule">
+            <field name="name">Personnel de Maison</field>
+            <field name="code">PERMAIS</field>
+            <field name="sequence">350</field>
+            <field name="category_id" ref="PRINT"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.PERMAIS and inputs.PERMAIS.amount > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.PERMAIS and inputs.PERMAIS.amount</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="contrib_register_employees"/>
+        </record>
+
+    <record id="hr_payslip_rule_avehic" model="hr.salary.rule">
+            <field name="name">Avantage Véhicule</field>
+            <field name="code">AVEHIC</field>
+            <field name="sequence">360</field>
+            <field name="category_id" ref="PRINT"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.AVEHIC and inputs.AVEHIC.amount > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.AVEHIC and inputs.AVEHIC.amount</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="contrib_register_employees"/>
+        </record>
+
+    <record id="hr_payslip_rule_avnat" model="hr.salary.rule">
+            <field name="name">Avantage en Nature</field>
+            <field name="code">AVNAT</field>
+            <field name="sequence">370</field>
+            <field name="category_id" ref="PRINT"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.AVNAT and inputs.AVNAT.amount > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.AVNAT and inputs.AVNAT.amount</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="contrib_register_employees"/>
+        </record>
+
+    <record id="hr_payslip_rule_aindem" model="hr.salary.rule">
+            <field name="name">Autres Indémnités</field>
+            <field name="code">AINDEM</field>
+            <field name="sequence">380</field>
+            <field name="category_id" ref="PRINT"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.AINDEM and inputs.AINDEM.amount > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.AINDEM and inputs.AINDEM.amount</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="contrib_register_employees"/>
+        </record>
+
+    <record id="hr_payslip_rule_aprim" model="hr.salary.rule">
+            <field name="name">Autres Primes</field>
+            <field name="code">APRIM</field>
+            <field name="sequence">390</field>
+            <field name="category_id" ref="PRINT"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.APRIM and inputs.APRIM.amount > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.APRIM and inputs.APRIM.amount</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="contrib_register_employees"/>
+        </record>
 
         <record id="hr_payslip_rule_indemkm" model="hr.salary.rule">
             <field name="name">Indemnité kilométrique</field>
@@ -236,6 +377,8 @@ result = (base * percentage) / 26  # Diviser par 26 jours pour le salaire journa
         <field name="code">IPRESC</field>
         <field name="sequence">1220</field>
         <field name="category_id" ref="DED"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = contract.cadre</field>
         <field name="amount_select">percentage</field>
         <field name="amount_percentage_base">min(SBI, employee.company_id.ipres_cad_plaf)</field>
         <field name="quantity">1</field>
@@ -302,7 +445,11 @@ elif revenu_annuel &lt;= 11999999:
 else:
     trimf_annuel = 36000
 
-result = trimf_annuel / 12
+conjoint = employee.conjoint_salarie
+if not conjoint:
+    result = (trimf_annuel / 12)*2
+else:
+    result = (trimf_annuel)/12
         </field>
         <field name="appears_on_payslip" eval="True"/>
     </record>
@@ -355,7 +502,7 @@ result = ir
         <field name="amount_python_compute">
 # Réduction IR basée sur le nombre de parts (nombre d'enfants)
 # Récupérer le nombre de parts de l'employé
-nb_parts = int(employee.quotient_familial)
+nb_parts = float(employee.quotient_familial or '1')
 
 # Déterminer le taux et les montants min/max de réduction
 if nb_parts &gt;= 5:
@@ -510,9 +657,20 @@ result = categories.GROSS - categories.DED - categories.IR - TRIMF
         <field eval="[(6, 0, [
         ref('hr_payslip_rule_jrtv'),
         ref('hr_rule_basic'),
+        ref('hr_rule_sursal'),
         ref('hr_payslip_rule_rap'),
         ref('hr_payslip_rule_cp'),
         ref('hr_payslip_rule_primanc'),
+        ref('hr_payslip_rule_forhs'),
+        ref('hr_payslip_rule_prresp'),
+        ref('hr_payslip_rule_prrend'),
+        ref('hr_payslip_rule_tel'),
+        ref('hr_payslip_rule_chloc'),
+        ref('hr_payslip_rule_permais'),
+        ref('hr_payslip_rule_avehic'),
+        ref('hr_payslip_rule_avnat'),
+        ref('hr_payslip_rule_aindem'),
+        ref('hr_payslip_rule_aprim'),
         ref('hr_payslip_rule_indemkm'),
         ref('hr_payslip_rule_indemtransp'),
         ref('hr_payslip_rule_indempan'),
@@ -548,6 +706,66 @@ result = categories.GROSS - categories.DED - categories.IR - TRIMF
         <field name="code">CP</field>
         <field name="name">Congé Payé</field>
         <field name="input_id" ref="hr_payslip_rule_cp"/>
+    </record>
+
+    <record id="hr_rule_input_forhs" model="hr.rule.input">
+        <field name="code">FORHS</field>
+        <field name="name">Forfait Heures Supplémentaires</field>
+        <field name="input_id" ref="hr_payslip_rule_forhs"/>
+    </record>
+
+    <record id="hr_rule_input_prresp" model="hr.rule.input">
+        <field name="code">PRRESP</field>
+        <field name="name">Prime de Responsabilité</field>
+        <field name="input_id" ref="hr_payslip_rule_prresp"/>
+    </record>
+
+    <record id="hr_rule_input_prrend" model="hr.rule.input">
+        <field name="code">PRREND</field>
+        <field name="name">Prime de Rendement</field>
+        <field name="input_id" ref="hr_payslip_rule_prrend"/>
+    </record>
+
+    <record id="hr_rule_input_tel" model="hr.rule.input">
+        <field name="code">TEL</field>
+        <field name="name">Téléphone</field>
+        <field name="input_id" ref="hr_payslip_rule_tel"/>
+    </record>
+
+    <record id="hr_rule_input_chloc" model="hr.rule.input">
+        <field name="code">CHLOC</field>
+        <field name="name">Charge Locative</field>
+        <field name="input_id" ref="hr_payslip_rule_chloc"/>
+    </record>
+
+    <record id="hr_rule_input_permais" model="hr.rule.input">
+        <field name="code">PERMAIS</field>
+        <field name="name">Personnel de Maison</field>
+        <field name="input_id" ref="hr_payslip_rule_permais"/>
+    </record>
+
+    <record id="hr_rule_input_avehic" model="hr.rule.input">
+        <field name="code">AVEHIC</field>
+        <field name="name">Avantage Véhicule</field>
+        <field name="input_id" ref="hr_payslip_rule_avehic"/>
+    </record>
+
+    <record id="hr_rule_input_avnat" model="hr.rule.input">
+        <field name="code">AVNAT</field>
+        <field name="name">Avantage en Nature</field>
+        <field name="input_id" ref="hr_payslip_rule_avnat"/>
+    </record>
+
+    <record id="hr_rule_input_aindem'" model="hr.rule.input">
+        <field name="code">AINDEM</field>
+        <field name="name">Autres Indémnités</field>
+        <field name="input_id" ref="hr_payslip_rule_aindem"/>
+    </record>
+
+    <record id="hr_rule_input_aprim" model="hr.rule.input">
+        <field name="code">APRIM</field>
+        <field name="name">Autres Primes</field>
+        <field name="input_id" ref="hr_payslip_rule_aprim"/>
     </record>
     
 </odoo>
