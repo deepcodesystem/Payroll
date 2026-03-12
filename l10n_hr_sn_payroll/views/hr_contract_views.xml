@@ -22,6 +22,7 @@
                         </group>
                         <group string="Sursalaire">
                             <field name="sursalaire_base"/>
+                            <field name="cadre"/>
                         </group>
                     </xpath>
                     <xpath expr="//page[@name='other']" position="after">

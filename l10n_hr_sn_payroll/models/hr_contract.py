@@ -40,6 +40,11 @@ class HrContract(models.Model):
         string="Sursalaire de Base",
         help="Montant supplémentaire au-delà du salaire minimum de la catégorie"
     )
+    cadre = fields.Boolean(
+        string="Cadre",
+        default=False,
+        help="Cocher si le salarié est cadre"
+    )
 
     @api.depends('minima_categ_id')
     def _compute_minima_categ_amount(self):

@@ -313,7 +313,7 @@ class HrBankAdviceLine(models.Model):
 
     bysal = fields.Monetary(
         string='Salaire Net',
-        digits='Payroll',
+        digits=dp.get_precision('Payroll'),
         currency_field='currency_id'
     )
 

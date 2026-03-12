@@ -250,21 +250,18 @@ result = (base * percentage) / 26  # Diviser par 26 jours pour le salaire journa
         <field name="sequence">1300</field>
         <field name="category_id" ref="NOCAT"/>
         <field name="amount_select">code</field>
-        <field name="amount_python_compute">
-# Revenu annuel brut imposable après abattement de 30%
+        <field name="amount_python_compute"># Revenu annuel brut imposable après abattement de 30%
 # = (SBI - Cotisations Sociales IPRES) avec cumul des mois précédents
 # Considérer le (SBI - IPRES) cumulé des mois précédents de l'année
 
 # 1. Récupérer le SBI et IPRES du mois actuel
 sbi_actuel = SBI
-ipres_actuel = IPRESG + IPRESC  # Cotisations sociales (régime général + cadre)
-sbi_ipres_actuel = sbi_actuel - ipres_actuel
 
 mois_actuel = payslip.date_from.month
 annee_actuelle = payslip.date_from.year
 
 # 2. Calculer le (SBI - IPRES) cumulé des mois précédents
-sbi_ipres_cumule_precedent = 0
+sbi_slip = 0
 for slip in employee.slip_ids:
     if slip.date_from.year == annee_actuelle and slip.state == "done":
         slip_month = slip.date_from.month
@@ -273,21 +270,41 @@ for slip in employee.slip_ids:
             ipres_slip = 0
             for line in slip.line_ids:
                 if line.code == "SBI":
-                    sbi_slip = line.total
-                elif line.code in ("IPRESG", "IPRESC"):
-                    ipres_slip += line.total
-            sbi_ipres_cumule_precedent += (sbi_slip - ipres_slip)
-
-# 3. Calculer le (SBI - IPRES) total (mois précédents + mois actuel)
-sbi_ipres_total = sbi_ipres_cumule_precedent + sbi_ipres_actuel
+                    sbi_slip += line.total
 
 # 4. Calculer le revenu annuel brut imposable avec abattement de 30%
-brut_annuel = sbi_ipres_total * 12 if mois_actuel == 1 else sbi_ipres_cumule_precedent + (sbi_ipres_actuel * (13 - mois_actuel))
-abattement = brut_annuel * 0.30
-revenu_net = brut_annuel - abattement
-result = min(revenu_net, 900000)
-        </field>
+brut_annuel = sbi_actuel * 12 if mois_actuel == 1 else sbi_slip + (sbi_actuel * (13 - mois_actuel))
+abattement = min(brut_annuel*0.30, 900000)
+result = round((brut_annuel - abattement), -3) </field>
         <field name="appears_on_payslip" eval="False"/>
+    </record>
+
+    <record id="hr_payslip_rule_trimf" model="hr.salary.rule">
+        <field name="name">TRIMF (Taxe Représentative de l'Impôt Minimum Forfaitaire)</field>
+        <field name="code">TRIMF</field>
+        <field name="sequence">1350</field>
+        <field name="category_id" ref="NOCAT"/>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+# TRIMF - Barème annuel basé sur le Salaire Brut Imposable annuel
+revenu_annuel = SBI * 12
+
+if revenu_annuel &lt;= 599999:
+    trimf_annuel = 900
+elif revenu_annuel &lt;= 999999:
+    trimf_annuel = 3600
+elif revenu_annuel &lt;= 1999999:
+    trimf_annuel = 4800
+elif revenu_annuel &lt;= 6999999:
+    trimf_annuel = 12000
+elif revenu_annuel &lt;= 11999999:
+    trimf_annuel = 18000
+else:
+    trimf_annuel = 36000
+
+result = trimf_annuel / 12
+        </field>
+        <field name="appears_on_payslip" eval="True"/>
     </record>
 
     <record id="hr_payslip_rule_ir_avant_reduction" model="hr.salary.rule">
@@ -324,7 +341,7 @@ else:
     ir = 4359000 + 14600000 + (revenu_imposable - 50000000) * 0.43
     ir = 18959000 + (revenu_imposable - 50000000) * 0.43
 
-result = ir / 12  # Convertir l'annuel en mensuel
+result = ir 
         </field>
         <field name="appears_on_payslip" eval="False"/>
     </record>
@@ -338,7 +355,7 @@ result = ir / 12  # Convertir l'annuel en mensuel
         <field name="amount_python_compute">
 # Réduction IR basée sur le nombre de parts (nombre d'enfants)
 # Récupérer le nombre de parts de l'employé
-nb_parts = employee.marital == 'single' and 1 or 1.5
+nb_parts = int(employee.quotient_familial)
 
 # Déterminer le taux et les montants min/max de réduction
 if nb_parts &gt;= 5:
@@ -379,9 +396,9 @@ else:
     reduction_max = 0
 
 # Calculer la réduction (montant annuel puis mensuel)
-reduction_annuelle = min(IR_BRUT * 12 * taux, reduction_max)
+reduction_annuelle = min(IR_BRUT * taux, reduction_max)
 reduction_annuelle = max(reduction_annuelle, reduction_min)
-result = reduction_annuelle / 12  # Convertir en mensuel
+result = reduction_annuelle
         </field>
         <field name="appears_on_payslip" eval="False"/>
     </record>
@@ -394,7 +411,7 @@ result = reduction_annuelle / 12  # Convertir en mensuel
         <field name="amount_select">code</field>
         <field name="amount_python_compute">
 # IR = IR brut - Réduction pour charge de famille
-result = max(IR_BRUT - IR_RED, 0)
+result = max(IR_BRUT - IR_RED, 0)/12
         </field>
         <field name="appears_on_payslip" eval="True"/>
     </record>
@@ -405,7 +422,10 @@ result = max(IR_BRUT - IR_RED, 0)
         <field name="sequence">3000</field>
         <field name="category_id" ref="NET"/>
         <field name="amount_select">code</field>
-        <field name="amount_python_compute">result = categories.GROSS - categories.DED - categories.IR</field>
+        <field name="amount_python_compute">
+# Le salarié paie le montant le plus élevé entre l'IR et le TRIMF
+result = categories.GROSS - categories.DED - categories.IR - TRIMF
+        </field>
         <field name="appears_on_payslip" eval="True"/>
     </record>
 
@@ -501,6 +521,7 @@ result = max(IR_BRUT - IR_RED, 0)
         ref('hr_payslip_rule_ipresg'),
         ref('hr_payslip_rule_ipresc'),
         ref('hr_payslip_rule_brut_imposable'),
+        ref('hr_payslip_rule_trimf'),
         ref('hr_payslip_rule_ir_avant_reduction'),
         ref('hr_payslip_rule_ir_reduction'),
         ref('hr_payslip_rule_ir'),

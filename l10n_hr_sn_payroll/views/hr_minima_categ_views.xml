@@ -32,13 +32,13 @@
         <field name="name">hr.minima.categ.list</field>
         <field name="model">min.categoriels</field>
         <field name="arch" type="xml">
-            <list string="Catégories de Minima" editable="bottom">
+            <tree string="Catégories de Minima" editable="bottom">
                 <field name="name"/>
                 <field name="amount"/>
                 <field name="currency_id"/>
                 <field name="company_id"/>
                 <field name="description"/>
-            </list>
+            </tree>
         </field>
     </record>
 
@@ -60,7 +60,7 @@
     <record id="action_hr_minima_categ" model="ir.actions.act_window">
         <field name="name">Catégories de Minima</field>
         <field name="res_model">min.categoriels</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="view_hr_minima_categ_search"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
