@@ -159,7 +159,7 @@ class ReportTemplateGenerator(models.TransientModel):
             '{{employee.address}}': safe_get(employee, 'street'),
             '{{employee.id_number}}': safe_get(employee, 'identification_id'),
             '{{employee.hire_date}}': hire_date_str,
-            '{{employee.cnss_number}}': safe_get(employee, 'sn_number'),
+            '{{employee.ssnid}}': safe_get(employee, 'ssnid'),
             '{{gender}}': self._get_gender_display(employee),
             '{{employee.birth_date}}': self._get_birth_date(employee),
 
