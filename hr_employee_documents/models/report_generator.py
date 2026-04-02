@@ -190,7 +190,7 @@ class ReportTemplateGenerator(models.TransientModel):
 
     def _get_birth_date(self, employee):
         if hasattr(employee, 'birthday') and employee.birthday:
-            return employee.birthday.strftime('%d-%m-%Y')
+            return employee.birthday.strftime('%d/%m/%Y')
         return ''
 
     def _get_company_address(self, employee):
