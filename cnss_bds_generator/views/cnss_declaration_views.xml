@@ -18,6 +18,10 @@
                     <button name="action_generate_bds" string="🗂 Générer Fichier BDS"
                             type="object" class="btn-success"
                             invisible="state not in ('confirmed','generated')"/>
+                    <button name="action_import_affebds"
+                            string="📄 Importer Préétabli AFFEBDS"
+                            type="object" class="btn-warning"
+                            invisible="state not in ('draft','confirmed')"/>
                     <button name="action_import_payslips"
                             string="📥 Importer Bulletins de Paie"
                             type="object" class="btn-secondary"

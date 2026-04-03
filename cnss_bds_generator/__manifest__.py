@@ -43,6 +43,7 @@ Fonctionnalités :
         'views/menu_views.xml',
         'views/hr_employee_views.xml',
         'wizard/cnss_import_payslip_wizard_views.xml',
+        'wizard/cnss_import_affebds_wizard_views.xml',
         'data/cnss_data.xml',
     ],
     #'assets': {

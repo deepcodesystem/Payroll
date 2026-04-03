@@ -256,6 +256,18 @@ class CnssDeclaration(models.Model):
             'context': {'default_declaration_id': self.id},
         }
 
+    def action_import_affebds(self):
+        """Ouvre le wizard d'import du fichier préétabli AFFEBDS."""
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Import Fichier Préétabli AFFEBDS',
+            'res_model': 'cnss.import.affebds.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {'default_declaration_id': self.id},
+        }
+
     # ─────────────────────────────────────────────────────────────────────
     # FILENAME
     # ─────────────────────────────────────────────────────────────────────
