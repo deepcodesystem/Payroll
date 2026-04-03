@@ -161,7 +161,7 @@ class ReportTemplateGenerator(models.TransientModel):
             '{{employee.private_zip}}': safe_get(employee, 'private_zip'),
             '{{employee.private_city}}': safe_get(employee, 'private_city'),
             '{{employee.id_number}}': safe_get(employee, 'identification_id'),
-            '{{employee.hire_date}}': hire_date_str,
+            '{{employee.hire_date}}': contract_date_str,
             '{{employee.ssnid}}': safe_get(employee, 'ssnid'),
             '{{gender}}': self._get_gender_display(employee),
             '{{employee.birth_date}}': self._get_birth_date(employee),
@@ -177,6 +177,18 @@ class ReportTemplateGenerator(models.TransientModel):
 
             # Contrat
             '{{contract_date}}': contract_date_str,
+
+            # Salaire (depuis payslip ou contrat)
+            '{{salary.base}}': self._get_salary_line(employee, 'BASE'),
+            '{{salary.brut}}': self._get_salary_line(employee, 'GROSS'),
+            '{{salary.amo}}': self._get_salary_line(employee, 'AMO'),
+            '{{salary.cnss}}': self._get_salary_line(employee, 'CNSSE'),
+            '{{salary.cimr}}': self._get_salary_line(employee, 'CIMRE'),
+            '{{salary.amc}}': self._get_salary_line(employee, 'AMC_SAL'),
+            '{{salary.igr}}': self._get_salary_line(employee, 'IR'),
+            '{{salary.frais_pro}}': self._get_salary_line(employee, 'FRPRO'),
+            '{{salary.net}}': self._get_salary_line(employee, 'NET'),
+            '{{salary.note_frais}}': self._get_salary_line(employee, 'NOTE_FRAIS'),
         }
 
         # Application des remplacements
@@ -193,7 +205,7 @@ class ReportTemplateGenerator(models.TransientModel):
 
     def _get_birth_date(self, employee):
         if hasattr(employee, 'birthday') and employee.birthday:
-            return employee.birthday.strftime('%d/%m/%Y')
+            return employee.birthday.strftime('%d-%m-%Y')
         return ''
 
     def _get_company_address(self, employee):
@@ -201,4 +213,17 @@ class ReportTemplateGenerator(models.TransientModel):
             c = employee.company_id
             parts = [p for p in [c.street, c.street2, c.zip, c.city] if p]
             return ' '.join(parts)
+        return ''
+
+    def _get_salary_line(self, employee, code):
+        """Récupère une ligne de salaire depuis la dernière fiche de paie"""
+        payslip = self.env['hr.payslip'].search([
+            ('employee_id', '=', employee.id),
+            ('state', 'in', ['done', 'paid'])
+        ], order='date_to desc', limit=1)
+
+        if payslip:
+            line = payslip.line_ids.filtered(lambda l: l.code == code)
+            if line:
+                return f"{line[0].total:,.2f}".replace(',', ' ')
         return ''
