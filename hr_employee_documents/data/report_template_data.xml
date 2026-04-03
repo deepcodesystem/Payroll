@@ -21,7 +21,7 @@
                     <p>Attestons par la présente que {{gender}} {{employee.name}},
                     née le {{employee.birth_date}} affilié à la C.N.S.S. sous
                     le N°{{employee.cnss_number}} titulaire de Carte d'Identité National
-                    N°{{employee.id_number}} demeurant à {{employee.address}},
+                    N°{{employee.id_number}} demeurant à {{employee.private_street}} {{employee.private_street2}} {{employee.private_zip}} {{employee.private_city}},
                     est employé dans notre société en qualité de {{employee.job_title}},
                     depuis le <span class="underline">{{employee.hire_date}}</span> à ce jour.</p>
                     <p>En foi de quoi, la présente attestation délivrée à la demande de l'intéressé,
@@ -116,6 +116,41 @@
                             {{company_name}}
                         </p>
                     </div>
+                </div>
+            ]]></field>
+        </record>
+
+        <!-- Attestation de Salaire Template -->
+        <record id="report_template_attestation_salaire_fr" model="hr.employee.report.template">
+            <field name="name">Attestation de Salaire (FR)</field>
+            <field name="code">ATTEST_SALAIRE_FR</field>
+            <field name="report_type">salary_certificate</field>
+            <field name="sequence">25</field>
+            <field name="description">Attestation de salaire avec détail des cotisations</field>
+            <field name="template_content"><![CDATA[
+                <div style="font-family: Arial, sans-serif;">
+                    <div style="text-align: right; margin-bottom: 40px;">
+                        <p>{{company_city}} le, {{today_date}}</p>
+                    </div>
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <h1>ATTESTATION DE SALAIRE</h1>
+                    </div>
+                    <p>Nous soussigné, {{company_name}} siège social au {{company_address}}.</p>
+                    <p>Atteste par la présente que {{gender}} {{employee.name}}, titulaire de C.I.N. N° {{employee.id_number}}, affilié à la C.N.S.S. sous le N° {{employee.ssnid}}, Perçoit un salaire mensuel de :</p>
+                    <table style="width: 60%; margin: 20px 0; border-collapse: collapse;">
+                        <tr><td style="padding: 5px; border: none;">Salaire de base:</td><td style="padding: 5px; border: none; text-align: right;">{{salary.base}}</td></tr>
+                        <tr><td style="padding: 5px; border: none;">Salaire Brut:</td><td style="padding: 5px; border: none; text-align: right;">{{salary.brut}}</td></tr>
+                        <tr><td style="padding: 5px; border: none;">Cotisation AMO:</td><td style="padding: 5px; border: none; text-align: right;">{{salary.amo}}</td></tr>
+                        <tr><td style="padding: 5px; border: none;">Cotisation CNSS:</td><td style="padding: 5px; border: none; text-align: right;">{{salary.cnss}}</td></tr>
+                        <tr><td style="padding: 5px; border: none;">Cotisation CIMR:</td><td style="padding: 5px; border: none; text-align: right;">{{salary.cimr}}</td></tr>
+                        <tr><td style="padding: 5px; border: none;">Cotisation AMC:</td><td style="padding: 5px; border: none; text-align: right;">{{salary.amc}}</td></tr>
+                        <tr><td style="padding: 5px; border: none;">IGR :</td><td style="padding: 5px; border: none; text-align: right;">{{salary.igr}}</td></tr>
+                        <tr><td style="padding: 5px; border: none;">Frais Professionnels:</td><td style="padding: 5px; border: none; text-align: right;">{{salary.frais_pro}}</td></tr>
+                        <tr style="font-weight: bold;"><td style="padding: 5px; border: none;">Salaire Net:</td><td style="padding: 5px; border: none; text-align: right;">{{salary.net}} Dirhams</td></tr>
+                        <tr><td style="padding: 5px; border: none;">Note de frais:</td><td style="padding: 5px; border: none; text-align: right;">{{salary.note_frais}}</td></tr>
+                    </table>
+                    <p style="margin-top: 30px;">En foi de quoi, la présente attestation délivrée à la demande de l'intéressé, pour servir et valoir ce que de droit.</p>
+                    <p style="margin-top: 50px; font-weight: bold;">La Direction</p>
                 </div>
             ]]></field>
         </record>
