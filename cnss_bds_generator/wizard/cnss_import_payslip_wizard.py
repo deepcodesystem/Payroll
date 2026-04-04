@@ -165,22 +165,26 @@ class CnssImportPayslipWizard(models.TransientModel):
         return 26
 
     def action_import(self):
-        """Importe les lignes sélectionnées dans la déclaration CNSS."""
+        """Importe les lignes sélectionnées dans la déclaration CNSS.
+
+        Met à jour les lignes existantes (même num_assure) au lieu de créer des doublons.
+        """
         self.ensure_one()
         decl = self.declaration_id
         lines_to_import = self.line_ids.filtered(lambda l: l.a_importer)
         if not lines_to_import:
             raise UserError("Aucune ligne sélectionnée pour l'import.")
 
-        # Séparer entrants et existants
-        existants_vals = []
-        entrants_vals = []
+        created_count = 0
+        updated_count = 0
 
         for line in lines_to_import:
             if line.cnss_statut in ('nouveau', 'occasionnel'):
-                entrants_vals.append({
-                    'declaration_id': decl.id,
-                    'employee_id': line.employee_id.id,
+                # Entrants : vérifier si existe déjà
+                existing_entrant = decl.entrant_ids.filtered(
+                    lambda e: e.num_assure == line.num_assure or e.employee_id.id == line.employee_id.id
+                )
+                vals = {
                     'num_assure': line.num_assure,
                     'nom_prenom': line.nom_prenom,
                     'num_cin': line.num_cin,
@@ -188,28 +192,58 @@ class CnssImportPayslipWizard(models.TransientModel):
                     'sal_reel': line.sal_reel,
                     'sal_plaf': line.sal_plaf,
                     'type_entrant': 'occasionnel' if line.cnss_statut == 'occasionnel' else 'normal',
-                })
+                }
+                if existing_entrant:
+                    existing_entrant[0].write(vals)
+                    updated_count += 1
+                else:
+                    vals.update({
+                        'declaration_id': decl.id,
+                        'employee_id': line.employee_id.id,
+                    })
+                    self.env['cnss.entrant'].create(vals)
+                    created_count += 1
             else:
-                existants_vals.append({
-                    'declaration_id': decl.id,
-                    'employee_id': line.employee_id.id,
+                # Existants : vérifier si ligne existe déjà (par num_assure ou employee_id)
+                existing_line = decl.line_ids.filtered(
+                    lambda l: l.num_assure == line.num_assure or
+                    (l.employee_id and l.employee_id.id == line.employee_id.id)
+                )
+                vals = {
                     'num_assure': line.num_assure,
                     'nom_prenom': line.nom_prenom,
-                    'enfants': line.enfants,
-                    'af_a_payer': line.af_a_payer,
-                    'af_a_deduire': 0,
-                    'af_net_a_payer': line.af_a_payer,
-                    'af_a_reverser': line.af_a_payer,
                     'jours': line.jours,
                     'sal_reel': line.sal_reel,
                     'sal_plaf': line.sal_plaf,
                     'situation': line.situation or '',
-                })
+                }
+                if existing_line:
+                    # Mise à jour : conserver les infos AF existantes si présentes
+                    if not existing_line[0].enfants and line.enfants:
+                        vals['enfants'] = line.enfants
+                    if not existing_line[0].af_a_payer and line.af_a_payer:
+                        vals['af_a_payer'] = line.af_a_payer
+                        vals['af_net_a_payer'] = line.af_a_payer - existing_line[0].af_a_deduire
+                        vals['af_a_reverser'] = vals['af_net_a_payer']
+                    existing_line[0].write(vals)
+                    updated_count += 1
+                else:
+                    vals.update({
+                        'declaration_id': decl.id,
+                        'employee_id': line.employee_id.id,
+                        'enfants': line.enfants,
+                        'af_a_payer': line.af_a_payer,
+                        'af_a_deduire': 0,
+                        'af_net_a_payer': line.af_a_payer,
+                        'af_a_reverser': line.af_a_payer,
+                    })
+                    self.env['cnss.declaration.line'].create(vals)
+                    created_count += 1
 
-        if existants_vals:
-            self.env['cnss.declaration.line'].create(existants_vals)
-        if entrants_vals:
-            self.env['cnss.entrant'].create(entrants_vals)
+        _logger.info(
+            "Import bulletins CNSS: %d lignes créées, %d lignes mises à jour",
+            created_count, updated_count
+        )
 
         return {
             'type': 'ir.actions.act_window',
