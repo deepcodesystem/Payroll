@@ -34,6 +34,7 @@
         'views/employee_document_views.xml',
         'views/reject_wizard_views.xml',
         'views/hr_employee_views.xml',
+        'views/hr_contract_views.xml',
         'views/report_template_views.xml',
         'views/report_generator_views.xml',
         'views/employee_report_buttons.xml',

@@ -189,6 +189,9 @@ class ReportTemplateGenerator(models.TransientModel):
             '{{salary.frais_pro}}': self._get_salary_line(employee, 'FRPRO'),
             '{{salary.net}}': self._get_salary_line(employee, 'NET'),
             '{{salary.note_frais}}': self._get_salary_line(employee, 'NOTE_FRAIS'),
+
+            # Salaire net depuis le contrat
+            '{{salary.net_contract}}': self._format_monetary(employee.contract_id.salary_net) if employee.contract_id and employee.contract_id.salary_net else '',
         }
 
         # Application des remplacements
@@ -215,6 +218,14 @@ class ReportTemplateGenerator(models.TransientModel):
             return ' '.join(parts)
         return ''
 
+    @staticmethod
+    def _format_monetary(amount):
+        """Formate un montant avec 2 décimales et séparateur de milliers"""
+        try:
+            return f"{float(amount):,.2f}".replace(',', ' ')
+        except (ValueError, TypeError):
+            return ''
+
     def _get_salary_line(self, employee, code):
         """Récupère une ligne de salaire depuis la dernière fiche de paie"""
         payslip = self.env['hr.payslip'].search([
@@ -225,5 +236,5 @@ class ReportTemplateGenerator(models.TransientModel):
         if payslip:
             line = payslip.line_ids.filtered(lambda l: l.code == code)
             if line:
-                return f"{line[0].total:,.2f}".replace(',', ' ')
+                return self._format_monetary(line[0].total)
         return ''

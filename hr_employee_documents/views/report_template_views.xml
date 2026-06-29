@@ -57,10 +57,31 @@
                             {{employee.address}} - Home address<br/>
                             {{employee.id_number}} - ID number<br/>
                             {{employee.hire_date}} - Hire date<br/>
+                            {{employee.ssnid}} - CNSS number<br/>
+                            {{employee.gender}} - Gender (Mr/Mme)<br/>
+                            {{employee.birth_date}} - Birth date<br/>
+                            {{employee.acc_number}} - Bank account<br/>
+                            {{employee.agence}} - Bank agency<br/>
+                            {{employee.bank}} - Bank name<br/>
                             {{employee.contract_date}} - Contract date<br/>
                             {{company_name}} - Company name<br/>
+                            {{company_address}} - Company address<br/>
+                            {{company_city}} - Company city<br/>
                             {{today_date}} - Today (DD/MM/YYYY)<br/>
-                            {{today_date_long}} - Today (DD Month YYYY)
+                            {{today_date_long}} - Today (DD Month YYYY)<br/>
+                            <strong>Salary (from last payslip):</strong><br/>
+                            {{salary.base}} - Base salary<br/>
+                            {{salary.brut}} - Gross salary<br/>
+                            {{salary.net}} - Net salary<br/>
+                            {{salary.amo}} - AMO contribution<br/>
+                            {{salary.cnss}} - CNSS contribution<br/>
+                            {{salary.cimr}} - CIMR contribution<br/>
+                            {{salary.amc}} - AMC contribution<br/>
+                            {{salary.igr}} - IGR tax<br/>
+                            {{salary.frais_pro}} - Professional fees<br/>
+                            {{salary.note_frais}} - Expense notes<br/>
+                            <strong>Salary (from contract):</strong><br/>
+                            {{salary.net_contract}} - Net salary from contract
                         </div>
                         <field name="template_content" nolabel="1" widget="html" placeholder="Enter your template content with placeholders..."/>
                     </sheet>

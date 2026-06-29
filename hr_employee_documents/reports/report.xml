@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
 
-        <!-- Employee Document Report Template -->
-        <report
-            id="action_employee_document_report"
-            model="employee.document"
-            string="Employee Document Report"
-            report_type="qweb-pdf"
-            file="hr_employee_documents.employee_document_report"
-            name="hr_employee_documents.employee_document_report"
-        />
+    <record id="action_employee_document_report" model="ir.actions.report">
+        <field name="name">Employee Document Report</field>
+        <field name="model">employee.document</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hr_employee_documents.employee_document_report</field>
+        <field name="report_file">hr_employee_documents.employee_document_report</field>
+        <field name="binding_model_id" ref="model_employee_document"/>
+        <field name="binding_type">report</field>
+    </record>
 
-    </data>
 </odoo>
