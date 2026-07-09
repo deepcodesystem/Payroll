@@ -172,6 +172,7 @@ class ReportTemplateGenerator(models.TransientModel):
             '{{employee.private_zip}}': safe_get(employee, 'private_zip'),
             '{{employee.private_city}}': safe_get(employee, 'private_city'),
             '{{employee.id_number}}': safe_get(employee, 'identification_id'),
+            '{{employee.cnss_number}}': safe_get(employee, 'ssnid'),
             '{{employee.hire_date}}': contract_date_str,
             '{{employee.ssnid}}': safe_get(employee, 'ssnid'),
             '{{gender}}': self._get_gender_display(employee),
