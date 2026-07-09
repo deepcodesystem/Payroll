@@ -11,6 +11,7 @@
                     <field name="code"/>
                     <field name="name"/>
                     <field name="require_manager_approval"/>
+                    <field name="company_id" optional="show" groups="base.group_multi_company"/>
                     <field name="active"/>
                 </list>
             </field>
@@ -37,6 +38,7 @@
                                 <field name="code" placeholder="e.g., WORK_CERT"/>
                                 <field name="sequence"/>
                                 <field name="color" widget="color"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
                             </group>
                             <group>
                                 <field name="require_manager_approval" widget="boolean_button"/>

@@ -13,6 +13,13 @@ class DocumentType(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'name'
 
+    company_id = fields.Many2one(
+        'res.company',
+        string='Company',
+        default=lambda self: self.env.company,
+        help='Company this document type belongs to'
+    )
+
     name = fields.Char(
         string='Document Type Name',
         required=True,

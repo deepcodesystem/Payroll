@@ -26,16 +26,47 @@
             <field name="groups" eval="[(4, ref('hr.group_hr_manager'))]"/>
         </record>
 
-        <!-- HR managers can see all documents -->
+        <!-- HR managers can see all documents in their company -->
         <record id="employee_document_rule_hr_manager" model="ir.rule">
             <field name="name">HR manager can see all documents</field>
             <field name="model_id" ref="model_employee_document"/>
-            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="domain_force">[('company_id', 'in', user.company_ids.ids)]</field>
             <field name="perm_read">1</field>
             <field name="perm_write">1</field>
             <field name="perm_create">1</field>
             <field name="perm_unlink">1</field>
             <field name="groups" eval="[(4, ref('hr.group_hr_manager'))]"/>
+        </record>
+
+        <!-- GLOBAL multi-company rules (no groups → AND with group rules) -->
+        <record id="employee_document_rule_multi_company_global" model="ir.rule">
+            <field name="name">Employee document multi-company (global)</field>
+            <field name="model_id" ref="model_employee_document"/>
+            <field name="domain_force">[('company_id', 'in', user.company_ids.ids)]</field>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_create">1</field>
+            <field name="perm_unlink">1</field>
+        </record>
+
+        <record id="document_type_rule_multi_company_global" model="ir.rule">
+            <field name="name">Document type multi-company (global)</field>
+            <field name="model_id" ref="model_document_type"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', user.company_ids.ids)]</field>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_create">1</field>
+            <field name="perm_unlink">1</field>
+        </record>
+
+        <record id="report_template_rule_multi_company_global" model="ir.rule">
+            <field name="name">Report template multi-company (global)</field>
+            <field name="model_id" ref="model_hr_employee_report_template"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', user.company_ids.ids)]</field>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_create">1</field>
+            <field name="perm_unlink">1</field>
         </record>
 
         <!-- Report template access by group_ids: si group_ids est vide → tout le monde,

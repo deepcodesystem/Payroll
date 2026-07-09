@@ -10,6 +10,7 @@
                     <field name="code"/>
                     <field name="name"/>
                     <field name="report_type"/>
+                    <field name="company_id" optional="show" groups="base.group_multi_company"/>
                     <field name="sequence" widget="handle"/>
                     <field name="active"/>
                 </list>
@@ -38,6 +39,7 @@
                                 <field name="code" placeholder="e.g., WORK_CERT_FR"/>
                                 <field name="report_type"/>
                                 <field name="sequence"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
                             </group>
                             <group>
                                 <field name="group_ids" widget="many2many_tags"/>

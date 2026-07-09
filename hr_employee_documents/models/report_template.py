@@ -11,6 +11,13 @@ class HrEmployeeReportTemplate(models.Model):
     _description = 'Employee Report Template'
     _order = 'sequence'
 
+    company_id = fields.Many2one(
+        'res.company',
+        string='Company',
+        default=lambda self: self.env.company,
+        help='Company this template belongs to'
+    )
+
     name = fields.Char(
         string='Template Name',
         required=True,

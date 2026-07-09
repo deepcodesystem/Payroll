@@ -13,6 +13,14 @@ class EmployeeDocument(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'create_date DESC'
 
+    # Multi-company
+    company_id = fields.Many2one(
+        'res.company',
+        string='Company',
+        default=lambda self: self.env.company,
+        help='Company this document belongs to'
+    )
+
     # Relations
     employee_id = fields.Many2one(
         'hr.employee',

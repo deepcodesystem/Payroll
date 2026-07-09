@@ -128,85 +128,120 @@ class ReportTemplateGenerator(models.TransientModel):
     def _get_filled_content(self):
         """Remplit le template avec toutes les variables de l'employé"""
         content = self.template_id.template_content or ''
-        employee = self.employee_id
 
         if not content:
             return '<p>Le contenu du template est vide.</p>'
 
-        # Helper pour extraire les données proprement
-        def safe_get(obj, attr, default=''):
-            try:
-                if not obj: return default
-                value = getattr(obj, attr, None)
-                if value is None or value is False: return default
-                if hasattr(value, 'name'): return str(value.name)
-                return str(value)
-            except:
-                return default
+        # Lecture de toutes les données employé en une seule requête sudo()
+        # pour contourner le fetch override de hr.employee qui restreint
+        # les champs customs (dependants, cimr_id, etc.) via hr.employee.public
+        emp = self.env['hr.employee'].sudo().browse(self.employee_id.id)
+        emp_data = emp.read([
+            'name', 'job_title', 'department_id', 'work_email', 'mobile_phone',
+            'private_street', 'private_street2', 'private_zip', 'private_city',
+            'identification_id', 'ssnid', 'gender', 'birthday', 'company_id',
+            'contract_id', 'bank_account_id',
+        ])
+        if emp_data:
+            emp_data = emp_data[0]
+        else:
+            emp_data = {}
 
-        # Préparation des dates
+        # Helper d'extraction sécurisée depuis un dict
+        # Note: read() retourne les Many2one comme (id, name) tuples
+        def _id(val):
+            return val[0] if isinstance(val, (tuple, list)) else val
+
+        def dget(d, key, default=''):
+            val = d.get(key)
+            if val is None or val is False:
+                return default
+            return str(val)
+
+        # Données bancaires
+        bank_account = emp.bank_account_id
+        bank_name = bank_account.bank_id.name or '' if bank_account.bank_id else ''
+
+        # Dates
         hire_date_str = ''
-        if employee.create_date:
-            hire_date_str = employee.create_date.strftime('%d/%m/%Y')
+        if emp.create_date:
+            hire_date_str = emp.create_date.strftime('%d/%m/%Y')
 
         contract_date_str = ''
-        if employee.contract_id and employee.contract_id.date_start:
-            contract_date_str = employee.contract_id.date_start.strftime('%d/%m/%Y')
+        contract_id = _id(emp_data.get('contract_id'))
+        if contract_id:
+            contract = self.env['hr.contract'].sudo().browse(contract_id)
+            if contract.date_start:
+                contract_date_str = contract.date_start.strftime('%d/%m/%Y')
 
-        # Dictionnaire des remplacements (vos anciens champs)
-        # Note: sudo() nécessaire pour outrepasser la règle core hr
-        # "HR: Prevent non HR officers from accessing employee bank accounts"
-        bank_account = employee.sudo().bank_account_id
+        # Société
+        company_name = ''
+        company_city = ''
+        company_address = ''
+        company_id = _id(emp_data.get('company_id'))
+        if company_id:
+            company = self.env['res.company'].sudo().browse(company_id)
+            company_name = company.name or ''
+            company_city = company.city or ''
+            parts = [p for p in [company.street, company.street2, company.zip, company.city] if p]
+            company_address = ' '.join(parts)
+
+        department = ''
+        dept_id = _id(emp_data.get('department_id'))
+        if dept_id:
+            department = self.env['hr.department'].sudo().browse(dept_id).name or ''
+
+        # Salaire net contrat
+        salary_net_contract = ''
+        if contract_id:
+            contract = self.env['hr.contract'].sudo().browse(contract_id)
+            if contract.salary_net:
+                salary_net_contract = self._format_monetary(contract.salary_net)
+
+        # Dictionnaire des remplacements
         replacements = {
-            # Employé
-            '{{employee.name}}': safe_get(employee, 'name'),
-            '{{employee.job_title}}': safe_get(employee, 'job_title'),
-            '{{employee.department}}': safe_get(employee.department_id, 'name'),
-            '{{employee.acc_number}}': safe_get(bank_account, 'acc_number'),
-            '{{employee.agence}}': safe_get(bank_account, 'agence'),
-            '{{employee.bank}}': safe_get(bank_account.bank_id, 'name'),
-            '{{employee.email}}': safe_get(employee, 'work_email'),
-            '{{employee.phone}}': safe_get(employee, 'mobile_phone'),
-            '{{employee.private_street}}': safe_get(employee, 'private_street'),
-            '{{employee.private_street2}}': safe_get(employee, 'private_street2'),
-            '{{employee.private_zip}}': safe_get(employee, 'private_zip'),
-            '{{employee.private_city}}': safe_get(employee, 'private_city'),
-            '{{employee.id_number}}': safe_get(employee, 'identification_id'),
-            '{{employee.cnss_number}}': safe_get(employee, 'ssnid'),
+            '{{employee.name}}': dget(emp_data, 'name'),
+            '{{employee.job_title}}': dget(emp_data, 'job_title'),
+            '{{employee.department}}': department,
+            '{{employee.acc_number}}': bank_account.acc_number or '',
+            '{{employee.agence}}': bank_account.agence or '',
+            '{{employee.bank}}': bank_name,
+            '{{employee.email}}': dget(emp_data, 'work_email'),
+            '{{employee.phone}}': dget(emp_data, 'mobile_phone'),
+            '{{employee.private_street}}': dget(emp_data, 'private_street'),
+            '{{employee.private_street2}}': dget(emp_data, 'private_street2'),
+            '{{employee.private_zip}}': dget(emp_data, 'private_zip'),
+            '{{employee.private_city}}': dget(emp_data, 'private_city'),
+            '{{employee.id_number}}': dget(emp_data, 'identification_id'),
+            '{{employee.cnss_number}}': dget(emp_data, 'ssnid'),
             '{{employee.hire_date}}': contract_date_str,
-            '{{employee.ssnid}}': safe_get(employee, 'ssnid'),
-            '{{gender}}': self._get_gender_display(employee),
-            '{{employee.birth_date}}': self._get_birth_date(employee),
+            '{{employee.ssnid}}': dget(emp_data, 'ssnid'),
+            '{{gender}}': 'Mr' if dget(emp_data, 'gender') == 'male' else 'Mme',
+            '{{employee.birth_date}}': self._get_birth_date(emp_data),
 
-            # Dates
             '{{today_date}}': datetime.now().strftime('%d/%m/%Y'),
             '{{today_date_long}}': datetime.now().strftime('%d %B %Y'),
 
-            # Société
-            '{{company_name}}': safe_get(employee.company_id, 'name'),
-            '{{company_address}}': self._get_company_address(employee),
-            '{{company_city}}': safe_get(employee.company_id, 'city'),
+            '{{company_name}}': company_name,
+            '{{company_address}}': company_address,
+            '{{company_city}}': company_city,
 
-            # Contrat
             '{{contract_date}}': contract_date_str,
 
-            # Salaire (depuis payslip ou contrat)
-            '{{salary.base}}': self._get_salary_line(employee, 'BASE'),
-            '{{salary.brut}}': self._get_salary_line(employee, 'GROSS'),
-            '{{salary.amo}}': self._get_salary_line(employee, 'AMO'),
-            '{{salary.cnss}}': self._get_salary_line(employee, 'CNSSE'),
-            '{{salary.cimr}}': self._get_salary_line(employee, 'CIMRE'),
-            '{{salary.amc}}': self._get_salary_line(employee, 'AMC_SAL'),
-            '{{salary.igr}}': self._get_salary_line(employee, 'IR'),
-            '{{salary.frais_pro}}': self._get_salary_line(employee, 'FRPRO'),
-            '{{salary.net}}': self._get_salary_line(employee, 'NET'),
-            '{{salary.note_frais}}': self._get_salary_line(employee, 'NOTE_FRAIS'),
+            '{{salary.base}}': self._get_salary_line(emp, 'BASE'),
+            '{{salary.brut}}': self._get_salary_line(emp, 'GROSS'),
+            '{{salary.amo}}': self._get_salary_line(emp, 'AMO'),
+            '{{salary.cnss}}': self._get_salary_line(emp, 'CNSSE'),
+            '{{salary.cimr}}': self._get_salary_line(emp, 'CIMRE'),
+            '{{salary.amc}}': self._get_salary_line(emp, 'AMC_SAL'),
+            '{{salary.igr}}': self._get_salary_line(emp, 'IR'),
+            '{{salary.frais_pro}}': self._get_salary_line(emp, 'FRPRO'),
+            '{{salary.net}}': self._get_salary_line(emp, 'NET'),
+            '{{salary.note_frais}}': self._get_salary_line(emp, 'NOTE_FRAIS'),
 
-            # Salaire net depuis le contrat
-            '{{salary.net_contract}}': self._format_monetary(employee.contract_id.salary_net) if employee.contract_id and employee.contract_id.salary_net else '',
+            '{{salary.net_contract}}': salary_net_contract,
         }
 
-        # Application des remplacements
         for placeholder, value in replacements.items():
             content = content.replace(placeholder, str(value or ''))
 
@@ -218,9 +253,11 @@ class ReportTemplateGenerator(models.TransientModel):
             return 'Mr' if employee.gender == 'male' else 'Mme'
         return 'Mr'
 
-    def _get_birth_date(self, employee):
-        if hasattr(employee, 'birthday') and employee.birthday:
-            return employee.birthday.strftime('%d-%m-%Y')
+    def _get_birth_date(self, emp_data):
+        if emp_data.get('birthday'):
+            birthday = emp_data['birthday']
+            if hasattr(birthday, 'strftime'):
+                return birthday.strftime('%d-%m-%Y')
         return ''
 
     def _get_company_address(self, employee):
