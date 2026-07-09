@@ -12,5 +12,17 @@
                 </xpath>
             </field>
         </record>
+
+         <!-- Add report generation button to HR Employee form -->
+        <record id="view_profil_report_buttons" model="ir.ui.view">
+            <field name="name">hr.profil.report.buttons</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="hr.res_users_view_form_profile"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="action_generate_employee_report" string="Download Reports" type="object" class="oe_stat_button" />
+                </xpath>
+            </field>
+        </record>
     </data>
 </odoo>

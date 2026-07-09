@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Employee Document Management',
-    'version': '18.0.3.25.0',
+    'version': '18.0.5.25.0',
     'category': 'Human Resources/Payroll',
     'summary': 'Manage and download employee documents like work certificates, attestations, etc.',
     'description': """

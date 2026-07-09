@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api
+from odoo.osv import expression
 from datetime import datetime
 
 
@@ -62,6 +63,16 @@ class HrEmployeeReportTemplate(models.Model):
         string='Required Groups',
         help='If set, only users in these groups can access this template'
     )
+
+    @api.model
+    def search(self, domain, offset=0, limit=None, order=None):
+        domain = domain or []
+        if not self.env.su and not self.env.user.has_group('hr.group_hr_manager'):
+            domain = expression.AND([
+                domain,
+                ['|', ('group_ids', '=', False), ('group_ids', 'in', self.env.user.groups_id.ids)]
+            ])
+        return super().search(domain, offset=offset, limit=limit, order=order)
 
     def name_get(self):
         result = []

@@ -2,6 +2,7 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 from datetime import datetime
+from odoo.tools.misc import limited_field_access_token
 import base64
 
 
@@ -100,17 +101,24 @@ class ReportTemplateGenerator(models.TransientModel):
             filename = f"{template_code}_{emp_name}.pdf"
 
             # 5. Création de l'attachement
-            attachment = self.env['ir.attachment'].create({
+            attachment = self.env['ir.attachment'].sudo().create({
                 'name': filename,
                 'datas': base64.b64encode(pdf_bytes),
                 'type': 'binary',
                 'mimetype': 'application/pdf',
             })
 
-            # 6. Retour de l'action de téléchargement
+            # 6. Génération d'un token d'accès signé pour contourner les
+            #    record rules Odoo sur ir.attachment (l'employé n'a pas
+            #    d'accès ACL direct à hr.employee via base.group_user)
+            token = limited_field_access_token(
+                attachment.sudo(), 'raw'
+            )
+
+            # 7. Retour de l'action de téléchargement avec token
             return {
                 'type': 'ir.actions.act_url',
-                'url': f'/web/content/{attachment.id}?download=true',
+                'url': f'/web/content/{attachment.id}?download=true&access_token={token}',
                 'target': 'self',
             }
 
@@ -146,14 +154,17 @@ class ReportTemplateGenerator(models.TransientModel):
             contract_date_str = employee.contract_id.date_start.strftime('%d/%m/%Y')
 
         # Dictionnaire des remplacements (vos anciens champs)
+        # Note: sudo() nécessaire pour outrepasser la règle core hr
+        # "HR: Prevent non HR officers from accessing employee bank accounts"
+        bank_account = employee.sudo().bank_account_id
         replacements = {
             # Employé
             '{{employee.name}}': safe_get(employee, 'name'),
             '{{employee.job_title}}': safe_get(employee, 'job_title'),
             '{{employee.department}}': safe_get(employee.department_id, 'name'),
-            '{{employee.acc_number}}': safe_get(employee.bank_account_id, 'acc_number'),
-            '{{employee.agence}}': safe_get(employee.bank_account_id, 'agence'),
-            '{{employee.bank}}': safe_get(employee.bank_account_id.bank_id, 'name'),
+            '{{employee.acc_number}}': safe_get(bank_account, 'acc_number'),
+            '{{employee.agence}}': safe_get(bank_account, 'agence'),
+            '{{employee.bank}}': safe_get(bank_account.bank_id, 'name'),
             '{{employee.email}}': safe_get(employee, 'work_email'),
             '{{employee.phone}}': safe_get(employee, 'mobile_phone'),
             '{{employee.private_street}}': safe_get(employee, 'private_street'),
@@ -228,7 +239,8 @@ class ReportTemplateGenerator(models.TransientModel):
 
     def _get_salary_line(self, employee, code):
         """Récupère une ligne de salaire depuis la dernière fiche de paie"""
-        payslip = self.env['hr.payslip'].search([
+        # sudo() pour permettre à l'employé d'accéder à ses propres bulletins
+        payslip = self.env['hr.payslip'].sudo().search([
             ('employee_id', '=', employee.id),
             ('state', 'in', ['done', 'paid'])
         ], order='date_to desc', limit=1)

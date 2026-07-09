@@ -8,3 +8,4 @@ from . import report_template
 from . import report_generator
 from . import res_partner_bank
 from . import hr_contract
+from . import res_users

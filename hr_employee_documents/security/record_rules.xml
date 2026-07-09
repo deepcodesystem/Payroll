@@ -38,5 +38,18 @@
             <field name="groups" eval="[(4, ref('hr.group_hr_manager'))]"/>
         </record>
 
+        <!-- Report template access by group_ids: si group_ids est vide → tout le monde,
+             sinon seuls les utilisateurs dans au moins un des groupes peuvent voir le modèle -->
+        <record id="report_template_group_rule" model="ir.rule">
+            <field name="name">Report template: user must be in required groups</field>
+            <field name="model_id" ref="model_hr_employee_report_template"/>
+            <field name="domain_force">['|', ('group_ids', '=', False), ('group_ids', 'in', user.groups_id.ids)]</field>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">0</field>
+            <field name="perm_create">0</field>
+            <field name="perm_unlink">0</field>
+        </record>
+
     </data>
 </odoo>
