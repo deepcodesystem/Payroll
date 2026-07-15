@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_profile_change_request_user,hr.profile.change.request.user,model_hr_profile_change_request,base.group_user,1,1,1,0
+access_hr_profile_change_request_manager,hr.profile.change.request.manager,model_hr_profile_change_request,hr.group_hr_user,1,1,1,1
+access_hr_profile_change_request_line_user,hr.profile.change.request.line.user,model_hr_profile_change_request_line,base.group_user,1,1,1,0
+access_hr_profile_change_request_line_manager,hr.profile.change.request.line.manager,model_hr_profile_change_request_line,hr.group_hr_user,1,1,1,1
+access_hr_profile_change_wizard_user,hr.profile.change.wizard.user,model_hr_profile_change_wizard,base.group_user,1,1,1,1
+access_hr_profile_change_wizard_line_user,hr.profile.change.wizard.line.user,model_hr_profile_change_wizard_line,base.group_user,1,1,1,1

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Menu RH -->
+    <menuitem id="hr_profile_change_request_menu_root"
+              name="Modification Profil"
+              parent="hr.menu_hr_employee_payroll"
+              sequence="90"/>
+
+    <menuitem id="hr_profile_change_request_menu_all"
+              name="Toutes les demandes"
+              parent="hr_profile_change_request_menu_root"
+              action="hr_profile_change_request_action"
+              groups="hr.group_hr_user"
+              sequence="10"/>
+
+    <menuitem id="hr_profile_change_request_menu_my"
+              name="Mes demandes"
+              parent="hr_profile_change_request_menu_root"
+              action="hr_profile_change_request_action_my"
+              sequence="20"/>
+
+</odoo>
