@@ -80,20 +80,39 @@ class HrProfileChangeRequest(models.Model):
                 raise UserError(_('Seules les demandes refusées peuvent être remises en brouillon.'))
             rec.write({'state': 'draft', 'hr_comment': False, 'response_date': False})
 
+    BANK_FIELD_MAP = {
+        'employee_acc_number': 'acc_number',
+        'employee_agence': 'agence',
+    }
+
     def _apply_changes(self):
         self.ensure_one()
         if not self.employee_id:
             return
-        vals = {}
+        employee_vals = {}
+        bank_vals = {}
         for line in self.line_ids:
             field_name = line.field_name
-            field = self.env['hr.employee']._fields.get(field_name)
-            if not field:
-                continue
-            new_value = line._convert_to_field_type(line.new_value, field)
-            vals[field_name] = new_value
-        if vals:
-            self.employee_id.sudo().write(vals)
+            if field_name in self.BANK_FIELD_MAP:
+                bank_field = self.BANK_FIELD_MAP[field_name]
+                field = self.env['hr.employee']._fields.get(field_name)
+                if field:
+                    bank_vals[bank_field] = line._convert_to_field_type(line.new_value, field)
+            else:
+                field = self.env['hr.employee']._fields.get(field_name)
+                if not field:
+                    continue
+                employee_vals[field_name] = line._convert_to_field_type(line.new_value, field)
+        if bank_vals:
+            bank_account = self.employee_id.bank_account_id
+            if bank_account:
+                bank_account.sudo().write(bank_vals)
+            else:
+                bank_vals['partner_id'] = self.employee_id.work_contact_id.id
+                new_account = self.env['res.partner.bank'].sudo().create(bank_vals)
+                self.employee_id.sudo().write({'bank_account_id': new_account.id})
+        if employee_vals:
+            self.employee_id.sudo().write(employee_vals)
 
     def _notify_hr(self):
         hr_group = self.env.ref('hr.group_hr_user', raise_if_not_found=False)

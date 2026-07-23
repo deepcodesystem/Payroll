@@ -17,6 +17,8 @@ class HrProfileChangeRequestLine(models.Model):
         ('private_phone', 'Téléphone privé'),
         ('private_lang', 'Langue'),
         ('employee_bank_account_id', 'Compte bancaire'),
+        ('employee_acc_number', 'Numéro de compte'),
+        ('employee_agence', 'Agence'),
         ('distance_home_work', 'Distance domicile-travail'),
         ('distance_home_work_unit', 'Unité de distance'),
         ('employee_country_id', 'Nationalité'),

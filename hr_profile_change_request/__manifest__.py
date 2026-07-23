@@ -19,7 +19,7 @@ Fonctionnalités :
     """,
     'author': 'DeepCode',
     'website': 'https://deeposapps.com',
-    'depends': ['hr', 'l10n_hr_ma_payroll'],
+    'depends': ['hr', 'l10n_hr_ma_payroll', 'hr_employee_documents'],
     'data': [
         'security/hr_profile_change_request_security.xml',
         'security/ir.model.access.csv',
